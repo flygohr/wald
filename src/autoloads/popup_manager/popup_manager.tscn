@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://b63w0p3ooheuj"]
+
+[ext_resource type="Script" uid="uid://bso63le5evvba" path="res://src/autoloads/popup_manager/popup_manager.gd" id="1_curds"]
+[ext_resource type="Script" uid="uid://c3p5hehud2mfn" path="res://src/scripts/button_effects_component.gd" id="2_6k647"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl0tk"]
+bg_color = Color(0, 0, 0, 0.7490196)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ejtj"]
+bg_color = Color(0.45581734, 0.45581734, 0.45581716, 1)
+
+[node name="PopupManager" type="Node2D" unique_id=1256655826]
+process_mode = 3
+script = ExtResource("1_curds")
+
+[node name="Popup" type="CanvasLayer" parent="." unique_id=422725014]
+layer = 10
+visible = false
+
+[node name="BackgroundPanel" type="Panel" parent="Popup" unique_id=1448641164]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gl0tk")
+
+[node name="PopupContainer" type="MarginContainer" parent="Popup" unique_id=1410566744]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/PopupContainer" unique_id=1166347300]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="PopupTextContainer" type="PanelContainer" parent="Popup/PopupContainer/VBoxContainer" unique_id=13449824]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ejtj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/PopupContainer/VBoxContainer/PopupTextContainer" unique_id=602473380]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PopupTextLabel" type="RichTextLabel" parent="Popup/PopupContainer/VBoxContainer/PopupTextContainer/MarginContainer" unique_id=720389761]
+layout_mode = 2
+size_flags_vertical = 6
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus diam metus, vel ullamcorper sem vestibulum ut. Phasellus luctus mauris sit amet eros ullamcorper hendrerit."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="Popup/PopupContainer/VBoxContainer" unique_id=1303985885]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="NoButton" type="Button" parent="Popup/PopupContainer/VBoxContainer/ButtonsContainer" unique_id=640313288]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NO"
+
+[node name="ButtonEffectsComponent" type="Node" parent="Popup/PopupContainer/VBoxContainer/ButtonsContainer/NoButton" unique_id=503526805]
+script = ExtResource("2_6k647")
+metadata/_custom_type_script = "uid://c3p5hehud2mfn"
+
+[node name="YesButton" type="Button" parent="Popup/PopupContainer/VBoxContainer/ButtonsContainer" unique_id=766969451]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "YES"
+
+[node name="ButtonEffectsComponent" type="Node" parent="Popup/PopupContainer/VBoxContainer/ButtonsContainer/YesButton" unique_id=539862893]
+script = ExtResource("2_6k647")
+metadata/_custom_type_script = "uid://c3p5hehud2mfn"
+
+[node name="NextButton" type="Button" parent="Popup/PopupContainer/VBoxContainer/ButtonsContainer" unique_id=633055252]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NEXT"
+
+[node name="ButtonEffectsComponent" type="Node" parent="Popup/PopupContainer/VBoxContainer/ButtonsContainer/NextButton" unique_id=847981991]
+script = ExtResource("2_6k647")
+metadata/_custom_type_script = "uid://c3p5hehud2mfn"
+
+[connection signal="pressed" from="Popup/PopupContainer/VBoxContainer/ButtonsContainer/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="Popup/PopupContainer/VBoxContainer/ButtonsContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Popup/PopupContainer/VBoxContainer/ButtonsContainer/NextButton" to="." method="_on_next_button_pressed"]

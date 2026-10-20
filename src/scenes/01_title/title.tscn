@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://q3362xrshrsu"]
+
+[ext_resource type="Script" uid="uid://c3lyi851kms3q" path="res://src/scenes/01_title/title.gd" id="1_odh2p"]
+[ext_resource type="Script" uid="uid://c3p5hehud2mfn" path="res://src/scripts/button_effects_component.gd" id="2_cfr28"]
+
+[node name="Ttitle" type="Node2D" unique_id=189399056]
+script = ExtResource("1_odh2p")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=617058382]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=295295757]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=32891676]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=80970309]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+text = "NEW GAME"
+
+[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/PlayButton" unique_id=408166088]
+script = ExtResource("2_cfr28")
+
+[node name="OptionsButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1127304447]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 6
+text = "OPTIONS"
+
+[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/OptionsButton" unique_id=68332022]
+script = ExtResource("2_cfr28")
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

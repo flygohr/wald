@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://m6ppdobe31o3"]
+
+[ext_resource type="Script" uid="uid://c2ugdc8g1ddsw" path="res://src/autoloads/music_manager/music_manager.gd" id="1_tn5dr"]
+[ext_resource type="AudioStream" uid="uid://6s4a1r7gcux7" path="res://assets/audio/music/591263__josefpres__bass-loops-035-short-loop-120-bpm.wav" id="2_rhnub"]
+[ext_resource type="AudioStream" uid="uid://cr2pi5vsspeji" path="res://assets/audio/sfx/593835__josefpres__bass-loops-037-short-loop-120-bpm.wav" id="3_722mk"]
+
+[node name="MusicManager" type="Node" unique_id=2088791662]
+process_mode = 3
+script = ExtResource("1_tn5dr")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=707347176]
+stream = ExtResource("2_rhnub")
+autoplay = true
+bus = &"Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=566597615]
+stream = ExtResource("3_722mk")
+autoplay = true
+bus = &"SFX"

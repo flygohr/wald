@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://cc1yqy62xbprh"]
+
+[ext_resource type="Script" uid="uid://bdqfmmr2y78kg" path="res://src/autoloads/settings/settings.gd" id="1_5p8wc"]
+[ext_resource type="Theme" uid="uid://d2s1eqi0btoeb" path="res://assets/themes/main_theme.tres" id="2_r6d6q"]
+[ext_resource type="Script" uid="uid://c3p5hehud2mfn" path="res://src/scripts/button_effects_component.gd" id="3_6wm04"]
+
+[node name="Settings" type="Node2D" unique_id=330638506]
+process_mode = 3
+script = ExtResource("1_5p8wc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=227505281]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=282847211]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1998997710]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_r6d6q")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=831364099]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MusicSliderContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1422010896]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MusicSliderLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/MusicSliderContainer" unique_id=1271875001]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Music:"
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/MarginContainer/VBoxContainer/MusicSliderContainer" unique_id=1730764814]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 10.0
+value = 100.0
+
+[node name="MusicSliderValue" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/MusicSliderContainer" unique_id=1513095822]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "100%"
+horizontal_alignment = 2
+
+[node name="SFXSliderContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1392802761]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SFXSliderLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/SFXSliderContainer" unique_id=1345289020]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SFX:"
+
+[node name="SFXSlider" type="HSlider" parent="CanvasLayer/MarginContainer/VBoxContainer/SFXSliderContainer" unique_id=33482297]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 10.0
+value = 100.0
+
+[node name="SFXSliderValue" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/SFXSliderContainer" unique_id=1046732147]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "100%"
+horizontal_alignment = 2
+
+[node name="ExportSaveButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=850701326]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "EXPORT SAVE"
+
+[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/ExportSaveButton" unique_id=1950479637]
+script = ExtResource("3_6wm04")
+metadata/_custom_type_script = "uid://c3p5hehud2mfn"
+
+[node name="ImportSaveButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=315117211]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "IMPORT SAVE"
+
+[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/ImportSaveButton" unique_id=1710084265]
+script = ExtResource("3_6wm04")
+metadata/_custom_type_script = "uid://c3p5hehud2mfn"
+
+[node name="BackButtonMargins" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=955490220]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="BackButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/BackButtonMargins" unique_id=662541628]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "BACK"
+
+[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/BackButtonMargins/BackButton" unique_id=1333937738]
+script = ExtResource("3_6wm04")
+metadata/_custom_type_script = "uid://c3p5hehud2mfn"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=89263198]
+visible = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "QUIT TO TITLE"
+
+[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/QuitButton" unique_id=1643146195]
+script = ExtResource("3_6wm04")
+metadata/_custom_type_script = "uid://c3p5hehud2mfn"
+
+[connection signal="value_changed" from="CanvasLayer/MarginContainer/VBoxContainer/MusicSliderContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/MarginContainer/VBoxContainer/SFXSliderContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ExportSaveButton" to="." method="_on_export_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ImportSaveButton" to="." method="_on_import_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/BackButtonMargins/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
