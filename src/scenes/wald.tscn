@@ -7,7 +7,8 @@
 [node name="Wald" type="Node2D" unique_id=934451563]
 script = ExtResource("1_rqd8u")
 map_node_base = ExtResource("4_dy57v")
-attempts_max = 500
+obstacle_ratio = 0.3
+attempts_max = 250
 branching_probability = 1.0
 
 [node name="Start" parent="." unique_id=1472381507 instance=ExtResource("4_dy57v")]
