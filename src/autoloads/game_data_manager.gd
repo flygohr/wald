@@ -3,7 +3,7 @@
 
 extends Node
 
-const GAME_NAME: String = "Godot Jam Template"
+const GAME_NAME: String = "Wald"
 const GAME_VERSION: String = "0.2"
 
 # GAME CONFIG
@@ -24,14 +24,16 @@ var is_in_game: bool = false # Track if in game for settings menu options
 # Strings to organize the data into a Dictionary and later into a JSON
 const KEY_GAME_VERSION: String = "game version"
 const KEY_IS_NEW_GAME: String = "is new game"
-const KEY_DUMMY_DATA: String = "dummy text data"
+const KEY_DEBUG_MARKER_POSITION: String = "debug marker position"
+const KEY_DUMMY_DATA: String = "dummy data"
 
 # DEFAULT GAME DATA
 # What to load into a new save
 const DEFAULT_GAME_DATA: Dictionary = {
 	KEY_GAME_VERSION: GAME_VERSION,
 	KEY_IS_NEW_GAME: true,
-	KEY_DUMMY_DATA: "Default dummy data"
+	KEY_DEBUG_MARKER_POSITION: Vector2.ZERO,
+	KEY_DUMMY_DATA: "dummy"
 }
 
 # CURRENT GAME DATA

@@ -11,3 +11,6 @@ func _ready() -> void:
 func update_texture(c: Color, s := scale_mult) -> void:
 	node_sprite.modulate = c
 	node_sprite.scale = scale * s
+
+func _on_check_button_pressed() -> void:
+	SignalBus.debug_travel.emit(global_position)

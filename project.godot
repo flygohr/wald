@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="wald-doan_digital_game_jam"
-run/main_scene="uid://br733vfr7guw7"
+run/main_scene="uid://q3362xrshrsu"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -43,10 +43,8 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/
 
 [gui]
 
-theme/default_font_antialiasing=0
-theme/default_font_subpixel_positioning=0
 theme/custom="uid://d2s1eqi0btoeb"
-theme/custom_font="uid://x61fcsihg35g"
+theme/custom_font="uid://l5vgd3rv3q2b"
 
 [input]
 

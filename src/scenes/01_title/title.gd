@@ -3,7 +3,7 @@ extends Node2D
 const INITIAL_SCENE: StringName = ScenesManager.SCENE_PATHS[ScenesManager.KEY_GAME_SCREEN]
 const SETTINGS_SCENE: StringName = ScenesManager.SCENE_PATHS[ScenesManager.KEY_SETTINGS_SCREEN]
 
-@onready var play_button: Button = $CanvasLayer/MarginContainer/VBoxContainer/PlayButton
+@onready var play_button: Button = $CanvasLayer/VBoxContainer/PlayButton
 
 func _ready() -> void:	
 	GameData.is_in_game = false

@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ut6g630t8jua" path="res://src/scenes/wald.gd" id="1_rqd8u"]
 [ext_resource type="Script" uid="uid://do7ep5lcrs8mp" path="res://src/scenes/wald_camera.gd" id="2_l3era"]
+[ext_resource type="PackedScene" uid="uid://dvo068lpcimar" path="res://src/scenes/player_marker.tscn" id="4_4bu3n"]
 [ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/map_node.tscn" id="4_dy57v"]
+[ext_resource type="Texture2D" uid="uid://bcxd168bujn7o" path="res://assets/images/17_liken moss texture-seamless.jpg" id="5_4bu3n"]
 
 [node name="Wald" type="Node2D" unique_id=934451563]
 script = ExtResource("1_rqd8u")
@@ -14,6 +16,13 @@ branching_probability = 1.0
 [node name="Start" parent="." unique_id=1472381507 instance=ExtResource("4_dy57v")]
 
 [node name="WaldCamera" type="Camera2D" parent="." unique_id=238224586]
-limit_enabled = false
 script = ExtResource("2_l3era")
 min_zoom = 0.1
+
+[node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1501368137]
+texture_repeat = 2
+texture = ExtResource("5_4bu3n")
+region_enabled = true
+region_rect = Rect2(-1000, -1000, 20000, 20000)

@@ -19,6 +19,7 @@ extends Node2D
 var map_nodes_list: Array = []
 
 @export var attempts_max := 5
+@export var map_size := 10
 @export var branching_probability := 0.6
 
 const KEY_MAPNODE_POS := "position"
@@ -39,7 +40,7 @@ var middle_point: Vector2
 var distance_from_middle_point: float
 
 func _ready() -> void:
-	draw_connection(start.position, 15)
+	draw_connection(start.position, map_size)
 
 func draw_connection(s: Vector2, map_length: int) -> void:
 	
@@ -158,6 +159,8 @@ func draw_connection(s: Vector2, map_length: int) -> void:
 			solutions_count += 1
 			
 	if obstacles_count > solutions_count: print("NOT ENOUGH SOLUTIONS!")
+	
+	# CALCULATE BOUNDING BOXES AND SET BACKGROUND PLANE AND CAMERA LIMITS --------------------------
 			
 func add_branches(list, starting, branches_amt) -> void:
 	
@@ -198,7 +201,6 @@ func add_branches(list, starting, branches_amt) -> void:
 						has_been_positioned = true
 						
 						add_to_map_nodes_list(list, target_position, starting[KEY_MAPNODE_DEGREE]+1, starting[KEY_MAPNODE_DEPTH], new_node)
-
 	
 	
 func pick_random_distance() -> int:

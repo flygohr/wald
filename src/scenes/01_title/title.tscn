@@ -1,47 +1,75 @@
 [gd_scene format=3 uid="uid://q3362xrshrsu"]
 
 [ext_resource type="Script" uid="uid://c3lyi851kms3q" path="res://src/scenes/01_title/title.gd" id="1_odh2p"]
-[ext_resource type="Script" uid="uid://c3p5hehud2mfn" path="res://src/scripts/button_effects_component.gd" id="2_cfr28"]
+[ext_resource type="Texture2D" uid="uid://b3v70dmb4b0x3" path="res://assets/images/placeholder_unsplash.jpg" id="2_hryuo"]
+[ext_resource type="FontFile" uid="uid://81f6aagdxhvc" path="res://assets/fonts/libre-baskerville/LibreBaskerville-Bold.ttf" id="3_hryuo"]
+[ext_resource type="FontFile" uid="uid://l5vgd3rv3q2b" path="res://assets/fonts/libre-baskerville/LibreBaskerville-Regular.ttf" id="4_hryuo"]
 
 [node name="Ttitle" type="Node2D" unique_id=189399056]
 script = ExtResource("1_odh2p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=617058382]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=295295757]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1084672473]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+texture = ExtResource("2_hryuo")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=32891676]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=32891676]
 custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -41.0
+offset_right = -70.0
+offset_bottom = 41.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 16
 
-[node name="PlayButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=80970309]
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=290653031]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hryuo")
+theme_override_font_sizes/font_size = 64
+text = "WALD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=80970309]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 4
 text = "NEW GAME"
 
-[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/PlayButton" unique_id=408166088]
-script = ExtResource("2_cfr28")
-
-[node name="OptionsButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1127304447]
+[node name="OptionsButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1127304447]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 6
 text = "OPTIONS"
 
-[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/OptionsButton" unique_id=68332022]
-script = ExtResource("2_cfr28")
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1296740522]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -30.0
+offset_right = 116.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_hryuo")
+theme_override_font_sizes/font_size = 6
+text = "WALD 0.2 - WEB"
+vertical_alignment = 2
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

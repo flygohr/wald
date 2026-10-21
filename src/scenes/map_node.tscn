@@ -9,3 +9,11 @@ script = ExtResource("1_sq47f")
 [node name="NodeSprite" type="Sprite2D" parent="." unique_id=1472381507]
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("1_k2sr5")
+
+[node name="CheckButton" type="TextureButton" parent="." unique_id=1937951989]
+offset_left = -32.0
+offset_top = -31.0
+offset_right = 32.0
+offset_bottom = 31.0
+
+[connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]

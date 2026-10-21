@@ -7,4 +7,6 @@ extends Node
 signal pause_game
 signal resume_game
 
+signal debug_travel(coords: Vector2)
+
 @warning_ignore_restore("unused_signal")
