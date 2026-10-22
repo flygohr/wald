@@ -2,14 +2,24 @@
 
 [ext_resource type="Script" uid="uid://x07qk50o6nxs" path="res://src/scenes/map_generator.gd" id="1_4bu3n"]
 [ext_resource type="Script" uid="uid://ut6g630t8jua" path="res://src/scenes/wald.gd" id="1_rqd8u"]
-[ext_resource type="Script" uid="uid://do7ep5lcrs8mp" path="res://src/scenes/wald_camera.gd" id="2_l3era"]
 [ext_resource type="Script" uid="uid://cp3nr3hu4eqep" path="res://src/scenes/map_visualizer.gd" id="3_g6jtw"]
 [ext_resource type="PackedScene" uid="uid://dvo068lpcimar" path="res://src/scenes/player_marker.tscn" id="4_4bu3n"]
 [ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/map_node.tscn" id="4_dy57v"]
 [ext_resource type="Texture2D" uid="uid://bcxd168bujn7o" path="res://assets/images/17_liken moss texture-seamless.jpg" id="5_4bu3n"]
+[ext_resource type="PackedScene" uid="uid://djmo1hynwuehb" path="res://src/scenes/wald_camera.tscn" id="5_g6jtw"]
 
 [node name="Wald" type="Node2D" unique_id=934451563]
 script = ExtResource("1_rqd8u")
+
+[node name="WaldCamera" parent="." unique_id=1485065150 instance=ExtResource("5_g6jtw")]
+limit_enabled = false
+limit_left = -3000
+limit_top = -3000
+limit_right = 3000
+limit_bottom = 3000
+limit_smoothed = true
+position_smoothing_enabled = true
+min_zoom = 1.0
 
 [node name="MapVisualizer" type="Node" parent="." unique_id=747671176]
 script = ExtResource("3_g6jtw")
@@ -17,12 +27,12 @@ base_node = ExtResource("4_dy57v")
 
 [node name="MapGenerator" type="Node" parent="." unique_id=1490238067]
 script = ExtResource("1_4bu3n")
-map_depth = 8
+branching_degrees = 2
+branching_multiplier = 2
 difficulty = 1
-
-[node name="WaldCamera" type="Camera2D" parent="." unique_id=238224586]
-script = ExtResource("2_l3era")
-min_zoom = 0.1
+short_walk_length = 600
+medium_walk_length = 1200
+long_walk_length = 1800
 
 [node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
 visible = false

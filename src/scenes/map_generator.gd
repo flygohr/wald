@@ -91,22 +91,22 @@ func spawn_branches(branches_origin, branches_amt) -> void:
 		if branches_found == branches_amt: break
 		var space_found: bool = false
 		
-		# Using the origin, cast a point at short distance and right angle
-		var target_position = Vector2.from_angle(deg_to_rad(starting_angle+(angle*5))) * short_walk_length + branches_origin[Definitions.KEY_MAPNODE_POS]
+		# Using the origin, cast a point at long distance and right angle
+		var target_position = Vector2.from_angle(deg_to_rad(starting_angle+(angle*5))) * long_walk_length + branches_origin[Definitions.KEY_MAPNODE_POS]
 		
 		if is_distant(target_position, short_walk_length): 
 			space_found = true
 			branches_found += 1
 		
-		if space_found == false: # If not found at short distance, try again at medium distance
+		if space_found == false: # If not found at long distance, try again at medium distance
 			target_position = Vector2.from_angle(deg_to_rad(starting_angle+(angle*5))) * medium_walk_length + branches_origin[Definitions.KEY_MAPNODE_POS]
 			
 			if is_distant(target_position, medium_walk_length):
 				space_found = true
 				branches_found += 1
 		
-		if space_found == false: # If not found either at short or medium distance, try again at longer distance
-			target_position = Vector2.from_angle(deg_to_rad(starting_angle+(angle*5))) * long_walk_length + branches_origin[Definitions.KEY_MAPNODE_POS]
+		if space_found == false: # If not found either at long or medium distance, try again at short distance
+			target_position = Vector2.from_angle(deg_to_rad(starting_angle+(angle*5))) * short_walk_length + branches_origin[Definitions.KEY_MAPNODE_POS]
 			
 			if is_distant(target_position, long_walk_length):
 				space_found = true
@@ -126,17 +126,19 @@ func spawn_branches(branches_origin, branches_amt) -> void:
 
 
 func populate_map(diff: int) -> void:
-	## TODO: add long distance walker in the first 3 degree 1 things
+	# Add long distance walker in the first 3 degree 1 things
+	var random_long_walker: int = [1,2,3].pick_random()
+	map_nodes_list[random_long_walker][Definitions.KEY_MAPNODETYPE] = Definitions.KEY_MAPNODETYPE_SOLUTION
 	
-	## TODO: edit generation parameters by difficulty
+	# Edit generation parameters by difficulty
 	var obstacles_ratio: float
 	match diff:
 		0:
-			obstacles_ratio = 0.4
+			obstacles_ratio = 0.3
 		1:
-			obstacles_ratio = 0.6
+			obstacles_ratio = 0.4
 		2:
-			obstacles_ratio = 0.8
+			obstacles_ratio = 0.5
 	
 	# MAIN PATH OBSTACLES AND SOLUTIONS ------------------------------------------------------------
 	for node in map_nodes_list:
@@ -153,8 +155,27 @@ func populate_map(diff: int) -> void:
 						
 				var picked_node_for_solution = possible_solutions.pick_random()
 				
-				picked_node_for_solution[Definitions.KEY_MAPNODETYPE] = Definitions.KEY_MAPNODETYPE_SOLUTION
+				picked_node_for_solution[Definitions.KEY_MAPNODETYPE] = Definitions.KEY_MAPNODETYPE_SOLUTION # TODO: sometimes this crashes everything
 	
+	# REST OF THE MAP OBSTACLES AND SOLUTIONS ------------------------------------------------------
+		elif node[Definitions.KEY_MAPNODE_DEGREE] > 1 and node[Definitions.KEY_MAPNODETYPE] == Definitions.KEY_MAPNODETYPE_DEFAULT:
+			var roll_for_obstacle: float = randf()
+			if roll_for_obstacle < obstacles_ratio:
+				node[Definitions.KEY_MAPNODETYPE] = Definitions.KEY_MAPNODETYPE_OBSTACLE
+				
+				var possible_solutions: Array = []
+				for possible_node in map_nodes_list:
+					if possible_node[Definitions.KEY_MAPNODETYPE] == Definitions.KEY_MAPNODETYPE_DEFAULT:
+						possible_solutions.append(possible_node)
+						
+				var picked_node_for_solution = possible_solutions.pick_random()
+				
+				picked_node_for_solution[Definitions.KEY_MAPNODETYPE] = Definitions.KEY_MAPNODETYPE_SOLUTION
+				
+	# THEN THE REST OF THE DEFAULT NODES GET CONVERTED INTO EVENTS ---------------------------------
+	for node in map_nodes_list:
+		if node[Definitions.KEY_MAPNODETYPE] == Definitions.KEY_MAPNODETYPE_DEFAULT:
+			node[Definitions.KEY_MAPNODETYPE] = Definitions.KEY_MAPNODETYPE_EVENT
 
 func _pick_random_distance() -> int:
 	return [short_walk_length, medium_walk_length, long_walk_length].pick_random()

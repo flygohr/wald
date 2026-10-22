@@ -27,6 +27,8 @@ func update_texture(type: String) -> void:
 			node_sprite.modulate = COLOR_OBSTACLE
 		Definitions.KEY_MAPNODETYPE_SOLUTION:
 			node_sprite.modulate = COLOR_SOLUTION
+		Definitions.KEY_MAPNODETYPE_EVENT:
+			node_sprite.modulate = COLOR_EVENT
 		_:
 			node_sprite.modulate = COLOR_DEFAULT
 	

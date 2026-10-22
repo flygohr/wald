@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://djmo1hynwuehb"]
+
+[ext_resource type="Script" uid="uid://do7ep5lcrs8mp" path="res://src/scenes/wald_camera.gd" id="1_xld13"]
+
+[node name="WaldCamera" type="Camera2D" unique_id=1485065150]
+script = ExtResource("1_xld13")
+min_zoom = 0.1

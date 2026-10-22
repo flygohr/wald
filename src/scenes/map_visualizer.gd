@@ -16,7 +16,7 @@ func render_map(list: Array) -> void:
 		
 		add_child(node_scene)
 		
-		_draw_connecting_line(node[Definitions.KEY_PREVIOUSNODE_COORDS], node[Definitions.KEY_MAPNODE_POS], node[Definitions.KEY_MAPNODE_DEGREE])
+		# _draw_connecting_line(node[Definitions.KEY_PREVIOUSNODE_COORDS], node[Definitions.KEY_MAPNODE_POS], node[Definitions.KEY_MAPNODE_DEGREE])
 			
 
 func _draw_connecting_line(start: Vector2, end: Vector2, width: int) -> void:
