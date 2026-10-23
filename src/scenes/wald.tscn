@@ -19,6 +19,14 @@ script = ExtResource("7_g6jtw")
 script = ExtResource("3_g6jtw")
 base_node = ExtResource("4_dy57v")
 
+[node name="BackgroundPattern" type="Sprite2D" parent="MapVisualizer" unique_id=1501368137]
+modulate = Color(1, 1, 1, 0.2901961)
+texture_repeat = 2
+texture = ExtResource("5_4bu3n")
+centered = false
+region_enabled = true
+region_rect = Rect2(-1000, -1000, 20000, 20000)
+
 [node name="MapGenerator" type="Node" parent="." unique_id=1490238067]
 script = ExtResource("1_4bu3n")
 branching_degrees = 2
@@ -29,10 +37,3 @@ medium_walk_length = 800
 long_walk_length = 1200
 
 [node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1501368137]
-modulate = Color(1, 1, 1, 0.2901961)
-texture_repeat = 2
-texture = ExtResource("5_4bu3n")
-region_enabled = true
-region_rect = Rect2(-1000, -1000, 20000, 20000)

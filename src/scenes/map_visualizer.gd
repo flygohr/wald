@@ -1,9 +1,11 @@
 extends Node
 
 @export var base_node: PackedScene
+@onready var background_pattern: Sprite2D = $BackgroundPattern
 
 func _ready() -> void:
 	SignalBus.finished_generating_map.connect(render_map)
+	SignalBus.generated_map_limits.connect(render_background)
 
 
 func render_map(list: Array) -> void:
@@ -16,8 +18,13 @@ func render_map(list: Array) -> void:
 		
 		add_child(node_scene)
 		
+		
 		# _draw_connecting_line(node[Definitions.KEY_PREVIOUSNODE_COORDS], node[Definitions.KEY_MAPNODE_POS], node[Definitions.KEY_MAPNODE_DEGREE])
-			
+
+
+func render_background(x: int, y: int, w: int, h: int) -> void:
+	background_pattern.region_rect = Rect2(x, y, w, h)
+	background_pattern.position = Vector2(x, y)
 
 func _draw_connecting_line(start: Vector2, end: Vector2, width: int) -> void:
 	var connecting_line = Line2D.new()

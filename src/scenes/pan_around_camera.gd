@@ -69,15 +69,22 @@ func _set_limits(list: Array) -> void:
 		
 	limit_enabled = true
 	
-	limit_top = top_bound - camera_padding
-	limit_right = right_bound + camera_padding
-	limit_bottom = bottom_bound + camera_padding
-	limit_left = left_bound - camera_padding
+	var extended_top_bound: int = top_bound - camera_padding
+	var extended_right_bound: int = right_bound + camera_padding
+	var extended_bottom_bound: int = bottom_bound + camera_padding
+	var extended_left_bound: int = left_bound - camera_padding
 	
-	print("Top camera limits are now ", top_bound)
-	print("Right camera limits are now ", right_bound)
-	print("Bottom camera limits are now ", bottom_bound)
-	print("Left camera limits are now ", left_bound)
+	limit_top = extended_top_bound
+	limit_right = extended_right_bound
+	limit_bottom = extended_bottom_bound
+	limit_left = extended_left_bound
+	
+	SignalBus.generated_map_limits.emit( # Send the map limits to the map visualizer
+		extended_left_bound, 
+		extended_top_bound, 
+		abs(extended_left_bound) + abs(extended_right_bound), 
+		abs(extended_top_bound) + abs(extended_bottom_bound)
+		)
 
 #TODO: pan from endpoint
 

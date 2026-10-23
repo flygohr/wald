@@ -8,6 +8,7 @@ signal pause_game
 signal resume_game
 
 signal finished_generating_map(nodes_list: Array)
+signal generated_map_limits(x: int, y: int, w: int, h: int)
 
 signal debug_travel(coords: Vector2)
 

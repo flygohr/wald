@@ -1,5 +1,10 @@
 extends Node2D
 
+#TODO: node needs to do different things depending on what it is
+# if revealed, show icon, not general white dot
+# if highlighted, show highlight animation
+# if end, show finish arrow and offscreen indicator
+
 @export var color : Color
 @export var scale_mult := 0.03
 
