@@ -1,10 +1,4 @@
 extends Node2D
 
-var nodes_list: Array
-
-func _ready() -> void:
-	SignalBus.finished_generating_map.connect(finished_generating_map)
-	
-func finished_generating_map(list: Array) -> void:
-	nodes_list = list
-	
+# This is the map screen of the game. It loads a map from the GameData, and visualizes it with its
+# connections and stuff

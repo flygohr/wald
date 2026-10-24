@@ -1,12 +1,6 @@
 [gd_scene format=3 uid="uid://dvo068lpcimar"]
 
 [ext_resource type="Script" uid="uid://cucgsf4uh0gl" path="res://src/scenes/player_marker.gd" id="1_74hr7"]
-[ext_resource type="Texture2D" uid="uid://esxrh7wnh4bh" path="res://assets/images/debug_circle.png" id="1_g345w"]
 
 [node name="PlayerMarker" type="Node2D" unique_id=1500289336]
 script = ExtResource("1_74hr7")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1272984838]
-modulate = Color(0.40392157, 1, 1, 0.24705882)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_g345w")

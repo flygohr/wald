@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3v70dmb4b0x3" path="res://assets/images/placeholder_unsplash.jpg" id="2_hryuo"]
 [ext_resource type="FontFile" uid="uid://81f6aagdxhvc" path="res://assets/fonts/libre-baskerville/LibreBaskerville-Bold.ttf" id="3_hryuo"]
 [ext_resource type="FontFile" uid="uid://l5vgd3rv3q2b" path="res://assets/fonts/libre-baskerville/LibreBaskerville-Regular.ttf" id="4_hryuo"]
+[ext_resource type="Theme" uid="uid://d2s1eqi0btoeb" path="res://assets/themes/main_theme.tres" id="4_smn61"]
 
 [node name="Ttitle" type="Node2D" unique_id=189399056]
 script = ExtResource("1_odh2p")
@@ -45,7 +46,14 @@ text = "WALD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=80970309]
+[node name="ContinueButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=80970309]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("4_smn61")
+text = "CONTINUE"
+
+[node name="NewGameButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=934248415]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 4
@@ -71,5 +79,6 @@ theme_override_font_sizes/font_size = 6
 text = "WALD 0.2 - WEB"
 vertical_alignment = 2
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

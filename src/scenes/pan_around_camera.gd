@@ -2,8 +2,8 @@
 
 extends Camera2D
 
-@export var min_zoom := 0.3
-@export var max_zoom := 1.0
+@export var min_zoom := 0.4
+@export var max_zoom := 0.7
 @export var zoom_factor := 0.1
 @export var zoom_duration := 0.2
 
@@ -15,7 +15,7 @@ var position_before_drag2
 
 
 func _ready():
-	SignalBus.finished_generating_map.connect(_set_limits)
+	SignalBus.map_boundaries_set.connect(_set_limits)
 	# center on current node
 	# GlobalEvents.center_camera.connect(center_on_tables)
 
@@ -55,37 +55,16 @@ func set_zoom_level(level: float, mouse_world_position = self.get_global_mouse_p
 	self.zoom = Vector2(zoom_level, zoom_level)
 	self.global_position = new_position
 
-func _set_limits(list: Array) -> void:
-	var top_bound: int = 0
-	var right_bound: int = 0
-	var bottom_bound: int = 0
-	var left_bound: int = 0
+func _set_limits(left_x: int, top_y: int, right_x: int, bottom_y: int) -> void:
 	
-	for node in list:
-		if node[Definitions.KEY_MAPNODE_POS].y < top_bound: top_bound = node[Definitions.KEY_MAPNODE_POS].y
-		if node[Definitions.KEY_MAPNODE_POS].x > right_bound: right_bound = node[Definitions.KEY_MAPNODE_POS].x
-		if node[Definitions.KEY_MAPNODE_POS].y > bottom_bound: bottom_bound = node[Definitions.KEY_MAPNODE_POS].y
-		if node[Definitions.KEY_MAPNODE_POS].x < left_bound: left_bound = node[Definitions.KEY_MAPNODE_POS].x
-		
 	limit_enabled = true
 	
-	var extended_top_bound: int = top_bound - camera_padding
-	var extended_right_bound: int = right_bound + camera_padding
-	var extended_bottom_bound: int = bottom_bound + camera_padding
-	var extended_left_bound: int = left_bound - camera_padding
+	limit_left = left_x
+	limit_top = top_y
+	limit_right = right_x
+	limit_bottom = bottom_y
 	
-	limit_top = extended_top_bound
-	limit_right = extended_right_bound
-	limit_bottom = extended_bottom_bound
-	limit_left = extended_left_bound
 	
-	SignalBus.generated_map_limits.emit( # Send the map limits to the map visualizer
-		extended_left_bound, 
-		extended_top_bound, 
-		abs(extended_left_bound) + abs(extended_right_bound), 
-		abs(extended_top_bound) + abs(extended_bottom_bound)
-		)
-
 #TODO: pan from endpoint
 
 	

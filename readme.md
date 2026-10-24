@@ -1,7 +1,7 @@
 Description
 
 ### Credits:
-- Font: https://www.1001fonts.com/libre-baskerville-font.html
+- Font: https://www.1001fonts.com/komika-font.html, https://www.1001fonts.com/komika-axis-font.html
 - HTML5 File Dialog plugin: https://gitlab.com/mocchapi/godot-4-html5-file-dialogs
 
 ### To-do:

@@ -7,14 +7,17 @@
 script = ExtResource("1_sq47f")
 color = Color(0.7539839, 0.75398386, 0.75398386, 1)
 
-[node name="NodeSprite" type="Sprite2D" parent="." unique_id=1472381507]
-scale = Vector2(0.06, 0.06)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1428250501]
+visible = false
+scale = Vector2(0.107421875, 0.107421875)
 texture = ExtResource("1_k2sr5")
 
 [node name="CheckButton" type="TextureButton" parent="." unique_id=1937951989]
 offset_left = -32.0
 offset_top = -31.0
 offset_right = 32.0
-offset_bottom = 31.0
+offset_bottom = 33.0
+ignore_texture_size = true
+stretch_mode = 0
 
 [connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]

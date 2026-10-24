@@ -7,8 +7,10 @@ extends Node
 signal pause_game
 signal resume_game
 
+
+signal generate_new_map()
 signal finished_generating_map(nodes_list: Array)
-signal generated_map_limits(x: int, y: int, w: int, h: int)
+signal map_boundaries_set(left_x: int, top_y: int, right_x: int, bottom_y: int)
 
 signal debug_travel(coords: Vector2)
 
