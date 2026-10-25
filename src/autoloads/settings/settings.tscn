@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bdqfmmr2y78kg" path="res://src/autoloads/settings/settings.gd" id="1_5p8wc"]
 [ext_resource type="Theme" uid="uid://d2s1eqi0btoeb" path="res://assets/themes/main_theme.tres" id="2_r6d6q"]
-[ext_resource type="Script" uid="uid://c3p5hehud2mfn" path="res://src/scripts/button_effects_component.gd" id="3_6wm04"]
 
 [node name="Settings" type="Node2D" unique_id=330638506]
 process_mode = 3
@@ -19,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+color = Color(0, 0, 0, 0.7490196)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1998997710]
 anchors_preset = 15
@@ -92,18 +91,10 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 text = "EXPORT SAVE"
 
-[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/ExportSaveButton" unique_id=1950479637]
-script = ExtResource("3_6wm04")
-metadata/_custom_type_script = "uid://c3p5hehud2mfn"
-
 [node name="ImportSaveButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=315117211]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 text = "IMPORT SAVE"
-
-[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/ImportSaveButton" unique_id=1710084265]
-script = ExtResource("3_6wm04")
-metadata/_custom_type_script = "uid://c3p5hehud2mfn"
 
 [node name="BackButtonMargins" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=955490220]
 layout_mode = 2
@@ -114,19 +105,11 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 text = "BACK"
 
-[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/BackButtonMargins/BackButton" unique_id=1333937738]
-script = ExtResource("3_6wm04")
-metadata/_custom_type_script = "uid://c3p5hehud2mfn"
-
 [node name="QuitButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=89263198]
 visible = false
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 text = "QUIT TO TITLE"
-
-[node name="ButtonEffectsComponent" type="Node" parent="CanvasLayer/MarginContainer/VBoxContainer/QuitButton" unique_id=1643146195]
-script = ExtResource("3_6wm04")
-metadata/_custom_type_script = "uid://c3p5hehud2mfn"
 
 [connection signal="value_changed" from="CanvasLayer/MarginContainer/VBoxContainer/MusicSliderContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/MarginContainer/VBoxContainer/SFXSliderContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

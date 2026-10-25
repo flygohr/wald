@@ -29,5 +29,4 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _on_options_button_pressed() -> void:
-	# TODO: Fix this scene not displaying anything
-	ScenesManager.load_scene(SETTINGS_SCENE)
+	Settings.transition_in()

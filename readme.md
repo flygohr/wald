@@ -8,11 +8,15 @@ Description
 - [x] De-couple map generation from map visualization, and speed it up
 	- [x] Instead of a thousand attempts, run a ray around the points to find a suitable point, increments of 5 degrees
 - [x] Visualize the map with a simple script that reads the object and displays points in various colors
-- [ ] Create a camera to pan around the map, zoom in, zoom out
+- [x] Create a camera to pan around the map, zoom in, zoom out
+	- [ ] Fix its center function, add new panning option with starting and ending parameters
+- [x] Save and load the generated map as JSON objects
+- [ ] Fix import and export save to use new functions
 - [ ] Make a "map navigator" object that can jump around the various nodes at a certain distance from it
-- [ ] Save and load the generated map as JSON objects
-	- [ ] Save the "map navigator" current position AKA current node
-- [ ] Add arrow pointing towards "exit"
+	- [ ] Save and load its position
+- [ ] Add arrow pointing towards "exit", but this should maybe part of each node behavior. if exit, display arrow. or for the camera?
+- [ ] Fix settings screen not showing
+	- [ ] Make it also the pause menu, with back to game / back to title
 
 ### Devlog:
 - 2026-10-20
