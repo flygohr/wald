@@ -35,3 +35,14 @@ region_enabled = true
 region_rect = Rect2(-1000, -1000, 20000, 20000)
 
 [node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1179201079]
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer" unique_id=1406645908]
+offset_left = 36.0
+offset_top = 29.0
+offset_right = 202.0
+offset_bottom = 78.0
+text = "MAIN MENU"
+
+[connection signal="pressed" from="CanvasLayer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
