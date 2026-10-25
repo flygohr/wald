@@ -27,9 +27,6 @@ func _ready() -> void:
 	# SignalBus.generate_new_map.connect(generate_map)
 	if GameData.current[GameData.KEY_IS_NEW_GAME] == true:
 		generate_map()
-	else:
-		# Skip map generation and use existing data
-		SignalBus.finished_generating_map.emit(GameData.current[GameData.KEY_MAP_NODES_DATA])
 
 # STEPS --------------------------------------------------------------------------------------------
 func generate_map() -> void:
@@ -228,17 +225,17 @@ func _calculate_boundaries() -> void:
 	var extended_top_bound: int = top_bound - boundaries_offset
 	var extended_right_bound: int = right_bound + boundaries_offset
 	var extended_bottom_bound: int = bottom_bound + boundaries_offset
-
-	SignalBus.map_boundaries_set.emit( # Send the map limits to the map visualizer
-		extended_left_bound, 
-		extended_top_bound, 
-		extended_right_bound, 
-		extended_bottom_bound
-		)
+	
+	GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_LEFT_X] = extended_left_bound
+	GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_TOP_Y] = extended_top_bound
+	GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_RIGHT_X] = extended_right_bound
+	GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_BOTTOM_Y] = extended_bottom_bound
+	
+	GameData.initiate_save_game_data()
 
 func _store_node(pos: Vector2, degree: int, depth: int, type: String, prev_coords: Vector2 = Vector2.ZERO) -> void:
 	var map_node_data := {
-		GameData.KEY_MAPNODE_INDEX: 0,
+		GameData.KEY_MAPNODE_ID: 0,
 		GameData.KEY_MAPNODE_POS: pos,
 		GameData.KEY_MAPNODE_DEGREE: degree,
 		GameData.KEY_MAPNODE_DEPTH: depth,

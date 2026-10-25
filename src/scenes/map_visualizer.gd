@@ -3,21 +3,24 @@ extends Node
 @export var base_node: PackedScene
 @onready var background_pattern: Sprite2D = $BackgroundPattern
 
+
 func _ready() -> void:
-	SignalBus.finished_generating_map.connect(render_map)
-	SignalBus.map_boundaries_set.connect(render_background)
+	render_map(GameData.current[GameData.KEY_MAP_NODES_DATA])
+	render_background(
+		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_LEFT_X],
+		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_TOP_Y],
+		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_RIGHT_X],
+		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_BOTTOM_Y]
+	)
 
 
 func render_map(list: Array) -> void:
-
-	for node in list:
+	
+	for i in range(list.size()-1):
 		var node_scene = base_node.instantiate()
-		
-		node_scene.position = node[GameData.KEY_MAPNODE_POS]
-		node_scene.update_color(node[GameData.KEY_MAPNODETYPE])
-		
 		add_child(node_scene)
-		
+		node_scene.position = list[i][GameData.KEY_MAPNODE_POS]
+		node_scene.update_color(list[i][GameData.KEY_MAPNODETYPE])
 		
 		# _draw_connecting_line(node[GameData.KEY_PREVIOUSNODE_COORDS], node[GameData.KEY_MAPNODE_POS], node[GameData.KEY_MAPNODE_DEGREE])
 

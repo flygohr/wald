@@ -15,9 +15,12 @@ var position_before_drag2
 
 
 func _ready():
-	SignalBus.map_boundaries_set.connect(_set_limits)
-	# center on current node
-	# GlobalEvents.center_camera.connect(center_on_tables)
+	_set_limits(
+		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_LEFT_X],
+		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_TOP_Y],
+		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_RIGHT_X],
+		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_BOTTOM_Y]		
+	)
 
 
 func _unhandled_input(event):

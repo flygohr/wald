@@ -43,7 +43,7 @@ func save_game(game_data: Dictionary, slot: int = 1) -> void:
 	
 	# Replacing the .tmp file if everything went correctly at this stage
 	DirAccess.rename_absolute(temp_save_file, final_save_file)
-
+	print("--- FINISHED SAVING GAME ---")
 
 # Load the save from a slot, match it to a passed-in pre-existing structure
 func load_save(game_data: Dictionary, slot: int = 1) -> void:
@@ -70,7 +70,7 @@ func load_save(game_data: Dictionary, slot: int = 1) -> void:
 			if parsed_game_data.has(key): game_data[key] = parsed_game_data[key]
 		game_data.sort()
 		print("Loaded data looks like this: ", game_data)
-
+		print("--- FINISHED LOADING GAME ---")
 	else:
 		print("No game data found. Keeping data as is.")
 
@@ -281,7 +281,8 @@ func _dict_to_array(d: Dictionary) -> Array:
 	array_to_return.resize(array_size)
 	
 	for i in range(array_size-1):
-		array_to_return[i] = d["elements"][str(i)]
+		var parsed_element_data: Dictionary = _parse_dict_in(d["elements"][str(i)])
+		array_to_return[i] = parsed_element_data
 	
 	return array_to_return
 

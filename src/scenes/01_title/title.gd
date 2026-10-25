@@ -14,13 +14,16 @@ func _ready() -> void:
 	else: 
 		continue_button.show()
 
-
-func _on_new_game_button_pressed() -> void:
-	# TODO: Replace with game reset prompts
+func _on_continue_button_pressed() -> void:
 	ScenesManager.load_scene(INITIAL_SCENE)
 
 
-func _on_continue_button_pressed() -> void:
+func _on_new_game_button_pressed() -> void:
+	# TODO: Replace with game reset prompts
+	PopupManager.show_popup_confirmation("Starting a new game will erase your current progress.\n\nAre you sure?")
+	await PopupManager.yes_button_pressed
+	GameData.current[GameData.KEY_IS_NEW_GAME] = true
+	GameData.initiate_save_game_data()
 	ScenesManager.load_scene(INITIAL_SCENE)
 
 

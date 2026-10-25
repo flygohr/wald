@@ -40,9 +40,6 @@ func _draw() -> void:
 		true)
 
 func update_color(type: String) -> void:
-	
-	await ready
-	
 	match type:
 		GameData.KEY_MAPNODETYPE_START:
 			current_color = COLOR_START

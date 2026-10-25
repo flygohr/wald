@@ -40,7 +40,7 @@ const KEY_MAP_NODES_DATA: String = "map nodes data"
 
 
 # MAP NODE DEFINITIONS -----------------------------------------------------------------------------
-const KEY_MAPNODE_INDEX: String = "index"
+const KEY_MAPNODE_ID: String = "map node id"
 const KEY_MAPNODE_POS: String = "position"
 const KEY_MAPNODE_DEGREE : String ="degree"
 const KEY_MAPNODE_DEPTH: String = "depth"
@@ -74,7 +74,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 	KEY_IS_NEW_GAME: true,
 	KEY_MAP_NODES_DATA: [
 		{
-			KEY_MAPNODE_INDEX: 0,
+			KEY_MAPNODE_ID: 0,
 			KEY_MAPNODE_POS: Vector2.ZERO,
 			KEY_MAPNODE_DEGREE: 1,
 			KEY_MAPNODE_DEPTH: 1,
