@@ -105,7 +105,6 @@ func load_config(config_data: Dictionary) -> void:
 		print("Now loading config data")
 		var opened_file: FileAccess = FileAccess.open(config_file, FileAccess.READ)
 		var string_data: String = opened_file.get_line()
-		print(str("Loaded config data is: ", string_data))
 		opened_file.close()
 		
 		# Parsing opened string as JSON

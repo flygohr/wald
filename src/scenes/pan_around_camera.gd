@@ -15,6 +15,8 @@ var position_before_drag2
 
 
 func _ready():
+	SignalBus.pan_to.connect(pan_to)
+	global_position = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]
 	_set_limits(
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_LEFT_X],
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_TOP_Y],
@@ -69,6 +71,11 @@ func _set_limits(left_x: int, top_y: int, right_x: int, bottom_y: int) -> void:
 	
 	
 #TODO: pan from endpoint
+
+func pan_to(end: Vector2) -> void:
+	# Take in a starting point and an end point, tween between the two positions and disable input (?)
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "global_position", end, 0.3).set_trans(Tween.TRANS_SINE)
 
 	
 func center_on_tables():

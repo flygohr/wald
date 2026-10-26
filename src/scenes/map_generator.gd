@@ -38,7 +38,7 @@ func generate_map() -> void:
 	GameData.current[GameData.KEY_MAP_NODES_DATA] = map_nodes_list
 	GameData.current[GameData.KEY_IS_NEW_GAME] = false
 	GameData.initiate_save_game_data()
-	SignalBus.finished_generating_map.emit(map_nodes_list) # Send the map data to the visualizer
+
 
 # GENERATOR ----------------------------------------------------------------------------------------
 func generate_main_path(depth: int) -> void:

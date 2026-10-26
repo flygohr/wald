@@ -7,11 +7,9 @@ extends Node
 signal pause_game
 signal resume_game
 
+signal pan_to(end: Vector2)
 
-signal generate_new_map()
-signal finished_generating_map(nodes_list: Array)
-signal map_boundaries_set(left_x: int, top_y: int, right_x: int, bottom_y: int)
-
-signal debug_travel(coords: Vector2)
+signal debug_travel(index: int)
+signal new_active_node_set(index: int)
 
 @warning_ignore_restore("unused_signal")

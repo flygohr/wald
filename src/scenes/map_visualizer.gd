@@ -16,11 +16,14 @@ func _ready() -> void:
 
 func render_map(list: Array) -> void:
 	
-	for i in range(list.size()-1):
+	for i in range(list.size()):
 		var node_scene = base_node.instantiate()
 		add_child(node_scene)
-		node_scene.position = list[i][GameData.KEY_MAPNODE_POS]
+		node_scene.global_position = list[i][GameData.KEY_MAPNODE_POS]
 		node_scene.update_color(list[i][GameData.KEY_MAPNODETYPE])
+		node_scene.index = i
+		if node_scene.index == GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]:
+			node_scene.is_active = true
 		
 		# _draw_connecting_line(node[GameData.KEY_PREVIOUSNODE_COORDS], node[GameData.KEY_MAPNODE_POS], node[GameData.KEY_MAPNODE_DEGREE])
 
@@ -32,6 +35,7 @@ func render_background(left_x: int, top_y: int, right_x: int, bottom_y: int) -> 
 		abs(left_x) + abs(right_x), 
 		abs(top_y) + abs(bottom_y))
 	background_pattern.position = Vector2(left_x, top_y)
+
 
 func _draw_connecting_line(start: Vector2, end: Vector2, width: int) -> void:
 	var connecting_line = Line2D.new()

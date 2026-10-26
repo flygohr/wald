@@ -37,7 +37,7 @@ const KEY_IS_NEW_GAME: String = "is new game"
 
 # MAP DATA -----------------------------------------------------------------------------------------
 const KEY_MAP_NODES_DATA: String = "map nodes data"
-
+const KEY_MAP_CURRENT_NODE_INDEX: String = "current node index"
 
 # MAP NODE DEFINITIONS -----------------------------------------------------------------------------
 const KEY_MAPNODE_ID: String = "map node id"
@@ -82,6 +82,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 			KEY_MAPNODETYPE: KEY_MAPNODETYPE_DEFAULT
 		}
 	],
+	KEY_MAP_CURRENT_NODE_INDEX: 0,
 	KEY_MAP_BOUNDARIES: {
 		KEY_LEFT_X: Vector2.ZERO,
 		KEY_TOP_Y: Vector2.ZERO,
