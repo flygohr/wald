@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://c7v0d741qtx14"]
+
+[ext_resource type="Theme" uid="uid://d2s1eqi0btoeb" path="res://assets/themes/main_theme.tres" id="1_ldled"]
+[ext_resource type="Script" uid="uid://cw4untvmah5xb" path="res://src/scenes/travel_pop_up.gd" id="2_6xy8e"]
+[ext_resource type="Texture2D" uid="uid://dtwblcpbko0mw" path="res://icon.svg" id="3_t7f7w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awtng"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.38039216, 0.14901961, 0.21960784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="TravelPopUp" type="PanelContainer" unique_id=414574783]
+theme = ExtResource("1_ldled")
+script = ExtResource("2_6xy8e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=569079203]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=991184205]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=25015784]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("3_t7f7w")
+expand_mode = 2
+
+[node name="NodeTypeNameLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=496723052]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "UNDISCOVERED NODE"
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=1599524280]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1635257833]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer2" unique_id=139254933]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_awtng")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/PanelContainer" unique_id=1745624232]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer2/PanelContainer/HBoxContainer" unique_id=1531353731]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("3_t7f7w")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/PanelContainer/HBoxContainer" unique_id=690768293]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "-2"
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer2" unique_id=818976769]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_awtng")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/PanelContainer2" unique_id=1592297846]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer2/PanelContainer2/HBoxContainer" unique_id=312515347]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("3_t7f7w")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/PanelContainer2/HBoxContainer" unique_id=1806704320]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "-2"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=471695088]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="TravelButton" type="Button" parent="VBoxContainer/MarginContainer" unique_id=1673613892]
+layout_mode = 2
+text = "TRAVEL"
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/TravelButton" to="." method="_on_travel_button_pressed"]

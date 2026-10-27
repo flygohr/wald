@@ -38,6 +38,13 @@ const KEY_IS_NEW_GAME: String = "is new game"
 # MAP DATA -----------------------------------------------------------------------------------------
 const KEY_MAP_NODES_DATA: String = "map nodes data"
 const KEY_MAP_CURRENT_NODE_INDEX: String = "current node index"
+const KEY_CURRENT_WALKING_DISTANCE: String = "current walking distance"
+
+const KEY_TRAVELED_LINES_DATA: String = "traveled lines data"
+const KEY_LINE_START: String = "line start"
+const KEY_LINE_END: String = "line end"
+const KEY_LINE_DEPTH: String = "line depth"
+
 
 # MAP NODE DEFINITIONS -----------------------------------------------------------------------------
 const KEY_MAPNODE_ID: String = "map node id"
@@ -83,6 +90,14 @@ const DEFAULT_GAME_DATA: Dictionary = {
 		}
 	],
 	KEY_MAP_CURRENT_NODE_INDEX: 0,
+	KEY_CURRENT_WALKING_DISTANCE: SHORT_WALK_DISTANCE,
+	KEY_TRAVELED_LINES_DATA: [
+		{
+			KEY_LINE_START: Vector2.ZERO,
+			KEY_LINE_END: Vector2.ZERO,
+			KEY_LINE_DEPTH: 0
+		}
+	],
 	KEY_MAP_BOUNDARIES: {
 		KEY_LEFT_X: Vector2.ZERO,
 		KEY_TOP_Y: Vector2.ZERO,

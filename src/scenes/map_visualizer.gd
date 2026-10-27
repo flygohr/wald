@@ -2,10 +2,11 @@ extends Node
 
 @export var base_node: PackedScene
 @onready var background_pattern: Sprite2D = $BackgroundPattern
-
+@export var dashed_line_scene: PackedScene
 
 func _ready() -> void:
 	render_map(GameData.current[GameData.KEY_MAP_NODES_DATA])
+	SignalBus.traveled_to.connect(_draw_traveled_line)
 	render_background(
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_LEFT_X],
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_TOP_Y],
@@ -25,6 +26,8 @@ func render_map(list: Array) -> void:
 		if node_scene.index == GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]:
 			node_scene.is_active = true
 		
+		for line in GameData.current[GameData.KEY_TRAVELED_LINES_DATA]:
+			_draw_connecting_line(line[GameData.KEY_LINE_START], line[GameData.KEY_LINE_END], 3)
 		# _draw_connecting_line(node[GameData.KEY_PREVIOUSNODE_COORDS], node[GameData.KEY_MAPNODE_POS], node[GameData.KEY_MAPNODE_DEGREE])
 
 
@@ -44,3 +47,13 @@ func _draw_connecting_line(start: Vector2, end: Vector2, width: int) -> void:
 	connecting_line.width = 10 / width
 	connecting_line.z_index = 1
 	add_child(connecting_line)
+
+func _draw_traveled_line(i: int) -> void:
+	var start: Vector2 = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]
+	var end: Vector2 = GameData.current[GameData.KEY_MAP_NODES_DATA][i][GameData.KEY_MAPNODE_POS]
+	_draw_connecting_line(start, end, 3)
+	GameData.current[GameData.KEY_TRAVELED_LINES_DATA].append({
+		GameData.KEY_LINE_START: start,
+		GameData.KEY_LINE_END: end,
+		GameData.KEY_LINE_DEPTH: GameData.current[GameData.KEY_TRAVELED_LINES_DATA].size()+1
+	})

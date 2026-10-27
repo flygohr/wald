@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cwm1wof74m8fq"]
+
+[ext_resource type="Texture2D" uid="uid://ductmxy2fgq2e" path="res://assets/images/New Piskel-1.png.png" id="1_jjveq"]
+
+[node name="DashedLine" type="Line2D" unique_id=773996439]
+texture_filter = 1
+texture_repeat = 2
+width = 5.0
+texture = ExtResource("1_jjveq")
+texture_mode = 1
+sharp_limit = 0.0
+antialiased = true

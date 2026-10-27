@@ -7,6 +7,8 @@ extends Node2D
 
 @export var color : Color
 @export var node_radius := 25
+@export var dashed_line_scene: PackedScene
+var temporary_dashed_line: Line2D
 
 const COLOR_START: Color = Color.GREEN
 const COLOR_FINISH: Color = Color.BLUE
@@ -18,14 +20,27 @@ const COLOR_SOLUTION: Color = Color.ORANGE
 const COLOR_EVENT: Color = Color.WEB_PURPLE
 
 @onready var check_button: TextureButton = $CheckButton
+@onready var active_marker: Sprite2D = $ActiveMarker
 
 var index: int = 0
-var is_active: bool = false
-
-var active_radius: int:
+var is_active: bool = false:
 	set(value):
-		active_radius = value
+		is_active = value
+		display_active_marker(value)
 		queue_redraw()
+
+var is_selected: bool = false:
+	set(value):
+		is_selected = value
+		queue_redraw()
+
+var active_radius: int = 40
+
+var selected_radius: int:
+	set(value):
+		selected_radius = value
+		queue_redraw()
+
 var _time: float = 0
 
 var current_color: Color:
@@ -36,6 +51,9 @@ var current_color: Color:
 
 func _ready() -> void:
 	SignalBus.new_active_node_set.connect(_check_if_active)
+	SignalBus.moved_around_the_map.connect(_unselect_this)
+	SignalBus.traveled_to.connect(_check_if_traveled_to)
+	SignalBus.node_selected.connect(_check_if_still_selected)
 	var button_size = (node_radius * 2) + 10
 	check_button.size = Vector2(button_size, button_size)
 	check_button.position = Vector2(-(button_size/2), -(button_size/2))
@@ -43,8 +61,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if is_active:
-		active_radius = remap(sin(_time * TAU), -1.0, 1.0, node_radius+20, node_radius+40)
+	if is_selected:
+		selected_radius = remap(sin(_time * TAU), -1.0, 1.0, node_radius+20, node_radius+40)
 		_time += delta
 
 
@@ -58,7 +76,16 @@ func _draw() -> void:
 		true)
 	
 	if is_active:
-		draw_circle(Vector2.ZERO, active_radius, Color.WHITE, false, 5, true)
+		draw_circle(Vector2.ZERO, active_radius, Color.WHITE, false, 5, false)
+		
+	if is_selected and is_active == false:
+		draw_circle(Vector2.ZERO, selected_radius, Color.WHITE, false, 5, false)
+
+func display_active_marker(toggle: bool) -> void:
+	if toggle == true:
+		active_marker.show()
+	else:
+		active_marker.hide()
 
 # TODO: if finish type, add red target marker, and arrow pointing
 # TODO: instead of instantly teleport, display a popup with a button asking if move or not, showing cost of travel
@@ -75,7 +102,6 @@ func _check_if_active(i) -> void:
 		set_process(true)
 	else:
 		is_active = false
-		set_process(false)
 		queue_redraw()
 
 
@@ -96,5 +122,40 @@ func update_color(type: String) -> void:
 
 
 func _on_check_button_pressed() -> void:
-	print("I'm node index ", index)
-	SignalBus.debug_travel.emit(index) # TODO: emit this node's index instead!
+	# Check if is close enough to the active node
+	if global_position.distance_to(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]) <= GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] + 50:
+		_select_this()
+
+func _check_if_traveled_to(i: int) -> void:
+	if i == index:
+		is_active = true
+		_erase_temporary_line()
+		is_selected = false
+
+
+func _check_if_still_selected(i: int) -> void:
+	if i != index: _unselect_this()
+
+
+func _select_this() -> void:
+	is_selected = true
+	SignalBus.pan_to.emit(global_position)
+	_draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position)
+	SignalBus.node_selected.emit(index)
+
+func _unselect_this() -> void:
+	is_selected = false
+	_erase_temporary_line()
+
+
+func _draw_temporary_line(s: Vector2, e: Vector2) -> void:
+	temporary_dashed_line = dashed_line_scene.instantiate()
+	temporary_dashed_line.add_point(s)
+	temporary_dashed_line.add_point(e)
+	add_child(temporary_dashed_line)
+	temporary_dashed_line.global_position = Vector2.ZERO
+
+
+func _erase_temporary_line() -> void:
+	if temporary_dashed_line != null:
+		temporary_dashed_line.queue_free()

@@ -32,13 +32,17 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("zoom_out"):
 		set_zoom_level(zoom_level - zoom_factor)
 	elif event.is_action_pressed("camera_drag"):
+		SignalBus.moved_around_the_map.emit()
 		position_before_drag = event.global_position
 		position_before_drag2 = self.global_position
 	elif event.is_action_released("camera_drag"):
+		SignalBus.moved_around_the_map.emit()
 		position_before_drag = null
 	elif event is InputEventPanGesture:
+		SignalBus.moved_around_the_map.emit()
 		self.global_position += event.delta * 20
 	elif event is InputEventScreenDrag:
+		SignalBus.moved_around_the_map.emit()
 		self.global_position -= event.relative
 	elif event is InputEventMagnifyGesture:
 		if event.factor > 1:
@@ -47,6 +51,7 @@ func _unhandled_input(event):
 			set_zoom_level(zoom_level - (zoom_factor * 0.5))
 	
 	if position_before_drag and event is InputEventMouseMotion:
+		SignalBus.moved_around_the_map.emit()
 		self.global_position = position_before_drag2 + (position_before_drag - event.global_position) * (1/zoom_level)
 
 

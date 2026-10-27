@@ -4,9 +4,9 @@ extends Node2D
 # connections and stuff
 
 
-func _on_main_menu_button_pressed() -> void:
+func _on_quit_button_pressed() -> void:
 	ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_TITLE_SCREEN])
 
 
-func _on_options_button_pressed() -> void:
+func _on_menu_button_pressed() -> void:
 	Settings.transition_in()

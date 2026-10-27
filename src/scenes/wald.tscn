@@ -6,9 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dvo068lpcimar" path="res://src/scenes/player_marker.tscn" id="4_4bu3n"]
 [ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/map_node.tscn" id="4_dy57v"]
 [ext_resource type="Texture2D" uid="uid://bcxd168bujn7o" path="res://assets/images/17_liken moss texture-seamless.jpg" id="5_4bu3n"]
+[ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/dashed_line.tscn" id="7_awtng"]
 [ext_resource type="Script" uid="uid://bt3r0irubcw37" path="res://src/scenes/pan_around_camera.gd" id="7_g6jtw"]
 [ext_resource type="Texture2D" uid="uid://dtwblcpbko0mw" path="res://icon.svg" id="8_p8guu"]
-[ext_resource type="Theme" uid="uid://d2s1eqi0btoeb" path="res://assets/themes/main_theme.tres" id="9_p8guu"]
+[ext_resource type="PackedScene" uid="uid://c7v0d741qtx14" path="res://src/scenes/travel_pop_up.tscn" id="10_awtng"]
+[ext_resource type="Texture2D" uid="uid://bn6pu41wkdtio" path="res://assets/images/settings_90dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="10_qwpk2"]
+[ext_resource type="Texture2D" uid="uid://dficid1t5vx7d" path="res://assets/images/home_90dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="11_blgnk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cd8c5"]
 content_margin_left = 8.0
@@ -16,17 +19,6 @@ content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
 bg_color = Color(0.078431375, 0.12156863, 0.14509805, 0.49803922)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awtng"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0.38039216, 0.14901961, 0.21960784, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -44,6 +36,7 @@ difficulty = 1
 [node name="MapVisualizer" type="Node" parent="." unique_id=747671176]
 script = ExtResource("3_g6jtw")
 base_node = ExtResource("4_dy57v")
+dashed_line_scene = ExtResource("7_awtng")
 
 [node name="PanAroundCamera" type="Camera2D" parent="MapVisualizer" unique_id=677257802]
 zoom = Vector2(0.5, 0.5)
@@ -164,13 +157,13 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="TextureButton" type="TextureButton" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight" unique_id=315530786]
+[node name="MenuButton" type="TextureButton" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight" unique_id=315530786]
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
 layout_mode = 2
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/TextureButton" unique_id=2106422139]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/MenuButton" unique_id=2106422139]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,18 +175,18 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/TextureButton/MarginContainer" unique_id=1194245925]
+[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/MenuButton/MarginContainer" unique_id=1194245925]
 layout_mode = 2
-texture = ExtResource("8_p8guu")
+texture = ExtResource("10_qwpk2")
 expand_mode = 2
 
-[node name="TextureButton2" type="TextureButton" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight" unique_id=839899068]
+[node name="QuitButton" type="TextureButton" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight" unique_id=839899068]
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
 layout_mode = 2
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/TextureButton2" unique_id=1005503687]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/QuitButton" unique_id=1005503687]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -205,9 +198,9 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/TextureButton2/MarginContainer" unique_id=1345600909]
+[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/QuitButton/MarginContainer" unique_id=1345600909]
 layout_mode = 2
-texture = ExtResource("8_p8guu")
+texture = ExtResource("11_blgnk")
 expand_mode = 2
 
 [node name="Bottom" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer" unique_id=862509553]
@@ -244,81 +237,12 @@ stretch_mode = 5
 [node name="VBoxContainer2" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom" unique_id=293532811]
 layout_mode = 2
 size_flags_horizontal = 10
+mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2" unique_id=1982003551]
-layout_mode = 2
-theme = ExtResource("9_p8guu")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer" unique_id=1467620150]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer" unique_id=48946897]
-layout_mode = 2
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer" unique_id=858679553]
-custom_minimum_size = Vector2(36, 36)
-layout_mode = 2
-texture = ExtResource("8_p8guu")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer" unique_id=387712537]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "UNDISCOVERED NODE"
-vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1266463086]
+[node name="TravelPopUp" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2" unique_id=414574783 instance=ExtResource("10_awtng")]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer" unique_id=1845593526]
-layout_mode = 2
-alignment = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=568658484]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_awtng")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer" unique_id=116058168]
-layout_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer/HBoxContainer" unique_id=1596698552]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-texture = ExtResource("8_p8guu")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer/HBoxContainer" unique_id=656613291]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "-2"
-
-[node name="PanelContainer2" type="PanelContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=864295356]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_awtng")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer2" unique_id=1459780065]
-layout_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer2/HBoxContainer" unique_id=332609013]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-texture = ExtResource("8_p8guu")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer2/HBoxContainer" unique_id=15685516]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "-2"
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer" unique_id=1781134739]
-layout_mode = 2
-theme_override_constants/margin_top = 8
-
-[node name="Button" type="Button" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/MarginContainer" unique_id=196098630]
-layout_mode = 2
-text = "TRAVEL"
+[connection signal="pressed" from="GUI/MarginContainer/VBoxContainer/Top/TopRight/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="GUI/MarginContainer/VBoxContainer/Top/TopRight/QuitButton" to="." method="_on_quit_button_pressed"]

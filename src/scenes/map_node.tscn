@@ -1,16 +1,19 @@
 [gd_scene format=3 uid="uid://qod6od0842im"]
 
-[ext_resource type="Texture2D" uid="uid://esxrh7wnh4bh" path="res://assets/images/debug_circle.png" id="1_k2sr5"]
 [ext_resource type="Script" uid="uid://dp64bigt0gupa" path="res://src/scenes/map_node.gd" id="1_sq47f"]
+[ext_resource type="Texture2D" uid="uid://cpytsarqlugjx" path="res://assets/images/toppng.com-location-icon-white-fa-icon-map-marker-241x381.png" id="2_k2sr5"]
+[ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/dashed_line.tscn" id="2_ud0nl"]
 
 [node name="MapNode" type="Node2D" unique_id=1578930960]
 script = ExtResource("1_sq47f")
 color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+dashed_line_scene = ExtResource("2_ud0nl")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1428250501]
+[node name="ActiveMarker" type="Sprite2D" parent="." unique_id=1428250501]
 visible = false
-scale = Vector2(0.107421875, 0.107421875)
-texture = ExtResource("1_k2sr5")
+position = Vector2(0, -60)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_k2sr5")
 
 [node name="CheckButton" type="TextureButton" parent="." unique_id=1937951989]
 offset_left = -32.0
