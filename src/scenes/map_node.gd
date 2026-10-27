@@ -60,6 +60,14 @@ func _draw() -> void:
 	if is_active:
 		draw_circle(Vector2.ZERO, active_radius, Color.WHITE, false, 5, true)
 
+# TODO: if finish type, add red target marker, and arrow pointing
+# TODO: instead of instantly teleport, display a popup with a button asking if move or not, showing cost of travel
+# TODO: add dotted line between two cleared points
+# TODO: add button to clear node
+# TODO: draw another line, a full one, to mark completed connections instead of just dotted line
+# TODO: node icon will also be modulated to greyscale if not yet completed
+# TODO: icon has two layers. icon on top, always color or question mark. bg is like tokens for vtt, same edge, but inside is green for cleared, red for not cleared, grey for undiscovered
+
 
 func _check_if_active(i) -> void:
 	if i == index:
@@ -69,6 +77,7 @@ func _check_if_active(i) -> void:
 		is_active = false
 		set_process(false)
 		queue_redraw()
+
 
 func update_color(type: String) -> void:
 	match type:

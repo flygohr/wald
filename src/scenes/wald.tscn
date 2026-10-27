@@ -7,6 +7,30 @@
 [ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/map_node.tscn" id="4_dy57v"]
 [ext_resource type="Texture2D" uid="uid://bcxd168bujn7o" path="res://assets/images/17_liken moss texture-seamless.jpg" id="5_4bu3n"]
 [ext_resource type="Script" uid="uid://bt3r0irubcw37" path="res://src/scenes/pan_around_camera.gd" id="7_g6jtw"]
+[ext_resource type="Texture2D" uid="uid://dtwblcpbko0mw" path="res://icon.svg" id="8_p8guu"]
+[ext_resource type="Theme" uid="uid://d2s1eqi0btoeb" path="res://assets/themes/main_theme.tres" id="9_p8guu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cd8c5"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.078431375, 0.12156863, 0.14509805, 0.49803922)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awtng"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.38039216, 0.14901961, 0.21960784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Wald" type="Node2D" unique_id=934451563]
 script = ExtResource("1_rqd8u")
@@ -36,22 +60,265 @@ region_rect = Rect2(-1000, -1000, 20000, 20000)
 
 [node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1179201079]
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1179201079]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=2028395016]
-offset_left = 44.0
-offset_top = 34.0
-offset_right = 361.0
-offset_bottom = 83.0
+[node name="MarginContainer" type="MarginContainer" parent="GUI" unique_id=2136510668]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer" unique_id=1843147255]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Top" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer" unique_id=1450219461]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+alignment = 1
+
+[node name="TopLeft" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Top" unique_id=1910263364]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft" unique_id=637535104]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cd8c5")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer" unique_id=2061124075]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2" unique_id=241310699]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2/HBoxContainer" unique_id=1968998455]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("8_p8guu")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2/HBoxContainer" unique_id=1775261303]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2/HBoxContainer/MarginContainer" unique_id=936731454]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "R100"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2" unique_id=1254250969]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2/HBoxContainer2" unique_id=1546768373]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("8_p8guu")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2/HBoxContainer2" unique_id=1633776935]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2/HBoxContainer2/MarginContainer" unique_id=1994327148]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "R100"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2" unique_id=1421014160]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2/HBoxContainer3" unique_id=1024384901]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("8_p8guu")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2/HBoxContainer3" unique_id=1025218303]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/Top/TopLeft/PanelContainer/HBoxContainer2/HBoxContainer3/MarginContainer" unique_id=1047400134]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "R100"
+
+[node name="TopRight" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Top" unique_id=2028395016]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="TextureButton" type="TextureButton" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight" unique_id=315530786]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/TextureButton" unique_id=2106422139]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/TextureButton/MarginContainer" unique_id=1194245925]
+layout_mode = 2
+texture = ExtResource("8_p8guu")
+expand_mode = 2
+
+[node name="TextureButton2" type="TextureButton" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight" unique_id=839899068]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/TextureButton2" unique_id=1005503687]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Top/TopRight/TextureButton2/MarginContainer" unique_id=1345600909]
+layout_mode = 2
+texture = ExtResource("8_p8guu")
+expand_mode = 2
+
+[node name="Bottom" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer" unique_id=862509553]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom" unique_id=2132652777]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="TextureButton2" type="TextureButton" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer" unique_id=2088819539]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("8_p8guu")
+stretch_mode = 5
+
+[node name="TextureButton3" type="TextureButton" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer" unique_id=1951592647]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("8_p8guu")
+stretch_mode = 5
+
+[node name="TextureButton4" type="TextureButton" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer" unique_id=165538602]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("8_p8guu")
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom" unique_id=293532811]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2" unique_id=1982003551]
+layout_mode = 2
+theme = ExtResource("9_p8guu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer" unique_id=1467620150]
+layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="MainMenuButton" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=1406645908]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer" unique_id=48946897]
 layout_mode = 2
-text = "MAIN MENU"
+theme_override_constants/separation = 8
+alignment = 1
 
-[node name="OptionsButton" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=1659026808]
+[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer" unique_id=858679553]
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
-text = "OPTIONS"
+texture = ExtResource("8_p8guu")
+expand_mode = 2
 
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer" unique_id=387712537]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "UNDISCOVERED NODE"
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1266463086]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer" unique_id=1845593526]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=568658484]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_awtng")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer" unique_id=116058168]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer/HBoxContainer" unique_id=1596698552]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("8_p8guu")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer/HBoxContainer" unique_id=656613291]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "-2"
+
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=864295356]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_awtng")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer2" unique_id=1459780065]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer2/HBoxContainer" unique_id=332609013]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("8_p8guu")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer2/HBoxContainer" unique_id=15685516]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "-2"
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer" unique_id=1781134739]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="Button" type="Button" parent="GUI/MarginContainer/VBoxContainer/Bottom/VBoxContainer2/PanelContainer/VBoxContainer/MarginContainer" unique_id=196098630]
+layout_mode = 2
+text = "TRAVEL"

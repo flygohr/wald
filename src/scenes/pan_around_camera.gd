@@ -2,14 +2,14 @@
 
 extends Camera2D
 
-@export var min_zoom := 0.4
+@export var min_zoom := 0.3
 @export var max_zoom := 0.7
 @export var zoom_factor := 0.1
 @export var zoom_duration := 0.2
 
 @export var camera_padding := 400
 
-var zoom_level: float = 0.5
+var zoom_level: float = 0.4
 var position_before_drag
 var position_before_drag2
 
@@ -17,6 +17,7 @@ var position_before_drag2
 func _ready():
 	SignalBus.pan_to.connect(pan_to)
 	global_position = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]
+	zoom = Vector2(zoom_level, zoom_level)
 	_set_limits(
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_LEFT_X],
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_TOP_Y],
