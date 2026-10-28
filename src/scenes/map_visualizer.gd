@@ -26,6 +26,12 @@ func render_map(list: Array) -> void:
 		if node_scene.index == GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]:
 			node_scene.is_active = true
 		
+		if list[i][GameData.KEY_IS_VISITED] == true:
+			node_scene.is_visited = true
+			
+		if list[i][GameData.KEY_IS_CLEARED] == true:
+			node_scene.is_cleared = true
+		
 		for line in GameData.current[GameData.KEY_TRAVELED_LINES_DATA]:
 			_draw_connecting_line(line[GameData.KEY_LINE_START], line[GameData.KEY_LINE_END], 3)
 		# _draw_connecting_line(node[GameData.KEY_PREVIOUSNODE_COORDS], node[GameData.KEY_MAPNODE_POS], node[GameData.KEY_MAPNODE_DEGREE])
@@ -48,9 +54,9 @@ func _draw_connecting_line(start: Vector2, end: Vector2, width: int) -> void:
 	connecting_line.z_index = 1
 	add_child(connecting_line)
 
-func _draw_traveled_line(i: int) -> void:
+func _draw_traveled_line(_from: int, to: int) -> void:
 	var start: Vector2 = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]
-	var end: Vector2 = GameData.current[GameData.KEY_MAP_NODES_DATA][i][GameData.KEY_MAPNODE_POS]
+	var end: Vector2 = GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_MAPNODE_POS]
 	_draw_connecting_line(start, end, 3)
 	GameData.current[GameData.KEY_TRAVELED_LINES_DATA].append({
 		GameData.KEY_LINE_START: start,

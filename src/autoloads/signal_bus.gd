@@ -10,7 +10,7 @@ signal resume_game
 signal pan_to(end: Vector2)
 
 signal node_selected(index: int)
-signal traveled_to(index: int)
+signal traveled_to(from: int, to: int)
 signal moved_around_the_map
 signal new_active_node_set(index: int)
 

@@ -52,6 +52,9 @@ func generate_main_path(depth: int) -> void:
 		start_coords
 		)
 	
+	map_nodes_list[0][GameData.KEY_IS_VISITED] = true
+	map_nodes_list[0][GameData.KEY_IS_CLEARED] = true
+	
 	var origin: Vector2 = start_coords
 	
 	for d in depth:
@@ -157,7 +160,7 @@ func populate_map(diff: int) -> void:
 				main_path_nodes.append(node)
 	
 	for i in range(main_path_nodes.size()-1, 0, -1): # We skip the last to leave one empty for solutions
-		print(main_path_nodes[i])
+		# print(main_path_nodes[i])
 		var roll_for_obstacle: float = randf()
 		if (
 			roll_for_obstacle < obstacles_ratio and 
@@ -240,6 +243,9 @@ func _store_node(pos: Vector2, degree: int, depth: int, type: String, prev_coord
 		GameData.KEY_MAPNODE_DEGREE: degree,
 		GameData.KEY_MAPNODE_DEPTH: depth,
 		GameData.KEY_MAPNODETYPE: type,
+		GameData.KEY_IS_VISITED: false,
+		GameData.KEY_IS_CLEARED: false,
+		GameData.KEY_INCOMING_CONNECTIONS: [],
 		GameData.KEY_PREVIOUSNODE_COORDS: prev_coords
 	}
 	map_nodes_list.append(map_node_data)

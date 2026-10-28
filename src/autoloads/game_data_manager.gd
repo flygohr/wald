@@ -52,7 +52,9 @@ const KEY_MAPNODE_POS: String = "position"
 const KEY_MAPNODE_DEGREE : String ="degree"
 const KEY_MAPNODE_DEPTH: String = "depth"
 const KEY_PREVIOUSNODE_COORDS: String = "previous coords"
-
+const KEY_IS_VISITED: String = "is_visited"
+const KEY_IS_CLEARED: String = "is cleared"
+const KEY_INCOMING_CONNECTIONS: String = "incoming connections"
 const KEY_MAPNODETYPE: String = "map node type"
 
 const KEY_MAPNODETYPE_DEFAULT: String = "default"
@@ -86,6 +88,9 @@ const DEFAULT_GAME_DATA: Dictionary = {
 			KEY_MAPNODE_DEGREE: 1,
 			KEY_MAPNODE_DEPTH: 1,
 			KEY_PREVIOUSNODE_COORDS: Vector2.ZERO,
+			KEY_IS_VISITED: false,
+			KEY_IS_CLEARED: false,
+			KEY_INCOMING_CONNECTIONS: [],
 			KEY_MAPNODETYPE: KEY_MAPNODETYPE_DEFAULT
 		}
 	],

@@ -18,6 +18,10 @@ func _process(delta: float) -> void:
 
 func node_selected(i: int) -> void:
 	var node_data: Dictionary = GameData.current[GameData.KEY_MAP_NODES_DATA][i]
+	if GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_IS_CLEARED] == false and GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_INCOMING_CONNECTIONS].has(i) == false:
+		travel_button.disabled = true
+	else: travel_button.disabled = false
+	
 	if GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX] != i:
 		target_node_index = i
 		_fade_in_this()
@@ -38,5 +42,5 @@ func _fade_out_this() -> void:
 
 
 func _on_travel_button_pressed() -> void:
-	SignalBus.traveled_to.emit(target_node_index)
+	SignalBus.traveled_to.emit(GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX], target_node_index)
 	_fade_out_this()

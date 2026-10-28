@@ -6,9 +6,20 @@
 [ext_resource type="FontFile" uid="uid://c2kwq5jegpuhv" path="res://assets/fonts/komika/KOMIKAH_.ttf" id="4_gvtt4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhku8"]
-content_margin_left = 4.0
-content_margin_right = 4.0
-bg_color = Color(0.36408404, 0.3640839, 0.364084, 1)
+content_margin_left = 16.0
+content_margin_top = 5.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.38039216, 0.14901961, 0.21960784, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7411765, 0.73333335, 0.68235296, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxams"]
@@ -93,6 +104,7 @@ corner_radius_bottom_left = 5
 default_font = ExtResource("4_gvtt4")
 default_font_size = 10
 Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.7411765, 0.73333335, 0.68235296, 1)
 Button/font_sizes/font_size = 24
 Button/styles/disabled = SubResource("StyleBoxFlat_vhku8")
 Button/styles/focus = SubResource("StyleBoxFlat_lxams")

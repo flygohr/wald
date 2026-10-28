@@ -42,13 +42,7 @@ size_flags_vertical = 4
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="PopupTextContainer" type="PanelContainer" parent="Popup/PopupContainer/VBoxContainer" unique_id=13449824]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="PopupTextLabel" type="RichTextLabel" parent="Popup/PopupContainer/VBoxContainer/PopupTextContainer" unique_id=720389761]
+[node name="PopupTextLabel" type="RichTextLabel" parent="Popup/PopupContainer/VBoxContainer" unique_id=720389761]
 custom_minimum_size = Vector2(420, 0)
 layout_mode = 2
 size_flags_vertical = 6

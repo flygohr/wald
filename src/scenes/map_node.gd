@@ -48,6 +48,20 @@ var current_color: Color:
 		current_color = value
 		queue_redraw()
 
+var is_cleared: bool = false:
+	set(value):
+		is_cleared = value
+		queue_redraw()
+		
+var is_visited: bool = false:
+	set(value):
+		is_visited = value
+		queue_redraw()
+		
+var incoming_is_cleared: bool = true:
+	set(value):
+		incoming_is_cleared = value
+		queue_redraw()
 
 func _ready() -> void:
 	SignalBus.new_active_node_set.connect(_check_if_active)
@@ -78,8 +92,17 @@ func _draw() -> void:
 	if is_active:
 		draw_circle(Vector2.ZERO, active_radius, Color.WHITE, false, 5, false)
 		
-	if is_selected and is_active == false:
+	if is_selected and is_active == false and incoming_is_cleared == true:
 		draw_circle(Vector2.ZERO, selected_radius, Color.WHITE, false, 5, false)
+
+	if is_selected and is_active == false and incoming_is_cleared == false:
+		draw_circle(Vector2.ZERO, selected_radius, Color.RED, false, 5, false)
+
+	if is_cleared == false and is_visited == true:
+		draw_circle(Vector2.ZERO, 30, Color.RED, false, 3, false)
+		
+	if is_cleared == true and is_visited == true:
+		draw_circle(Vector2.ZERO, 30, Color.GREEN, false, 3, false)
 
 func display_active_marker(toggle: bool) -> void:
 	if toggle == true:
@@ -126,11 +149,22 @@ func _on_check_button_pressed() -> void:
 	if global_position.distance_to(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]) <= GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] + 50:
 		_select_this()
 
-func _check_if_traveled_to(i: int) -> void:
-	if i == index:
+func _check_if_traveled_to(from: int, to: int) -> void:
+	if to == index:
 		is_active = true
 		_erase_temporary_line()
 		is_selected = false
+		is_visited = true
+		GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_VISITED] = true
+		GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_INCOMING_CONNECTIONS].append(from)
+		# TEMPORARY CLEARED CHECK
+		# TODO: move to scene node
+		
+		if is_visited == false:
+			var cleared_roll: float = randf()
+			if cleared_roll > 0.3:
+				is_cleared = true
+				GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_CLEARED] = true
 
 
 func _check_if_still_selected(i: int) -> void:
@@ -138,9 +172,12 @@ func _check_if_still_selected(i: int) -> void:
 
 
 func _select_this() -> void:
-	is_selected = true
 	SignalBus.pan_to.emit(global_position)
-	_draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position)
+	if GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_IS_CLEARED] == false and GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_INCOMING_CONNECTIONS].has(index) == false:
+		_draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, false)
+		#TODO: if in incoming connections, allow it
+	else: _draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, true)
+	is_selected = true
 	SignalBus.node_selected.emit(index)
 
 func _unselect_this() -> void:
@@ -148,11 +185,14 @@ func _unselect_this() -> void:
 	_erase_temporary_line()
 
 
-func _draw_temporary_line(s: Vector2, e: Vector2) -> void:
+func _draw_temporary_line(s: Vector2, e: Vector2, valid: bool = false) -> void:
 	temporary_dashed_line = dashed_line_scene.instantiate()
 	temporary_dashed_line.add_point(s)
 	temporary_dashed_line.add_point(e)
 	add_child(temporary_dashed_line)
+	if valid == false:
+		temporary_dashed_line.render_not_valid()
+		incoming_is_cleared = false
 	temporary_dashed_line.global_position = Vector2.ZERO
 
 
