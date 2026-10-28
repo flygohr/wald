@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://dp64bigt0gupa" path="res://src/scenes/map_node.gd" id="1_sq47f"]
 [ext_resource type="Texture2D" uid="uid://cpytsarqlugjx" path="res://assets/images/toppng.com-location-icon-white-fa-icon-map-marker-241x381.png" id="2_k2sr5"]
 [ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/dashed_line.tscn" id="2_ud0nl"]
+[ext_resource type="PackedScene" uid="uid://dy16fjfp0utlm" path="res://src/scenes/navigator.tscn" id="3_p6b6g"]
 
 [node name="MapNode" type="Node2D" unique_id=1578930960]
 script = ExtResource("1_sq47f")
 color = Color(0.7539839, 0.75398386, 0.75398386, 1)
 dashed_line_scene = ExtResource("2_ud0nl")
+navigator_scene = ExtResource("3_p6b6g")
 
 [node name="ActiveMarker" type="Sprite2D" parent="." unique_id=1428250501]
 visible = false

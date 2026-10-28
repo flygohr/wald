@@ -11,10 +11,6 @@ func _ready() -> void:
 	SignalBus.node_selected.connect(node_selected)
 	SignalBus.moved_around_the_map.connect(_fade_out_this)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func node_selected(i: int) -> void:
 	var node_data: Dictionary = GameData.current[GameData.KEY_MAP_NODES_DATA][i]

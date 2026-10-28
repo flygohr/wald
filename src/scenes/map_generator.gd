@@ -135,7 +135,7 @@ func spawn_branches(branches_origin, branches_amt) -> void:
 					)
 
 
-func populate_map(diff: int) -> void:
+func populate_map(_diff: int) -> void:
 	# LONG DISTANCE WALKER -------------------------------------------------------------------------
 	# Add long distance walker in the first 3 degree 1 things
 	var safe_nodes_indexes: Array = []

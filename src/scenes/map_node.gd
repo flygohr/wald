@@ -8,6 +8,8 @@ extends Node2D
 @export var color : Color
 @export var node_radius := 25
 @export var dashed_line_scene: PackedScene
+@export var navigator_scene: PackedScene
+
 var temporary_dashed_line: Line2D
 
 const COLOR_START: Color = Color.GREEN
@@ -21,6 +23,7 @@ const COLOR_EVENT: Color = Color.WEB_PURPLE
 
 @onready var check_button: TextureButton = $CheckButton
 @onready var active_marker: Sprite2D = $ActiveMarker
+@onready var navigator: Sprite2D = $Navigator
 
 var index: int = 0
 var is_active: bool = false:
@@ -57,7 +60,15 @@ var is_visited: bool = false:
 	set(value):
 		is_visited = value
 		queue_redraw()
-		
+
+
+var is_finish: bool = false:
+	set(value):
+		is_finish = value
+		queue_redraw()
+
+var finish_radius: int
+
 var incoming_is_cleared: bool = true:
 	set(value):
 		incoming_is_cleared = value
@@ -72,12 +83,17 @@ func _ready() -> void:
 	check_button.size = Vector2(button_size, button_size)
 	check_button.position = Vector2(-(button_size/2), -(button_size/2))
 	current_color = COLOR_DEFAULT
+	if is_finish:
+		navigator.show()
 
 
 func _process(delta: float) -> void:
-	if is_selected:
-		selected_radius = remap(sin(_time * TAU), -1.0, 1.0, node_radius+20, node_radius+40)
-		_time += delta
+
+	selected_radius = remap(sin(_time * TAU), -1.0, 1.0, node_radius+20, node_radius+40)
+
+	finish_radius = remap(sin(_time * TAU), -1.0, 1.0, node_radius+10, node_radius+30)
+		
+	_time += delta
 
 
 func _draw() -> void:
@@ -89,21 +105,22 @@ func _draw() -> void:
 		-1.0, 
 		true)
 	
-	if is_active:
-		draw_circle(Vector2.ZERO, active_radius, Color.WHITE, false, 5, false)
-		
 	if is_selected and is_active == false and incoming_is_cleared == true:
 		draw_circle(Vector2.ZERO, selected_radius, Color.WHITE, false, 5, false)
-
-	if is_selected and is_active == false and incoming_is_cleared == false:
+	elif is_selected and is_active == false and incoming_is_cleared == false:
 		draw_circle(Vector2.ZERO, selected_radius, Color.RED, false, 5, false)
-
+	
 	if is_cleared == false and is_visited == true:
-		draw_circle(Vector2.ZERO, 30, Color.RED, false, 3, false)
-		
-	if is_cleared == true and is_visited == true:
+		draw_circle(Vector2.ZERO, 30, Color.RED, false, 3, false)	
+	elif is_cleared == true and is_visited == true:
 		draw_circle(Vector2.ZERO, 30, Color.GREEN, false, 3, false)
-
+		
+	if is_active:
+		draw_circle(Vector2.ZERO, active_radius, Color.WHITE, false, 5, false)
+	
+	if is_finish:
+		draw_circle(Vector2.ZERO, finish_radius, Color.BLUE, false, 5, false)
+	
 func display_active_marker(toggle: bool) -> void:
 	if toggle == true:
 		active_marker.show()
@@ -122,7 +139,6 @@ func display_active_marker(toggle: bool) -> void:
 func _check_if_active(i) -> void:
 	if i == index:
 		is_active = true
-		set_process(true)
 	else:
 		is_active = false
 		queue_redraw()
@@ -134,6 +150,9 @@ func update_color(type: String) -> void:
 			current_color = COLOR_START
 		GameData.KEY_MAPNODETYPE_FINISH:
 			current_color = COLOR_FINISH
+			is_finish = true #FIXME: I know this is in the wrong place
+			var navigator = navigator_scene.instantiate()
+			add_child(navigator)
 		GameData.KEY_MAPNODETYPE_OBSTACLE:
 			current_color = COLOR_OBSTACLE
 		GameData.KEY_MAPNODETYPE_SOLUTION:
@@ -154,9 +173,6 @@ func _check_if_traveled_to(from: int, to: int) -> void:
 		is_active = true
 		_erase_temporary_line()
 		is_selected = false
-		is_visited = true
-		GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_VISITED] = true
-		GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_INCOMING_CONNECTIONS].append(from)
 		# TEMPORARY CLEARED CHECK
 		# TODO: move to scene node
 		
@@ -165,6 +181,11 @@ func _check_if_traveled_to(from: int, to: int) -> void:
 			if cleared_roll > 0.3:
 				is_cleared = true
 				GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_CLEARED] = true
+				
+		
+		is_visited = true
+		GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_VISITED] = true
+		GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_INCOMING_CONNECTIONS].append(from)
 
 
 func _check_if_still_selected(i: int) -> void:
