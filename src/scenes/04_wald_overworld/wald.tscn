@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://br733vfr7guw7"]
+
+[ext_resource type="Script" uid="uid://x07qk50o6nxs" path="res://src/scenes/04_wald_overworld/map_generator.gd" id="1_4bu3n"]
+[ext_resource type="Script" uid="uid://ut6g630t8jua" path="res://src/scenes/04_wald_overworld/wald.gd" id="1_rqd8u"]
+[ext_resource type="Script" uid="uid://cp3nr3hu4eqep" path="res://src/scenes/04_wald_overworld/map_visualizer.gd" id="3_g6jtw"]
+[ext_resource type="PackedScene" uid="uid://dvo068lpcimar" path="res://src/scenes/04_wald_overworld/navigation_marker/player_marker.tscn" id="4_4bu3n"]
+[ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/04_wald_overworld/overworld_node/map_node.tscn" id="4_dy57v"]
+[ext_resource type="Texture2D" uid="uid://bcxd168bujn7o" path="res://assets/images/prototype/17_liken moss texture-seamless.jpg" id="5_4bu3n"]
+[ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/03_game_UI/dashed_line/dashed_line.tscn" id="7_awtng"]
+[ext_resource type="Script" uid="uid://bt3r0irubcw37" path="res://src/scenes/04_wald_overworld/camera/pan_around_camera.gd" id="7_g6jtw"]
+[ext_resource type="PackedScene" uid="uid://dwnb7gxl8xwnf" path="res://src/scenes/03_game_UI/game_ui.tscn" id="9_p8guu"]
+
+[node name="Wald" type="Node2D" unique_id=934451563]
+script = ExtResource("1_rqd8u")
+
+[node name="MapGenerator" type="Node" parent="." unique_id=1490238067]
+script = ExtResource("1_4bu3n")
+branching_degrees = 2
+branching_multiplier = 2
+difficulty = 1
+
+[node name="MapVisualizer" type="Node" parent="." unique_id=747671176]
+script = ExtResource("3_g6jtw")
+base_node = ExtResource("4_dy57v")
+dashed_line_scene = ExtResource("7_awtng")
+
+[node name="PanAroundCamera" type="Camera2D" parent="MapVisualizer" unique_id=677257802]
+zoom = Vector2(0.5, 0.5)
+limit_enabled = false
+script = ExtResource("7_g6jtw")
+
+[node name="BackgroundPattern" type="Sprite2D" parent="MapVisualizer" unique_id=1501368137]
+modulate = Color(1, 1, 1, 0.2901961)
+texture_repeat = 2
+texture = ExtResource("5_4bu3n")
+centered = false
+region_enabled = true
+region_rect = Rect2(-1000, -1000, 20000, 20000)
+
+[node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
+
+[node name="GameUI" parent="." unique_id=41148856 instance=ExtResource("9_p8guu")]

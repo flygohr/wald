@@ -13,5 +13,5 @@ signal node_selected(index: int)
 signal traveled_to(from: int, to: int)
 signal moved_around_the_map
 signal new_active_node_set(index: int)
-
+signal walking_distance_updated
 @warning_ignore_restore("unused_signal")

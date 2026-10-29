@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dy16fjfp0utlm"]
+
+[ext_resource type="Texture2D" uid="uid://ddi8skt5g6b1u" path="res://assets/images/prototype/arrow.png" id="1_nnqix"]
+[ext_resource type="Script" uid="uid://dh4e84lj7i158" path="res://src/scenes/04_wald_overworld/waypoint/navigator.gd" id="2_ljnqx"]
+
+[node name="Navigator" type="Sprite2D" unique_id=1468897658]
+scale = Vector2(0.13640179, 0.13640179)
+texture = ExtResource("1_nnqix")
+script = ExtResource("2_ljnqx")
+on_screen_offset = Vector2(0.5, -70)
+screen_margin = 80.0

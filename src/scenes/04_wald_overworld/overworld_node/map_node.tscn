@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://qod6od0842im"]
+
+[ext_resource type="Script" uid="uid://dp64bigt0gupa" path="res://src/scenes/04_wald_overworld/overworld_node/map_node.gd" id="1_bpdgc"]
+[ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/03_game_UI/dashed_line/dashed_line.tscn" id="2_8vegd"]
+[ext_resource type="PackedScene" uid="uid://dy16fjfp0utlm" path="res://src/scenes/04_wald_overworld/waypoint/navigator.tscn" id="3_rvpb4"]
+[ext_resource type="Texture2D" uid="uid://cpytsarqlugjx" path="res://assets/images/prototype/toppng.com-location-icon-white-fa-icon-map-marker-241x381.png" id="4_nvdxn"]
+
+[node name="MapNode" type="Node2D" unique_id=1578930960]
+script = ExtResource("1_bpdgc")
+color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+dashed_line_scene = ExtResource("2_8vegd")
+navigator_scene = ExtResource("3_rvpb4")
+
+[node name="ActiveMarker" type="Sprite2D" parent="." unique_id=1428250501]
+visible = false
+position = Vector2(0, -60)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_nvdxn")
+
+[node name="CheckButton" type="TextureButton" parent="." unique_id=1937951989]
+offset_left = -32.0
+offset_top = -31.0
+offset_right = 32.0
+offset_bottom = 33.0
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]

@@ -10,8 +10,8 @@ const GAME_VERSION: String = "0.2"
 
 # MAP GENERATION OPTIONS ---------------------------------------------------------------------------
 const SHORT_WALK_DISTANCE: int = 400
-const MEDIUM_WALK_DISTANCE: int = 800
-const LONG_WALK_DISTANCE: int = 1200
+const MEDIUM_WALK_DISTANCE: int = 600
+const LONG_WALK_DISTANCE: int = 800
 
 
 # CONFIG -------------------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 		}
 	],
 	KEY_MAP_CURRENT_NODE_INDEX: 0,
-	KEY_CURRENT_WALKING_DISTANCE: SHORT_WALK_DISTANCE,
+	KEY_CURRENT_WALKING_DISTANCE: LONG_WALK_DISTANCE,
 	KEY_TRAVELED_LINES_DATA: [
 		{
 			KEY_LINE_START: Vector2.ZERO,
