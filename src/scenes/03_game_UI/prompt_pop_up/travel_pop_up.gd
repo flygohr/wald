@@ -5,6 +5,8 @@ extends PanelContainer
 
 var target_node_index: int
 
+#TODO: convert in all purposes prompt with costs, title, icon, etc
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	modulate.a = 0

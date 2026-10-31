@@ -6,13 +6,15 @@ signal load_finished
 
 const KEY_TITLE_SCREEN: String = "title screen"
 const KEY_LOADING_SCREEN: String = "loading screen"
-const KEY_GAME_SCREEN: String = "game screen"
+const KEY_OVERWORLD_SCREEN: String = "overworld screen"
+const KEY_INSIDE_NODE_SCREEN: String = "inside node screen"
 const KEY_SETTINGS_SCREEN: String = "settings screen"
 
 const SCENE_PATHS: Dictionary = {
 	KEY_TITLE_SCREEN: "uid://q3362xrshrsu",
 	KEY_LOADING_SCREEN: "uid://bbn1nvys51vyr",
-	KEY_GAME_SCREEN: "uid://br733vfr7guw7",
+	KEY_OVERWORLD_SCREEN: "uid://br733vfr7guw7",
+	KEY_INSIDE_NODE_SCREEN: "uid://qu2peyfpt1pk",
 	KEY_SETTINGS_SCREEN: "uid://cc1yqy62xbprh"
 }
 

@@ -118,6 +118,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 # Also polling this every time I need to know something
 var current: Dictionary = DEFAULT_GAME_DATA.duplicate_deep() # Defaults to base game data on load
 
+var is_inside_node: bool = false
 
 # STARTUP ------------------------------------------------------------------------------------------
 func _ready() -> void:

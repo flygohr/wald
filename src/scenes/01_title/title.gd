@@ -1,6 +1,6 @@
 extends Node2D
 
-const INITIAL_SCENE: StringName = ScenesManager.SCENE_PATHS[ScenesManager.KEY_GAME_SCREEN]
+const INITIAL_SCENE: StringName = ScenesManager.SCENE_PATHS[ScenesManager.KEY_OVERWORLD_SCREEN]
 const SETTINGS_SCENE: StringName = ScenesManager.SCENE_PATHS[ScenesManager.KEY_SETTINGS_SCREEN]
 
 @onready var continue_button: Button = $CanvasLayer/VBoxContainer/ContinueButton

@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://qu2peyfpt1pk"]
 
+[ext_resource type="Texture2D" uid="uid://c8icln0qncgsr" path="res://assets/images/kevin-schmid-AZM7aFQn00I-unsplash.jpg" id="1_6rvtk"]
 [ext_resource type="PackedScene" uid="uid://dwnb7gxl8xwnf" path="res://src/scenes/03_game_UI/game_ui.tscn" id="1_db0j2"]
-[ext_resource type="Texture2D" uid="uid://b3v70dmb4b0x3" path="res://assets/images/prototype/placeholder_unsplash.jpg" id="2_6rvtk"]
+[ext_resource type="Script" uid="uid://4pjvxhio8m6s" path="res://map_node_scene.gd" id="1_w1ufw"]
 
 [node name="MapNodeScene" type="Node2D" unique_id=1525410659]
+script = ExtResource("1_w1ufw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2133297133]
 
@@ -13,7 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_6rvtk")
+texture = ExtResource("1_6rvtk")
 expand_mode = 3
 stretch_mode = 6
 

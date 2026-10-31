@@ -181,8 +181,6 @@ func _check_if_traveled_to(from: int, to: int) -> void:
 				GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_CLEARED] = true
 				
 		
-		is_visited = true
-		GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_VISITED] = true
 		GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_INCOMING_CONNECTIONS].append(from)
 
 
