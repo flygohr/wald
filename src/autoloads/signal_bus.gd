@@ -14,4 +14,13 @@ signal traveled_to(from: int, to: int)
 signal moved_around_the_map
 signal new_active_node_set(index: int)
 signal walking_distance_updated
+
+# STATS SIGNALS ----------------------------------------------------------------
+signal sanity_updated(value: int)
+signal food_updated(value: int)
+signal karma_updated(value: int)
+signal loot_updated(value: int)
+signal days_updated(value: int)
+signal node_cleared(index: int, toggle: bool)
+
 @warning_ignore_restore("unused_signal")

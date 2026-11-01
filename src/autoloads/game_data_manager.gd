@@ -75,6 +75,16 @@ const KEY_MAP_MIDPOINT: String = "midpoint coords"
 const KEY_MAP_MAP_RADIUS: String = "map radius"
 
 
+# STATS DEFINITIONS --------------------------------------------------------------------------------
+const KEY_CURRENT_SANITY: String = "current sanity"
+const KEY_CURRENT_FOOD: String = "current food"
+const KEY_CURRENT_KARMA: String = "current karma"
+const KEY_CURRENT_LOOT: String = "current loot"
+
+
+# CHARACTER DEFINITIONS ----------------------------------------------------------------------------
+
+
 # DEFAULT GAME DATA --------------------------------------------------------------------------------
 # What to load into a new save
 const DEFAULT_GAME_DATA: Dictionary = {
@@ -110,6 +120,10 @@ const DEFAULT_GAME_DATA: Dictionary = {
 	},
 	KEY_MAP_MIDPOINT: Vector2.ZERO,
 	KEY_MAP_MAP_RADIUS: 0,
+	KEY_CURRENT_SANITY: 100,
+	KEY_CURRENT_FOOD: 10,
+	KEY_CURRENT_KARMA: 100,
+	KEY_CURRENT_LOOT: 0
 }
 
 

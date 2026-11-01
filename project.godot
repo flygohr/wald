@@ -31,8 +31,8 @@ PopupManager="*uid://b63w0p3ooheuj"
 
 [display]
 
-window/size/viewport_width=816
-window/size/viewport_height=576
+window/size/viewport_width=1088
+window/size/viewport_height=768
 window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"

@@ -1,7 +1,7 @@
 extends PanelContainer
 
 @onready var node_type_name_label: Label = $VBoxContainer/HBoxContainer/NodeTypeNameLabel
-@onready var travel_button: Button = $VBoxContainer/MarginContainer/TravelButton
+@onready var travel_button: Button = $VBoxContainer/TravelButton
 
 var target_node_index: int
 

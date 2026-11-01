@@ -29,7 +29,6 @@ func move_marker(_from: int, to: int) -> void:
 	SignalBus.new_active_node_set.emit(to)
 	GameData.initiate_save_game_data()
 	queue_redraw()
-	print(GameData.current[GameData.KEY_MAP_NODES_DATA][to])
 	# transition to local ONLY if new node
 	
 	if needs_to_trigger_transition == true:

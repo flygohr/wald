@@ -79,6 +79,8 @@ func _ready() -> void:
 	SignalBus.moved_around_the_map.connect(_unselect_this)
 	SignalBus.traveled_to.connect(_check_if_traveled_to)
 	SignalBus.node_selected.connect(_check_if_still_selected)
+	
+	
 	var button_size = (node_radius * 2) + 10
 	check_button.size = Vector2(button_size, button_size)
 	check_button.position = Vector2(-(button_size/2), -(button_size/2))
@@ -171,15 +173,6 @@ func _check_if_traveled_to(from: int, to: int) -> void:
 		is_active = true
 		_erase_temporary_line()
 		is_selected = false
-		# TEMPORARY CLEARED CHECK
-		# TODO: move to scene node
-		
-		if is_visited == false:
-			var cleared_roll: float = randf()
-			if cleared_roll > 0.3:
-				is_cleared = true
-				GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_CLEARED] = true
-				
 		
 		GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_INCOMING_CONNECTIONS].append(from)
 

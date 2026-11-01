@@ -1,17 +1,32 @@
 extends CanvasLayer
 
 #TODO: tweak UI depending on current scene, if wald or local
-@onready var overworld_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/VBoxContainer/OverworldButton
-@onready var go_inside_node_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/VBoxContainer/GoInsideNodeButton
-@onready var party_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/VBoxContainer/PartyButton
-@onready var resources_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/VBoxContainer/ResourcesButton
+@onready var overworld_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/OverworldButton
+@onready var go_inside_node_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/GoInsideNodeButton
+@onready var party_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/PartyButton
+
+@onready var basic_actions: PanelContainer = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions
+
+@export var action_prompt_scene: PackedScene
+@onready var action_buttons_container: VBoxContainer = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer
+
+@onready var debug_buttons: Control = $DebugButtons
 
 func _ready() -> void:
+	var action_prompt = action_prompt_scene.instantiate()
+	action_buttons_container.add_child(action_prompt)
+	action_buttons_container.move_child(action_prompt, 0)
+	
+	
 	if GameData.is_inside_node == true:
 		overworld_button.show()
+		basic_actions.show()
+		debug_buttons.show()
 		go_inside_node_button.hide()
-	else:
+	elif GameData.is_inside_node == false:
 		overworld_button.hide()
+		basic_actions.hide()
+		debug_buttons.hide()
 		go_inside_node_button.show()
 
 func _on_quit_button_pressed() -> void:

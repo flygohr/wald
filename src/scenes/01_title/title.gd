@@ -7,6 +7,8 @@ const SETTINGS_SCENE: StringName = ScenesManager.SCENE_PATHS[ScenesManager.KEY_S
 @onready var new_game_button: Button = $CanvasLayer/VBoxContainer/NewGameButton
 
 func _ready() -> void:
+	GameData.is_inside_node = false
+	
 	if GameData.current[GameData.KEY_IS_NEW_GAME] == true:
 		continue_button.hide()
 	else: 
