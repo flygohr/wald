@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://br733vfr7guw7"]
 
-[ext_resource type="Script" uid="uid://x07qk50o6nxs" path="res://src/scenes/04_wald_overworld/map_generator.gd" id="1_4bu3n"]
-[ext_resource type="Script" uid="uid://ut6g630t8jua" path="res://src/scenes/04_wald_overworld/wald.gd" id="1_rqd8u"]
-[ext_resource type="Script" uid="uid://cp3nr3hu4eqep" path="res://src/scenes/04_wald_overworld/map_visualizer.gd" id="3_g6jtw"]
-[ext_resource type="PackedScene" uid="uid://dvo068lpcimar" path="res://src/scenes/04_wald_overworld/navigation_marker/player_marker.tscn" id="4_4bu3n"]
-[ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/04_wald_overworld/overworld_node/map_node.tscn" id="4_dy57v"]
+[ext_resource type="Script" uid="uid://x07qk50o6nxs" path="res://src/scenes/03_wald_overworld/map_generator.gd" id="1_4bu3n"]
+[ext_resource type="Script" uid="uid://ut6g630t8jua" path="res://src/scenes/03_wald_overworld/wald.gd" id="1_rqd8u"]
+[ext_resource type="Script" uid="uid://cp3nr3hu4eqep" path="res://src/scenes/03_wald_overworld/map_visualizer.gd" id="3_g6jtw"]
+[ext_resource type="PackedScene" uid="uid://dvo068lpcimar" path="res://src/scenes/03_wald_overworld/navigation_marker/player_marker.tscn" id="4_4bu3n"]
+[ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/03_wald_overworld/overworld_node/map_node.tscn" id="4_dy57v"]
 [ext_resource type="Texture2D" uid="uid://bcxd168bujn7o" path="res://assets/images/prototype/17_liken moss texture-seamless.jpg" id="5_4bu3n"]
-[ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/03_game_UI/dashed_line/dashed_line.tscn" id="7_awtng"]
-[ext_resource type="Script" uid="uid://bt3r0irubcw37" path="res://src/scenes/04_wald_overworld/camera/pan_around_camera.gd" id="7_g6jtw"]
-[ext_resource type="PackedScene" uid="uid://dwnb7gxl8xwnf" path="res://src/scenes/03_game_UI/game_ui.tscn" id="9_p8guu"]
+[ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/02_game_UI/dashed_line/dashed_line.tscn" id="7_awtng"]
+[ext_resource type="Script" uid="uid://bt3r0irubcw37" path="res://src/scenes/03_wald_overworld/camera/pan_around_camera.gd" id="7_g6jtw"]
+[ext_resource type="PackedScene" uid="uid://dwnb7gxl8xwnf" path="res://src/scenes/02_game_UI/game_ui.tscn" id="9_p8guu"]
 
 [node name="Wald" type="Node2D" unique_id=934451563]
 script = ExtResource("1_rqd8u")

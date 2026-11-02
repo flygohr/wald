@@ -34,7 +34,8 @@ var is_debug: bool = true # Toggle debug mode with more buttons and stuff
 # Strings to organize the data into a Dictionary and later into a JSON
 const KEY_GAME_VERSION: String = "game version"
 const KEY_IS_NEW_GAME: String = "is new game"
-
+const KEY_IS_GAME_ENDED: String = "is game ended"
+const KEY_IS_GAME_WON: String = "is game won"
 
 # MAP DATA -----------------------------------------------------------------------------------------
 const KEY_MAP_NODES_DATA: String = "map nodes data"
@@ -92,6 +93,8 @@ const KEY_CURRENT_LOOT: String = "current loot"
 const DEFAULT_GAME_DATA: Dictionary = {
 	KEY_GAME_VERSION: GAME_VERSION,
 	KEY_IS_NEW_GAME: true,
+	KEY_IS_GAME_ENDED: false,
+	KEY_IS_GAME_WON: false,
 	KEY_MAP_NODES_DATA: [
 		{
 			KEY_MAPNODE_ID: 0,

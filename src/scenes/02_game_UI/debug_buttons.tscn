@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dudf08hgpj0fk"]
 
-[ext_resource type="Script" uid="uid://cwgtpawlvc27a" path="res://src/scenes/03_game_UI/debug_buttons.gd" id="1_om7hk"]
+[ext_resource type="Script" uid="uid://cwgtpawlvc27a" path="res://src/scenes/02_game_UI/debug_buttons.gd" id="1_om7hk"]
 
 [node name="DebugButtons" type="Control" unique_id=1229041866]
 layout_mode = 3
@@ -35,23 +35,23 @@ text = "CLEAR"
 
 [node name="DecreaseDistanceButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1645528216]
 layout_mode = 2
-text = "– DISTANCE"
+text = "- DISTANCE"
 
 [node name="DecreaseSanityButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1916824087]
 layout_mode = 2
-text = "–10 SANITY"
+text = "-10 SANITY"
 
 [node name="DecreaseFoodButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1070862972]
 layout_mode = 2
-text = "–10 FOOD"
+text = "-10 FOOD"
 
 [node name="DecreaseKarmaButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1631818876]
 layout_mode = 2
-text = "–10 KARMA"
+text = "-10 KARMA"
 
 [node name="DecreaseLootButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1957523554]
 layout_mode = 2
-text = "–10 LOOT"
+text = "-10 LOOT"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=732665928]
 layout_mode = 2

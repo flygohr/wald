@@ -2,6 +2,7 @@ extends Node2D
 
 const INITIAL_SCENE: StringName = ScenesManager.SCENE_PATHS[ScenesManager.KEY_OVERWORLD_SCREEN]
 const SETTINGS_SCENE: StringName = ScenesManager.SCENE_PATHS[ScenesManager.KEY_SETTINGS_SCREEN]
+const GAME_ENDED_SCENE: StringName = ScenesManager.SCENE_PATHS[ScenesManager.KEY_GAME_END_SCREEN]
 
 @onready var continue_button: Button = $CanvasLayer/VBoxContainer/ContinueButton
 @onready var new_game_button: Button = $CanvasLayer/VBoxContainer/NewGameButton
@@ -16,7 +17,9 @@ func _ready() -> void:
 
 
 func _on_continue_button_pressed() -> void:
-	ScenesManager.load_scene(INITIAL_SCENE)
+	if GameData.current[GameData.KEY_IS_GAME_ENDED] == true:
+		ScenesManager.load_scene(GAME_ENDED_SCENE)
+	else: ScenesManager.load_scene(INITIAL_SCENE)
 
 
 func _on_new_game_button_pressed() -> void:

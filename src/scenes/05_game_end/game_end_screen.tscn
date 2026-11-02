@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://sm77l8w4p4bi"]
+
+[ext_resource type="Script" uid="uid://tu3fgprg6p4r" path="res://src/scenes/05_game_end/game_end_screen.gd" id="1_r8max"]
+[ext_resource type="Texture2D" uid="uid://c26tihtwj10pe" path="res://assets/images/prototype/henry-ravenscroft-bIZrcEgUs9I-unsplash.jpg" id="1_t5b4j"]
+[ext_resource type="Texture2D" uid="uid://bulkl7uiwoiqy" path="res://assets/images/prototype/bernd-dittrich-IJWBtlr_GkQ-unsplash.jpg" id="3_x780e"]
+
+[node name="GameEndScreen" type="Node2D" unique_id=2062018780]
+script = ExtResource("1_r8max")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=774030205]
+
+[node name="DefeatScreen" type="TextureRect" parent="CanvasLayer" unique_id=223130624]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_t5b4j")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="VictoryScreen" type="TextureRect" parent="CanvasLayer" unique_id=1635767588]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_x780e")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1043255234]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -78.0
+offset_right = 86.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer" unique_id=671818070]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="GameEndLabel" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=1649171999]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "GAME OVER!"
+horizontal_alignment = 1
+
+[node name="GameEndText" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=1780205028]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "GAME OVER!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=228764435]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer/MarginContainer" unique_id=1343401282]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "SCORE: 100"
+horizontal_alignment = 1
+
+[node name="NewGameButton" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=1808739341]
+layout_mode = 2
+text = "NEW GAME"
+
+[node name="StatsButton" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=483179671]
+visible = false
+layout_mode = 2
+text = "STATS"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=1055300045]
+layout_mode = 2
+text = "QUIT"
+
+[connection signal="pressed" from="CanvasLayer/PanelContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

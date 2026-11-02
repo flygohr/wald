@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://qod6od0842im"]
 
-[ext_resource type="Script" uid="uid://dp64bigt0gupa" path="res://src/scenes/04_wald_overworld/overworld_node/map_node.gd" id="1_bpdgc"]
-[ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/03_game_UI/dashed_line/dashed_line.tscn" id="2_8vegd"]
-[ext_resource type="PackedScene" uid="uid://dy16fjfp0utlm" path="res://src/scenes/04_wald_overworld/waypoint/navigator.tscn" id="3_rvpb4"]
+[ext_resource type="Script" uid="uid://dp64bigt0gupa" path="res://src/scenes/03_wald_overworld/overworld_node/map_node.gd" id="1_bpdgc"]
+[ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/02_game_UI/dashed_line/dashed_line.tscn" id="2_8vegd"]
+[ext_resource type="PackedScene" uid="uid://dy16fjfp0utlm" path="res://src/scenes/03_wald_overworld/waypoint/navigator.tscn" id="3_rvpb4"]
 [ext_resource type="Texture2D" uid="uid://cpytsarqlugjx" path="res://assets/images/prototype/toppng.com-location-icon-white-fa-icon-map-marker-241x381.png" id="4_nvdxn"]
 
 [node name="MapNode" type="Node2D" unique_id=1578930960]

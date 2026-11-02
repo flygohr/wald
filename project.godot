@@ -45,7 +45,6 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/
 [gui]
 
 theme/custom="uid://d2s1eqi0btoeb"
-theme/custom_font="uid://l5vgd3rv3q2b"
 
 [input]
 

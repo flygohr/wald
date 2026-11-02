@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cwm1wof74m8fq"]
 
 [ext_resource type="Texture2D" uid="uid://ductmxy2fgq2e" path="res://assets/images/dashed_line/line-dash.png" id="1_jr7kp"]
-[ext_resource type="Script" uid="uid://7hq007u684mf" path="res://src/scenes/03_game_UI/dashed_line/dashed_line.gd" id="2_g6gbc"]
+[ext_resource type="Script" uid="uid://7hq007u684mf" path="res://src/scenes/02_game_UI/dashed_line/dashed_line.gd" id="2_g6gbc"]
 
 [node name="DashedLine" type="Line2D" unique_id=773996439]
 texture_filter = 1

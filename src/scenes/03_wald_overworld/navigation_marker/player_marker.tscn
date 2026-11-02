@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvo068lpcimar"]
 
-[ext_resource type="Script" uid="uid://cucgsf4uh0gl" path="res://src/scenes/04_wald_overworld/navigation_marker/player_marker.gd" id="1_w2geu"]
+[ext_resource type="Script" uid="uid://cucgsf4uh0gl" path="res://src/scenes/03_wald_overworld/navigation_marker/player_marker.gd" id="1_w2geu"]
 [ext_resource type="Texture2D" uid="uid://esxrh7wnh4bh" path="res://assets/images/prototype/debug_circle.png" id="2_5ce0m"]
 
 [node name="PlayerMarker" type="Node2D" unique_id=1500289336]

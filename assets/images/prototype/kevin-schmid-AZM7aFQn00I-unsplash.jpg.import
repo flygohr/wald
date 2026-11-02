@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8icln0qncgsr"
-path="res://.godot/imported/kevin-schmid-AZM7aFQn00I-unsplash.jpg-4bbb3d8a6b5ddf0b54907515f6966d00.ctex"
+path="res://.godot/imported/kevin-schmid-AZM7aFQn00I-unsplash.jpg-665c5896d7ee1fa06304f37e8b1a7bc2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/kevin-schmid-AZM7aFQn00I-unsplash.jpg"
-dest_files=["res://.godot/imported/kevin-schmid-AZM7aFQn00I-unsplash.jpg-4bbb3d8a6b5ddf0b54907515f6966d00.ctex"]
+source_file="res://assets/images/prototype/kevin-schmid-AZM7aFQn00I-unsplash.jpg"
+dest_files=["res://.godot/imported/kevin-schmid-AZM7aFQn00I-unsplash.jpg-665c5896d7ee1fa06304f37e8b1a7bc2.ctex"]
 
 [params]
 

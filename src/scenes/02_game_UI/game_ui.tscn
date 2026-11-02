@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dwnb7gxl8xwnf"]
 
 [ext_resource type="Texture2D" uid="uid://dtwblcpbko0mw" path="res://icon.svg" id="1_6j8og"]
-[ext_resource type="Script" uid="uid://b8rldvy76gfc5" path="res://src/scenes/03_game_UI/game_ui.gd" id="1_acq2a"]
+[ext_resource type="Script" uid="uid://b8rldvy76gfc5" path="res://src/scenes/02_game_UI/game_ui.gd" id="1_acq2a"]
 [ext_resource type="Texture2D" uid="uid://bn6pu41wkdtio" path="res://assets/images/prototype/settings_90dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="2_acq2a"]
 [ext_resource type="Texture2D" uid="uid://dficid1t5vx7d" path="res://assets/images/prototype/home_90dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="3_jkghc"]
-[ext_resource type="PackedScene" uid="uid://c7v0d741qtx14" path="res://src/scenes/03_game_UI/action_prompt/action_prompt.tscn" id="4_c526s"]
-[ext_resource type="PackedScene" uid="uid://dudf08hgpj0fk" path="res://src/scenes/03_game_UI/debug_buttons.tscn" id="7_0toem"]
+[ext_resource type="PackedScene" uid="uid://c7v0d741qtx14" path="res://src/scenes/02_game_UI/action_prompt/action_prompt.tscn" id="4_c526s"]
+[ext_resource type="PackedScene" uid="uid://dudf08hgpj0fk" path="res://src/scenes/02_game_UI/debug_buttons.tscn" id="7_0toem"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cd8c5"]
 content_margin_left = 8.0
