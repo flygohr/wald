@@ -23,6 +23,7 @@ Description
 ### Bugs and fixes:
 - [ ] Waypoint marker doesn't take into account camera limits
 - [ ] Selection outline wrong color sometimes
+- [ ] Change to a font that supports the "-" character
 
 ### Devlog:
 - 2026-10-20

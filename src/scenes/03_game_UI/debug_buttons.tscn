@@ -81,6 +81,14 @@ layout_mode = 2
 text = "+10 LOOT"
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/DecreaseDistanceButton" to="." method="_on_clear_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/DecreaseDistanceButton" to="." method="_on_decrease_distance_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/DecreaseSanityButton" to="." method="_on_decrease_sanity_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/DecreaseFoodButton" to="." method="_on_decrease_food_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/DecreaseKarmaButton" to="." method="_on_decrease_karma_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/DecreaseLootButton" to="." method="_on_decrease_loot_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/BlockButton" to="." method="_on_reset_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer2/IncreaseDistanceButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/IncreaseDistanceButton" to="." method="_on_increase_distance_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/IncreaseSanityButton" to="." method="_on_increase_sanity_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/IncreaseFoodButton" to="." method="_on_increase_food_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/IncreaseKarmaButton" to="." method="_on_increase_karma_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/IncreaseLootButton" to="." method="_on_increase_loot_button_pressed"]

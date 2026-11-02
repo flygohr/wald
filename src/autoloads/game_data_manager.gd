@@ -27,6 +27,8 @@ var config: Dictionary[String, int] = {
 # GAMEPLAY VARIABLES -------------------------------------------------------------------------------
 var active_save_slot: int = 1
 var is_in_game: bool = false # Track if in game for settings menu options
+var is_debug: bool = true # Toggle debug mode with more buttons and stuff
+
 
 # KEYS ---------------------------------------------------------------------------------------------
 # Strings to organize the data into a Dictionary and later into a JSON

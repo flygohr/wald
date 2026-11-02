@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dtwblcpbko0mw" path="res://icon.svg" id="1_6j8og"]
 [ext_resource type="Script" uid="uid://b8rldvy76gfc5" path="res://src/scenes/03_game_UI/game_ui.gd" id="1_acq2a"]
 [ext_resource type="Texture2D" uid="uid://bn6pu41wkdtio" path="res://assets/images/prototype/settings_90dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="2_acq2a"]
-[ext_resource type="Script" uid="uid://d0w5u5g2unv23" path="res://src/scenes/03_game_UI/stats_container.gd" id="3_4i1an"]
 [ext_resource type="Texture2D" uid="uid://dficid1t5vx7d" path="res://assets/images/prototype/home_90dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="3_jkghc"]
 [ext_resource type="PackedScene" uid="uid://c7v0d741qtx14" path="res://src/scenes/03_game_UI/action_prompt/action_prompt.tscn" id="4_c526s"]
 [ext_resource type="PackedScene" uid="uid://dudf08hgpj0fk" path="res://src/scenes/03_game_UI/debug_buttons.tscn" id="7_0toem"]
@@ -57,7 +56,6 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cd8c5")
-script = ExtResource("3_4i1an")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer" unique_id=1823777231]
 layout_mode = 2
@@ -185,28 +183,28 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/LootBar/TopLeft" unique_id=673801014]
+[node name="LootStatContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/LootBar/TopLeft" unique_id=673801014]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cd8c5")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/PanelContainer" unique_id=961968590]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer" unique_id=961968590]
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 
-[node name="LootTexture" type="TextureRect" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/PanelContainer/HBoxContainer" unique_id=1803847259]
+[node name="LootTexture" type="TextureRect" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer/HBoxContainer" unique_id=1803847259]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("1_6j8og")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/PanelContainer/HBoxContainer" unique_id=1144771634]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer/HBoxContainer" unique_id=1144771634]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 
-[node name="LootLabel" type="Label" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/PanelContainer/HBoxContainer/MarginContainer" unique_id=1402446899]
+[node name="LootLabel" type="Label" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer/HBoxContainer/MarginContainer" unique_id=1402446899]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "LOOT: 0"

@@ -21,6 +21,7 @@ signal food_updated(value: int)
 signal karma_updated(value: int)
 signal loot_updated(value: int)
 signal days_updated(value: int)
-signal node_cleared(index: int, toggle: bool)
+signal node_status_updated(index: int, toggle: bool)
+signal walk_distance_updated(value: int)
 
 @warning_ignore_restore("unused_signal")
