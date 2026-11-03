@@ -1,18 +1,11 @@
-extends Node
+extends Node2D
 
 @export var base_node: PackedScene
-@onready var background_pattern: Sprite2D = $BackgroundPattern
 @export var dashed_line_scene: PackedScene
 
 func _ready() -> void:
 	render_map(GameData.current[GameData.KEY_MAP_NODES_DATA])
 	SignalBus.traveled_to.connect(_draw_traveled_line)
-	render_background(
-		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_LEFT_X],
-		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_TOP_Y],
-		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_RIGHT_X],
-		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_BOTTOM_Y]
-	)
 
 
 func render_map(list: Array) -> void:
@@ -35,15 +28,6 @@ func render_map(list: Array) -> void:
 		for line in GameData.current[GameData.KEY_TRAVELED_LINES_DATA]:
 			_draw_connecting_line(line[GameData.KEY_LINE_START], line[GameData.KEY_LINE_END], 3)
 		# _draw_connecting_line(node[GameData.KEY_PREVIOUSNODE_COORDS], node[GameData.KEY_MAPNODE_POS], node[GameData.KEY_MAPNODE_DEGREE])
-
-
-func render_background(left_x: int, top_y: int, right_x: int, bottom_y: int) -> void:
-	background_pattern.region_rect = Rect2(
-		left_x, 
-		top_y, 
-		abs(left_x) + abs(right_x), 
-		abs(top_y) + abs(bottom_y))
-	background_pattern.position = Vector2(left_x, top_y)
 
 
 func _draw_connecting_line(start: Vector2, end: Vector2, width: int) -> void:

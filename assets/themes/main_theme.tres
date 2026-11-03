@@ -68,6 +68,9 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.57700837, 0.5770084, 0.5770081, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvtt4"]
+content_margin_top = 3.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cd8c5"]
 content_margin_left = 8.0
 content_margin_top = 8.0
@@ -117,6 +120,8 @@ HSlider/icons/grabber_highlight = ExtResource("3_sgrgd")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_axncs")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_4fp8c")
 HSlider/styles/slider = SubResource("StyleBoxFlat_gvtt4")
+Label/font_sizes/font_size = 24
+Label/styles/normal = SubResource("StyleBoxEmpty_gvtt4")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_cd8c5")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
 RichTextLabel/font_sizes/normal_font_size = 20

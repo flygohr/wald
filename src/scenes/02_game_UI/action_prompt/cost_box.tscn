@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://byaw3olofgqq0"]
+
+[ext_resource type="Texture2D" uid="uid://dtwblcpbko0mw" path="res://icon.svg" id="1_myt4u"]
+[ext_resource type="Script" uid="uid://cky1a36vt6tl8" path="res://src/scenes/02_game_UI/action_prompt/cost_box.gd" id="1_v1nlh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awtng"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.38039216, 0.14901961, 0.21960784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="CostBox" type="PanelContainer" unique_id=1275087360]
+theme_override_styles/panel = SubResource("StyleBoxFlat_awtng")
+script = ExtResource("1_v1nlh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=617660948]
+layout_mode = 2
+
+[node name="CostIcon" type="TextureRect" parent="HBoxContainer" unique_id=626045114]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("1_myt4u")
+expand_mode = 2
+
+[node name="CostLabel" type="Label" parent="HBoxContainer" unique_id=110240047]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "-2"

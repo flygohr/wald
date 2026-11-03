@@ -1,0 +1,14 @@
+extends Sprite2D
+class_name TreeSprite
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	set_tree(0, 0.5)
+
+func set_tree(f: int, s: float) -> void:
+	if f < hframes*vframes:
+		set_frame(f)
+
+	if s >= 0 and s <= 1:
+		var new_scale = remap(s, 0.0, 1.0, 0.25, 0.35)
+		scale = Vector2(new_scale, new_scale)

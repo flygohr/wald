@@ -5,10 +5,28 @@
 [ext_resource type="Script" uid="uid://cp3nr3hu4eqep" path="res://src/scenes/03_wald_overworld/map_visualizer.gd" id="3_g6jtw"]
 [ext_resource type="PackedScene" uid="uid://dvo068lpcimar" path="res://src/scenes/03_wald_overworld/navigation_marker/player_marker.tscn" id="4_4bu3n"]
 [ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/03_wald_overworld/overworld_node/map_node.tscn" id="4_dy57v"]
-[ext_resource type="Texture2D" uid="uid://bcxd168bujn7o" path="res://assets/images/prototype/17_liken moss texture-seamless.jpg" id="5_4bu3n"]
 [ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/02_game_UI/dashed_line/dashed_line.tscn" id="7_awtng"]
 [ext_resource type="Script" uid="uid://bt3r0irubcw37" path="res://src/scenes/03_wald_overworld/camera/pan_around_camera.gd" id="7_g6jtw"]
+[ext_resource type="Script" uid="uid://c3ciikkufoere" path="res://src/scenes/03_wald_overworld/tree_populator.gd" id="8_4i3y5"]
+[ext_resource type="Shader" uid="uid://tfx1j5u0sqbe" path="res://src/scenes/03_wald_overworld/fog.gdshader" id="9_4i3y5"]
 [ext_resource type="PackedScene" uid="uid://dwnb7gxl8xwnf" path="res://src/scenes/02_game_UI/game_ui.tscn" id="9_p8guu"]
+[ext_resource type="PackedScene" uid="uid://5y8aqaopvu0y" path="res://src/scenes/03_wald_overworld/tree_sprite.tscn" id="9_q5noh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4i3y5"]
+frequency = 0.0075
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q5noh"]
+width = 816
+height = 576
+noise = SubResource("FastNoiseLite_4i3y5")
+seamless = true
+seamless_blend_skirt = 0.75
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqiib"]
+shader = ExtResource("9_4i3y5")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_q5noh")
+shader_parameter/density = 0.750000035625
+shader_parameter/speed = Vector2(0.02, 0.01)
 
 [node name="Wald" type="Node2D" unique_id=934451563]
 script = ExtResource("1_rqd8u")
@@ -19,7 +37,7 @@ branching_degrees = 2
 branching_multiplier = 2
 difficulty = 1
 
-[node name="MapVisualizer" type="Node" parent="." unique_id=747671176]
+[node name="MapVisualizer" type="Node2D" parent="." unique_id=588081428]
 script = ExtResource("3_g6jtw")
 base_node = ExtResource("4_dy57v")
 dashed_line_scene = ExtResource("7_awtng")
@@ -29,14 +47,25 @@ zoom = Vector2(0.5, 0.5)
 limit_enabled = false
 script = ExtResource("7_g6jtw")
 
-[node name="BackgroundPattern" type="Sprite2D" parent="MapVisualizer" unique_id=1501368137]
-modulate = Color(1, 1, 1, 0.2901961)
-texture_repeat = 2
-texture = ExtResource("5_4bu3n")
-centered = false
-region_enabled = true
-region_rect = Rect2(-1000, -1000, 20000, 20000)
+[node name="TreePopulator" type="Node2D" parent="MapVisualizer" unique_id=1216871962]
+modulate = Color(0.8156863, 0.81960785, 0.8039216, 1)
+y_sort_enabled = true
+script = ExtResource("8_4i3y5")
+tree_scene = ExtResource("9_q5noh")
 
 [node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1934909364]
+layer = 2
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1941969791]
+motion_mirroring = Vector2(816, 576)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer" unique_id=1859712746]
+material = SubResource("ShaderMaterial_oqiib")
+offset_right = 816.0
+offset_bottom = 576.0
+
 [node name="GameUI" parent="." unique_id=41148856 instance=ExtResource("9_p8guu")]
+layer = 10

@@ -1,7 +1,10 @@
 extends PanelContainer
 
+@export var cost_box_scene: PackedScene
+
 @onready var node_type_name_label: Label = $VBoxContainer/HBoxContainer/NodeTypeNameLabel
-@onready var travel_button: Button = $VBoxContainer/TravelButton
+@onready var cost_container: HBoxContainer = $VBoxContainer/MarginContainer/CostContainer
+@onready var action_button: Button = $VBoxContainer/ActionButton
 
 var target_node_index: int
 
@@ -19,8 +22,13 @@ func node_selected(i: int) -> void:
 	var node_data: Dictionary = GameData.current[GameData.KEY_MAP_NODES_DATA][i]
 	node_type_name_label.text = node_data[GameData.KEY_MAPNODETYPE].to_upper()
 	if GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_IS_CLEARED] == false and GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_INCOMING_CONNECTIONS].has(i) == false:
-		travel_button.disabled = true
-	else: travel_button.disabled = false
+		action_button.disabled = true
+	else: action_button.disabled = false
+	
+	for cost in range(2):
+		var cost_box: CostBox = cost_box_scene.instantiate()
+		cost_container.add_child(cost_box)
+		cost_box.cost_label.text = "-2"
 	
 	if GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX] != i:
 		target_node_index = i
@@ -45,3 +53,11 @@ func _fade_out_this() -> void:
 func _on_travel_button_pressed() -> void:
 	SignalBus.traveled_to.emit(GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX], target_node_index)
 	_fade_out_this()
+
+func populate_action_prompt() -> void:
+	# Get icon
+	# Get name
+	# Get costs
+	# Get action button text
+	# Connect result
+	pass
