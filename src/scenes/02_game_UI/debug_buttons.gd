@@ -1,12 +1,46 @@
 extends Control
 
+@onready var decrease_distance_button: Button = $HBoxContainer/VBoxContainer/DecreaseDistanceButton
+@onready var decrease_sanity_button: Button = $HBoxContainer/VBoxContainer/DecreaseSanityButton
+@onready var decrease_food_button: Button = $HBoxContainer/VBoxContainer/DecreaseFoodButton
+@onready var decrease_karma_button: Button = $HBoxContainer/VBoxContainer/DecreaseKarmaButton
+@onready var decrease_loot_button: Button = $HBoxContainer/VBoxContainer/DecreaseLootButton
+@onready var block_button: Button = $HBoxContainer/VBoxContainer2/BlockButton
+@onready var increase_distance_button: Button = $HBoxContainer/VBoxContainer2/IncreaseDistanceButton
+@onready var increase_sanity_button: Button = $HBoxContainer/VBoxContainer2/IncreaseSanityButton
+@onready var increase_food_button: Button = $HBoxContainer/VBoxContainer2/IncreaseFoodButton
+@onready var increase_karma_button: Button = $HBoxContainer/VBoxContainer2/IncreaseKarmaButton
+@onready var increase_loot_button: Button = $HBoxContainer/VBoxContainer2/IncreaseLootButton
+
 
 func _ready() -> void:
 	if GameData.is_debug == true:
 		if GameData.is_inside_node == true:
 			show()
+			decrease_distance_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			decrease_sanity_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			decrease_food_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			decrease_karma_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			decrease_loot_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			block_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_distance_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_sanity_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_food_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_karma_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_loot_button.mouse_filter = Control.MOUSE_FILTER_STOP
 		elif GameData.is_inside_node == false:
 			hide()
+			decrease_distance_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			decrease_sanity_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			decrease_food_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			decrease_karma_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			decrease_loot_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			block_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			increase_distance_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			increase_sanity_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			increase_food_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			increase_karma_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			increase_loot_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _on_clear_button_pressed() -> void:
 	print_debug("Node has been cleared")

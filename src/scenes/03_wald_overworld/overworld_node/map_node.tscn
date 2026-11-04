@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cpytsarqlugjx" path="res://assets/images/prototype/toppng.com-location-icon-white-fa-icon-map-marker-241x381.png" id="4_nvdxn"]
 
 [node name="MapNode" type="Node2D" unique_id=1578930960]
+z_index = 3
+z_as_relative = false
 script = ExtResource("1_bpdgc")
 color = Color(0.7539839, 0.75398386, 0.75398386, 1)
 dashed_line_scene = ExtResource("2_8vegd")

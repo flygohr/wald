@@ -10,6 +10,7 @@ extends Camera2D
 @export var camera_padding := 400
 
 var zoom_level: float = 0.6
+var default_zoom_level: float = zoom_level
 var position_before_drag
 var position_before_drag2
 
@@ -53,8 +54,15 @@ func _unhandled_input(event):
 	if position_before_drag and event is InputEventMouseMotion:
 		SignalBus.moved_around_the_map.emit()
 		self.global_position = position_before_drag2 + (position_before_drag - event.global_position) * (1/zoom_level)
-
-
+		
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.double_click:
+			pan_to(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS])
+			
+			var tween = get_tree().create_tween()
+			tween.tween_property(self, "zoom", Vector2(default_zoom_level, default_zoom_level), 0.3).set_trans(Tween.TRANS_SINE)
+	
 func set_zoom_level(level: float, mouse_world_position = self.get_global_mouse_position()):
 	var old_zoom_level = zoom_level
 	

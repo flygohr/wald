@@ -26,7 +26,9 @@ func _on_new_game_button_pressed() -> void:
 	if (GameData.current[GameData.KEY_IS_NEW_GAME] == false):
 		PopupManager.show_popup_confirmation("Starting a new game will erase your current progress.\n\nAre you sure?")
 		await PopupManager.yes_button_pressed
+		var game_number = GameData.current[GameData.KEY_GAMES_PLAYED]+1
 		GameData.current = GameData.DEFAULT_GAME_DATA.duplicate_deep()
+		GameData.current[GameData.KEY_GAMES_PLAYED] = game_number
 		GameData.initiate_save_game_data()
 		ScenesManager.load_scene(INITIAL_SCENE)
 	else: ScenesManager.load_scene(INITIAL_SCENE)

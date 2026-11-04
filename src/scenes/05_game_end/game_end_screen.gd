@@ -41,5 +41,7 @@ func _on_quit_button_pressed() -> void:
 	ScenesManager.load_scene(TITLE_SCENE)
 
 func _reset_game() -> void:
+	var game_number = GameData.current[GameData.KEY_GAMES_PLAYED]+1
 	GameData.current = GameData.DEFAULT_GAME_DATA.duplicate_deep()
+	GameData.current[GameData.KEY_GAMES_PLAYED] = game_number
 	GameData.initiate_save_game_data()

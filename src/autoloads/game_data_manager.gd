@@ -36,6 +36,7 @@ const KEY_GAME_VERSION: String = "game version"
 const KEY_IS_NEW_GAME: String = "is new game"
 const KEY_IS_GAME_ENDED: String = "is game ended"
 const KEY_IS_GAME_WON: String = "is game won"
+const KEY_GAMES_PLAYED: String = "games played"
 
 # MAP DATA -----------------------------------------------------------------------------------------
 const KEY_MAP_NODES_DATA: String = "map nodes data"
@@ -95,6 +96,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 	KEY_IS_NEW_GAME: true,
 	KEY_IS_GAME_ENDED: false,
 	KEY_IS_GAME_WON: false,
+	KEY_GAMES_PLAYED: 0,
 	KEY_MAP_NODES_DATA: [
 		{
 			KEY_MAPNODE_ID: 0,
