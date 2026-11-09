@@ -14,7 +14,7 @@ extends Node
 
 @export_enum("Easy", "Medium", "Hard") var difficulty: int
 
-@export var boundaries_offset := 400
+@export var boundaries_offset := 816
 
 var map_nodes_list: Array = []
 
@@ -138,11 +138,11 @@ func spawn_branches(branches_origin, branches_amt) -> void:
 func populate_map(_diff: int) -> void:
 	# LONG DISTANCE WALKER -------------------------------------------------------------------------
 	# Add long distance walker in the first 3 degree 1 things
-	var safe_nodes_indexes: Array = []
-	for x in range(safe_depth):
-		safe_nodes_indexes.append(x+1)
-	var random_long_walker: int = safe_nodes_indexes.pick_random()
-	map_nodes_list[random_long_walker][GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_SOLUTION
+	#var safe_nodes_indexes: Array = []
+	#for x in range(safe_depth):
+		#safe_nodes_indexes.append(x+1)
+	#var random_long_walker: int = safe_nodes_indexes.pick_random()
+	#map_nodes_list[random_long_walker][GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_SOLUTION
 	
 	
 	# MAIN PATH OBSTACLES AND SOLUTIONS ------------------------------------------------------------
@@ -175,10 +175,10 @@ func populate_map(_diff: int) -> void:
 						possible_solutions.append(remaining_node)
 				
 				if possible_solutions.size() >= 1: # Check if there's enough space left to add an obstacle + solution
-					main_path_nodes[i][GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_OBSTACLE
+					main_path_nodes[i][GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_CHASM
 					current_number_of_obstacles += 1
 					var picked_node_for_solution = possible_solutions.pick_random()
-					picked_node_for_solution[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_SOLUTION 
+					picked_node_for_solution[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_SPRINGS 
 	
 	# REST OF THE MAP OBSTACLES AND SOLUTIONS ------------------------------------------------------
 	for node in map_nodes_list:
@@ -188,7 +188,7 @@ func populate_map(_diff: int) -> void:
 			):
 				var roll_for_obstacle: float = randf()
 				if roll_for_obstacle < obstacles_ratio:
-					node[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_OBSTACLE
+					node[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_RAPIDS
 					
 					var possible_solutions: Array = []
 					for possible_node in map_nodes_list:
@@ -197,12 +197,12 @@ func populate_map(_diff: int) -> void:
 							
 					var picked_node_for_solution = possible_solutions.pick_random()
 					
-					picked_node_for_solution[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_SOLUTION
+					picked_node_for_solution[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_RUINS
 				
 	# THEN THE REST OF THE DEFAULT NODES GET CONVERTED INTO EVENTS ---------------------------------
 	for node in map_nodes_list:
 		if node[GameData.KEY_MAPNODETYPE] == GameData.KEY_MAPNODETYPE_DEFAULT:
-			node[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_EVENT
+			node[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_CLEARING
 
 func _pick_random_distance() -> int:
 	return [GameData.SHORT_WALK_DISTANCE, GameData.MEDIUM_WALK_DISTANCE, GameData.LONG_WALK_DISTANCE].pick_random()
@@ -236,9 +236,16 @@ func _calculate_boundaries() -> void:
 	
 	GameData.initiate_save_game_data()
 
-func _store_node(pos: Vector2, degree: int, depth: int, type: String, prev_coords: Vector2 = Vector2.ZERO) -> void:
+func _store_node(
+	pos: Vector2, 
+	degree: int, 
+	depth: int, 
+	type: String, 
+	prev_coords: Vector2 = Vector2.ZERO
+	) -> void:
+		
 	var map_node_data := {
-		GameData.KEY_MAPNODE_ID: 0,
+		GameData.KEY_MAPNODE_ID: map_nodes_list.size(),
 		GameData.KEY_MAPNODE_POS: pos,
 		GameData.KEY_MAPNODE_DEGREE: degree,
 		GameData.KEY_MAPNODE_DEPTH: depth,
@@ -246,9 +253,15 @@ func _store_node(pos: Vector2, degree: int, depth: int, type: String, prev_coord
 		GameData.KEY_IS_VISITED: false,
 		GameData.KEY_IS_CLEARED: false,
 		GameData.KEY_INCOMING_CONNECTIONS: [],
-		GameData.KEY_PREVIOUSNODE_COORDS: prev_coords
+		GameData.KEY_PREVIOUSNODE_COORDS: prev_coords,
+		GameData.KEY_MAPNODEFEATURE: GameData.KEY_MAPNODEFEATURE_EMPTY
 	}
+	
 	map_nodes_list.append(map_node_data)
+
+func assign_IDs() -> void:
+	for i in range(map_nodes_list.size()):
+		map_nodes_list[i][GameData.KEY_MAPNODE_ID] = i
 
 func is_distant(current_point: Vector2, distance: int) -> bool:
 	# Check if the provided coordinates are a provided distance away from all other points in a list

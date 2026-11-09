@@ -7,6 +7,7 @@ extends PanelContainer
 @onready var action_button: Button = $VBoxContainer/ActionButton
 
 var target_node_index: int
+var cost_references: Array = []
 
 #TODO: convert in all purposes prompt with costs, title, icon, etc
 
@@ -25,10 +26,17 @@ func node_selected(i: int) -> void:
 		action_button.disabled = true
 	else: action_button.disabled = false
 	
+	# Clear cost boxes
+	for cost_box in cost_references:
+		cost_box.queue_free()
+		
+	cost_references = []
+	
 	for cost in range(2):
 		var cost_box: CostBox = cost_box_scene.instantiate()
 		cost_container.add_child(cost_box)
 		cost_box.cost_label.text = "-2"
+		cost_references.append(cost_box)
 	
 	if GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX] != i:
 		target_node_index = i

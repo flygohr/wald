@@ -7,8 +7,6 @@ extends Camera2D
 @export var zoom_factor := 0.1
 @export var zoom_duration := 0.2
 
-@export var camera_padding := 400
-
 var zoom_level: float = 0.6
 var default_zoom_level: float = zoom_level
 var position_before_drag

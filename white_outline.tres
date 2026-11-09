@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dvvtyuvd25clm"]
+
+[ext_resource type="Shader" uid="uid://dk3iuxsr8d61c" path="res://src/scenes/03_wald_overworld/overworld_node/map_node.gdshader" id="1_ya1rv"]
+
+[resource]
+shader = ExtResource("1_ya1rv")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 8.0
+shader_parameter/softness = 0.0

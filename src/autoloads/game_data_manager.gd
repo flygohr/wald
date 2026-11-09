@@ -58,15 +58,28 @@ const KEY_PREVIOUSNODE_COORDS: String = "previous coords"
 const KEY_IS_VISITED: String = "is_visited"
 const KEY_IS_CLEARED: String = "is cleared"
 const KEY_INCOMING_CONNECTIONS: String = "incoming connections"
+
 const KEY_MAPNODETYPE: String = "map node type"
 
 const KEY_MAPNODETYPE_DEFAULT: String = "default"
 const KEY_MAPNODETYPE_START: String = "start"
 const KEY_MAPNODETYPE_FINISH: String = "finish"
-const KEY_MAPNODETYPE_OBSTACLE: String = "obstacle"
-const KEY_MAPNODETYPE_SOLUTION: String = "solution"
-const KEY_MAPNODETYPE_EVENT: String = "event"
+const KEY_MAPNODETYPE_CLEARING: String = "clearing"
+const KEY_MAPNODETYPE_RUINS: String = "ruins"
+const KEY_MAPNODETYPE_SPRINGS: String = "springs"
+const KEY_MAPNODETYPE_CHASM: String = "chasm"
+const KEY_MAPNODETYPE_RAPIDS: String = "rapids"
 
+const KEY_MAPNODEFEATURE: String = "map node feature"
+
+const KEY_MAPNODEFEATURE_EMPTY: String = "empty"
+const KEY_MAPNODEFEATURE_BANDITS: String = "bandits"
+const KEY_MAPNODEFEATURE_VENDOR: String = "vendor"
+const KEY_MAPNODEFEATURE_PORTAL: String = "portal"
+const KEY_MAPNODEFEATURE_RELIC: String = "relic"
+const KEY_MAPNODEFEATURE_ENCOUNTER: String = "encounter"
+
+const KEY_MAPNODEFEATURE_DATA: String = "feature data"
 
 # MAP BOUNDARIES DEFINITIONS -----------------------------------------------------------------------
 const KEY_MAP_BOUNDARIES: String = "map boundaries"
@@ -74,6 +87,8 @@ const KEY_LEFT_X: String = "left x"
 const KEY_TOP_Y: String = "top y"
 const KEY_RIGHT_X: String = "right x"
 const KEY_BOTTOM_Y: String = "bottom y"
+
+const KEY_TREES_AMT: String = "trees amt"
 
 const KEY_MAP_MIDPOINT: String = "midpoint coords"
 const KEY_MAP_MAP_RADIUS: String = "map radius"
@@ -107,11 +122,13 @@ const DEFAULT_GAME_DATA: Dictionary = {
 			KEY_IS_VISITED: false,
 			KEY_IS_CLEARED: false,
 			KEY_INCOMING_CONNECTIONS: [],
-			KEY_MAPNODETYPE: KEY_MAPNODETYPE_DEFAULT
+			KEY_MAPNODETYPE: KEY_MAPNODETYPE_DEFAULT,
+			KEY_MAPNODEFEATURE: KEY_MAPNODEFEATURE_EMPTY,
+			KEY_MAPNODEFEATURE_DATA: {}
 		}
 	],
 	KEY_MAP_CURRENT_NODE_INDEX: 0,
-	KEY_CURRENT_WALKING_DISTANCE: LONG_WALK_DISTANCE,
+	KEY_CURRENT_WALKING_DISTANCE: SHORT_WALK_DISTANCE,
 	KEY_TRAVELED_LINES_DATA: [
 		{
 			KEY_LINE_START: Vector2.ZERO,
@@ -125,6 +142,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 		KEY_RIGHT_X: Vector2.ZERO,
 		KEY_BOTTOM_Y: Vector2.ZERO
 	},
+	KEY_TREES_AMT: 0,
 	KEY_MAP_MIDPOINT: Vector2.ZERO,
 	KEY_MAP_MAP_RADIUS: 0,
 	KEY_CURRENT_SANITY: 100,

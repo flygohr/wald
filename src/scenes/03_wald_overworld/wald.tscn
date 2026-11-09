@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cp3nr3hu4eqep" path="res://src/scenes/03_wald_overworld/map_visualizer.gd" id="3_g6jtw"]
 [ext_resource type="PackedScene" uid="uid://dvo068lpcimar" path="res://src/scenes/03_wald_overworld/navigation_marker/player_marker.tscn" id="4_4bu3n"]
 [ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/03_wald_overworld/overworld_node/map_node.tscn" id="4_dy57v"]
-[ext_resource type="Script" uid="uid://cmpx2x247ral3" path="res://src/scenes/03_wald_overworld/aerial_fog.gd" id="5_4i3y5"]
 [ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/02_game_UI/dashed_line/dashed_line.tscn" id="7_awtng"]
 [ext_resource type="Script" uid="uid://bt3r0irubcw37" path="res://src/scenes/03_wald_overworld/camera/pan_around_camera.gd" id="7_g6jtw"]
 [ext_resource type="Script" uid="uid://c3ciikkufoere" path="res://src/scenes/03_wald_overworld/tree_populator.gd" id="8_4i3y5"]
@@ -39,20 +38,11 @@ branching_multiplier = 2
 difficulty = 1
 
 [node name="TreePopulator" type="Node2D" parent="." unique_id=1216871962]
-modulate = Color(0.7607843, 0.74509805, 0.7058824, 1)
 y_sort_enabled = true
 script = ExtResource("8_4i3y5")
 min_tree_scale = 0.15
-max_tree_scale = 0.3
+max_tree_scale = 0.25
 tree_scene = ExtResource("9_q5noh")
-
-[node name="AerialFog" type="ColorRect" parent="." unique_id=1508652623]
-visible = false
-offset_right = 816.0
-offset_bottom = 576.0
-mouse_filter = 2
-color = Color(0.7607843, 0.74509805, 0.7058824, 0.42745098)
-script = ExtResource("5_4i3y5")
 
 [node name="MapVisualizer" type="Node2D" parent="." unique_id=588081428]
 script = ExtResource("3_g6jtw")
@@ -64,21 +54,23 @@ zoom = Vector2(0.5, 0.5)
 limit_enabled = false
 script = ExtResource("7_g6jtw")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="MapVisualizer/PanAroundCamera" unique_id=1934909364]
-layer = 2
+[node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1934909364]
+layer = 1
 scroll_ignore_camera_zoom = true
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="MapVisualizer/PanAroundCamera/ParallaxBackground" unique_id=1941969791]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1941969791]
+z_as_relative = false
 motion_mirroring = Vector2(1632, 1152)
 
-[node name="ColorRect" type="ColorRect" parent="MapVisualizer/PanAroundCamera/ParallaxBackground/ParallaxLayer" unique_id=1859712746]
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer" unique_id=1859712746]
+z_as_relative = false
 material = SubResource("ShaderMaterial_oqiib")
 offset_left = -408.0
 offset_top = -288.0
 offset_right = 1224.0
 offset_bottom = 864.0
-
-[node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
 
 [node name="GameUI" parent="." unique_id=41148856 instance=ExtResource("9_p8guu")]
 layer = 10

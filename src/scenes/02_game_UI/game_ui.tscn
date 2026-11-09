@@ -1,11 +1,19 @@
 [gd_scene format=3 uid="uid://dwnb7gxl8xwnf"]
 
-[ext_resource type="Texture2D" uid="uid://dtwblcpbko0mw" path="res://icon.svg" id="1_6j8og"]
 [ext_resource type="Script" uid="uid://b8rldvy76gfc5" path="res://src/scenes/02_game_UI/game_ui.gd" id="1_acq2a"]
-[ext_resource type="Texture2D" uid="uid://bn6pu41wkdtio" path="res://assets/images/prototype/settings_90dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="2_acq2a"]
-[ext_resource type="Texture2D" uid="uid://dficid1t5vx7d" path="res://assets/images/prototype/home_90dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="3_jkghc"]
+[ext_resource type="Texture2D" uid="uid://daetffhlfoqab" path="res://assets/images/icons/color/Wald_Assets_SANITY.png" id="3_r1ag7"]
+[ext_resource type="Texture2D" uid="uid://cygxcsmslwt4" path="res://assets/images/icons/color/Wald_Assets_FOOD.png" id="4_5k6mt"]
 [ext_resource type="PackedScene" uid="uid://c7v0d741qtx14" path="res://src/scenes/02_game_UI/action_prompt/action_prompt.tscn" id="4_c526s"]
+[ext_resource type="Texture2D" uid="uid://tq0ocoi16tmc" path="res://assets/images/icons/color/Wald_Assets_KARMA.png" id="5_fdgrs"]
+[ext_resource type="Texture2D" uid="uid://biy5nhyvlcv0f" path="res://assets/images/icons/color/Wald_Assets_DAYS.png" id="6_5k6mt"]
+[ext_resource type="Texture2D" uid="uid://ycn0thy2o1qr" path="res://assets/images/icons/color/Wald_Assets_LOCAL.png" id="6_ckwjs"]
+[ext_resource type="Texture2D" uid="uid://crsa6vpoopib0" path="res://assets/images/icons/color/Wald_Assets_MAP.png" id="6_ii2y4"]
 [ext_resource type="PackedScene" uid="uid://dudf08hgpj0fk" path="res://src/scenes/02_game_UI/debug_buttons.tscn" id="7_0toem"]
+[ext_resource type="Texture2D" uid="uid://fnvgk7dhu2b5" path="res://assets/images/icons/color/Wald_Assets_SETTINGS_BTN.png" id="7_5k6mt"]
+[ext_resource type="Texture2D" uid="uid://cfyjvmspeo5bw" path="res://assets/images/icons/color/Wald_Assets_EXIT_BTN.png" id="8_fdgrs"]
+[ext_resource type="Material" uid="uid://dvvtyuvd25clm" path="res://white_outline.tres" id="8_oga01"]
+[ext_resource type="Texture2D" uid="uid://tyqbnnha3vbb" path="res://assets/images/icons/color/Wald_Assets_PARTY.png" id="8_qoc7j"]
+[ext_resource type="Texture2D" uid="uid://hqafnsb2a3qe" path="res://assets/images/icons/color/Wald_Assets_LOOT.png" id="8_r6q2u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cd8c5"]
 content_margin_left = 8.0
@@ -61,13 +69,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_cd8c5")
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer" unique_id=2085940593]
-custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 
 [node name="SanityIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer" unique_id=2026692835]
+material = ExtResource("8_oga01")
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
-texture = ExtResource("1_6j8og")
+texture = ExtResource("3_r1ag7")
 expand_mode = 1
 stretch_mode = 5
 
@@ -77,18 +85,20 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 
 [node name="SanityLabel" type="Label" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer/MarginContainer" unique_id=1596867095]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "S: 100%"
+text = "100%"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer" unique_id=1881563949]
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 
 [node name="FoodIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer2" unique_id=1228704763]
+material = ExtResource("8_oga01")
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
-texture = ExtResource("1_6j8og")
+texture = ExtResource("4_5k6mt")
 expand_mode = 1
 stretch_mode = 5
 
@@ -100,16 +110,17 @@ theme_override_constants/margin_right = 8
 [node name="FoodLabel" type="Label" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer2/MarginContainer" unique_id=1863860650]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "F: 6"
+text = "6"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer" unique_id=439087764]
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 
 [node name="KarmaIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer3" unique_id=1861495683]
+material = ExtResource("8_oga01")
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
-texture = ExtResource("1_6j8og")
+texture = ExtResource("5_fdgrs")
 expand_mode = 1
 stretch_mode = 5
 
@@ -121,7 +132,34 @@ theme_override_constants/margin_right = 8
 [node name="KarmaLabel" type="Label" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer3/MarginContainer" unique_id=1677342984]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "K: 100"
+text = "100"
+
+[node name="DaysStatContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Top/TopLeft" unique_id=206941970]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cd8c5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/TopLeft/DaysStatContainer" unique_id=1297354971]
+layout_mode = 2
+
+[node name="DaysTexture" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/TopLeft/DaysStatContainer/HBoxContainer" unique_id=814375134]
+material = ExtResource("8_oga01")
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("6_5k6mt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/TopLeft/DaysStatContainer/HBoxContainer" unique_id=1514170042]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="DaysLabel" type="Label" parent="MarginContainer/VBoxContainer/Top/TopLeft/DaysStatContainer/HBoxContainer/MarginContainer" unique_id=1448324413]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
 
 [node name="TopRight" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top" unique_id=1739401150]
 layout_mode = 2
@@ -129,18 +167,20 @@ theme_override_constants/separation = 8
 alignment = 2
 
 [node name="MenuButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Top/TopRight" unique_id=991996358]
+material = ExtResource("8_oga01")
 custom_minimum_size = Vector2(48, 48)
 custom_maximum_size = Vector2(48, 48)
 layout_mode = 2
-texture_normal = ExtResource("2_acq2a")
+texture_normal = ExtResource("7_5k6mt")
 ignore_texture_size = true
 stretch_mode = 5
 
 [node name="QuitButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Top/TopRight" unique_id=684754395]
+material = ExtResource("8_oga01")
 custom_minimum_size = Vector2(48, 48)
 custom_maximum_size = Vector2(48, 48)
 layout_mode = 2
-texture_normal = ExtResource("3_jkghc")
+texture_normal = ExtResource("8_fdgrs")
 stretch_mode = 5
 
 [node name="LootBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=647534179]
@@ -156,19 +196,18 @@ size_flags_vertical = 0
 mouse_filter = 2
 
 [node name="LootStatContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/LootBar/TopLeft" unique_id=673801014]
-custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cd8c5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer" unique_id=961968590]
-custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 
 [node name="LootTexture" type="TextureRect" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer/HBoxContainer" unique_id=1803847259]
+material = ExtResource("8_oga01")
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
-texture = ExtResource("1_6j8og")
+texture = ExtResource("8_r6q2u")
 expand_mode = 1
 stretch_mode = 5
 
@@ -178,9 +217,10 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 
 [node name="LootLabel" type="Label" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer/HBoxContainer/MarginContainer" unique_id=1402446899]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "LOOT: 0"
+text = "0"
 
 [node name="Bottom" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1473154977]
 layout_mode = 2
@@ -194,24 +234,27 @@ theme_override_constants/separation = 8
 alignment = 2
 
 [node name="OverworldButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer" unique_id=433338801]
+material = ExtResource("8_oga01")
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_6j8og")
+texture_normal = ExtResource("6_ii2y4")
 stretch_mode = 5
 
 [node name="GoInsideNodeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer" unique_id=1258180705]
+material = ExtResource("8_oga01")
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_6j8og")
+texture_normal = ExtResource("6_ckwjs")
 stretch_mode = 5
 
 [node name="PartyButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer" unique_id=2030653828]
+material = ExtResource("8_oga01")
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_6j8og")
+texture_normal = ExtResource("8_qoc7j")
 stretch_mode = 5
 
 [node name="ActionButtonsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Bottom" unique_id=1956722994]

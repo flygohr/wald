@@ -3,19 +3,36 @@
 [ext_resource type="Script" uid="uid://dp64bigt0gupa" path="res://src/scenes/03_wald_overworld/overworld_node/map_node.gd" id="1_bpdgc"]
 [ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/02_game_UI/dashed_line/dashed_line.tscn" id="2_8vegd"]
 [ext_resource type="PackedScene" uid="uid://dy16fjfp0utlm" path="res://src/scenes/03_wald_overworld/waypoint/navigator.tscn" id="3_rvpb4"]
+[ext_resource type="Texture2D" uid="uid://bw4v124udhitv" path="res://assets/images/icons/color/Wald_Assets_UNDISCOVERED_LOCATION.png" id="4_25463"]
 [ext_resource type="Texture2D" uid="uid://cpytsarqlugjx" path="res://assets/images/prototype/toppng.com-location-icon-white-fa-icon-map-marker-241x381.png" id="4_nvdxn"]
+[ext_resource type="Texture2D" uid="uid://bpuodbp03dvko" path="res://assets/images/icons/color/Wald_Assets_CLEARING_LOCATION.png" id="5_5vyqg"]
+[ext_resource type="Material" uid="uid://dvvtyuvd25clm" path="res://white_outline.tres" id="5_ynpv4"]
+[ext_resource type="Texture2D" uid="uid://dy1fxx704oh5m" path="res://assets/images/icons/color/Wald_Assets_RUINS_LOCATION.png" id="6_sek2j"]
+[ext_resource type="Texture2D" uid="uid://dqsy5c03rg5f3" path="res://assets/images/icons/color/Wald_Assets_SPRINGS_LOCATION.png" id="7_5x0or"]
+[ext_resource type="Texture2D" uid="uid://divewte4i6u6n" path="res://assets/images/icons/color/Wald_Assets_CHASM_LOCATION.png" id="8_i8fuj"]
+[ext_resource type="Texture2D" uid="uid://dg4qu3p5dfxhl" path="res://assets/images/icons/color/Wald_Assets_RAPIDS_LOCATION.png" id="9_tpsq0"]
+[ext_resource type="Texture2D" uid="uid://crjneefc23k5a" path="res://assets/images/icons/color/Wald_Assets_START_LOCATION.png" id="10_sek2j"]
+[ext_resource type="Texture2D" uid="uid://mulwg3ouow2p" path="res://assets/images/icons/color/Wald_Assets_END_LOCATION.png" id="11_5x0or"]
 
 [node name="MapNode" type="Node2D" unique_id=1578930960]
 z_index = 3
-z_as_relative = false
 script = ExtResource("1_bpdgc")
 color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+node_radius = 45
 dashed_line_scene = ExtResource("2_8vegd")
 navigator_scene = ExtResource("3_rvpb4")
+undiscovered_icon = ExtResource("4_25463")
+clearing_icon = ExtResource("5_5vyqg")
+ruins_icon = ExtResource("6_sek2j")
+springs_icon = ExtResource("7_5x0or")
+chasm_icon = ExtResource("8_i8fuj")
+rapids_icon = ExtResource("9_tpsq0")
+start_icon = ExtResource("10_sek2j")
+end_icon = ExtResource("11_5x0or")
 
 [node name="ActiveMarker" type="Sprite2D" parent="." unique_id=1428250501]
 visible = false
-position = Vector2(0, -60)
+position = Vector2(0, -120)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_nvdxn")
 
@@ -27,4 +44,19 @@ offset_bottom = 33.0
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="NodeIcon" type="Sprite2D" parent="." unique_id=1890647188]
+material = ExtResource("5_ynpv4")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_5vyqg")
+
+[node name="DebugLabel" type="Label" parent="." unique_id=1560124262]
+visible = false
+offset_left = -58.0
+offset_top = 70.0
+offset_right = 57.0
+offset_bottom = 100.0
+text = "FEATURE: "
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="CheckButton" to="." method="_on_check_button_mouse_entered"]
 [connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]

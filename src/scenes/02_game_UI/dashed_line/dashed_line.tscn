@@ -6,7 +6,7 @@
 [node name="DashedLine" type="Line2D" unique_id=773996439]
 texture_filter = 1
 texture_repeat = 2
-width = 3.0
+width = 5.0
 texture = ExtResource("1_jr7kp")
 texture_mode = 1
 sharp_limit = 0.0

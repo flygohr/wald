@@ -36,10 +36,10 @@ func _ready() -> void:
 	SignalBus.karma_updated.connect(update_karma)
 	SignalBus.loot_updated.connect(update_loot)
 	
-	sanity_label.text = str("S: ", GameData.current[GameData.KEY_CURRENT_SANITY])
-	food_label.text = str("F: ", GameData.current[GameData.KEY_CURRENT_FOOD])
-	karma_label.text = str("K: ", GameData.current[GameData.KEY_CURRENT_KARMA])
-	loot_label.text = str("L: ", GameData.current[GameData.KEY_CURRENT_LOOT])
+	sanity_label.text = str(GameData.current[GameData.KEY_CURRENT_SANITY])
+	food_label.text = str(GameData.current[GameData.KEY_CURRENT_FOOD])
+	karma_label.text = str(GameData.current[GameData.KEY_CURRENT_KARMA])
+	loot_label.text = str(GameData.current[GameData.KEY_CURRENT_LOOT])
 
 func _on_quit_button_pressed() -> void:
 	ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_TITLE_SCREEN])
@@ -62,16 +62,16 @@ func _on_go_inside_node_button_pressed() -> void:
 
 
 func update_sanity(value: int) -> void:
-	sanity_label.text = str("S: ", value)
+	sanity_label.text = str(value)
 
 
 func update_food(value: int) -> void:
-	food_label.text = str("F: ", value)
+	food_label.text = str(value)
 
 
 func update_karma(value: int) -> void:
-	karma_label.text = str("K: ", value)
+	karma_label.text = str(value)
 
 
 func update_loot(value: int) -> void:
-	loot_label.text = str("L: ", value)
+	loot_label.text = str(value)

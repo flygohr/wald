@@ -12,11 +12,18 @@ extends Control
 @onready var increase_karma_button: Button = $HBoxContainer/VBoxContainer2/IncreaseKarmaButton
 @onready var increase_loot_button: Button = $HBoxContainer/VBoxContainer2/IncreaseLootButton
 
+@onready var feature_description_label: Label = $HBoxContainer/VBoxContainer/FeatureDescriptionLabel
+@onready var feature_label: Label = $HBoxContainer/VBoxContainer2/FeatureLabel
 
 func _ready() -> void:
+	
+	feature_label.text = str(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODEFEATURE])
+	
 	if GameData.is_debug == true:
 		if GameData.is_inside_node == true:
 			show()
+			feature_description_label.mouse_filter = Control.MOUSE_FILTER_STOP
+			feature_label.mouse_filter = Control.MOUSE_FILTER_STOP
 			decrease_distance_button.mouse_filter = Control.MOUSE_FILTER_STOP
 			decrease_sanity_button.mouse_filter = Control.MOUSE_FILTER_STOP
 			decrease_food_button.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -30,6 +37,8 @@ func _ready() -> void:
 			increase_loot_button.mouse_filter = Control.MOUSE_FILTER_STOP
 		elif GameData.is_inside_node == false:
 			hide()
+			feature_description_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			feature_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			decrease_distance_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			decrease_sanity_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			decrease_food_button.mouse_filter = Control.MOUSE_FILTER_IGNORE

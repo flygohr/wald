@@ -22,8 +22,10 @@ Description
 
 ### Bugs and fixes:
 - [ ] Waypoint marker doesn't take into account camera limits
+- [ ] Fix clunky camera drag code
 - [ ] Selection outline wrong color sometimes
-- [ ] Change to a font that supports the "-" character
+- [x] Change to a font that supports the "-" character
+- [ ] Changing scene in the overworld leaves the buttons visible?
 
 ### Devlog:
 - 2026-10-20
