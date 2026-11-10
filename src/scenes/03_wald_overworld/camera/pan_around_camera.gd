@@ -16,7 +16,9 @@ var position_before_drag2
 func _ready():
 	SignalBus.pan_to.connect(pan_to)
 	global_position = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]
+	
 	zoom = Vector2(zoom_level, zoom_level)
+	
 	_set_limits(
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_LEFT_X],
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_TOP_Y],
@@ -90,27 +92,27 @@ func pan_to(end: Vector2) -> void:
 	tween.tween_property(self, "global_position", end, 0.3).set_trans(Tween.TRANS_SINE)
 
 	
-func center_on_tables():
-	var tables: Array[Node] = get_tree().get_nodes_in_group("tables")
-	
-	var max_x = tables[0].global_position.x + tables[0].size.x
-	var min_x = tables[0].global_position.x
-	var max_y = tables[0].global_position.y + tables[0].size.y
-	var min_y = tables[0].global_position.y
-	
-	for table in tables:
-		max_x = max(max_x, table.global_position.x + table.size.x)
-		min_x = min(min_x, table.global_position.x)
-		max_y = max(max_y, table.global_position.y + table.size.y)
-		min_y = min(min_y, table.global_position.y)
-	
-	var center = Vector2((max_x - min_x) / 2 + min_x, (max_y - min_y) / 2 + min_y)
-	global_position = center
-	
-	# Find out the zoom
-	var screen_width = get_viewport().get_visible_rect().size.x
-	var project_width = max_x - min_x + 300
-	
-	if project_width > screen_width:
-		var new_zoom_level = screen_width/project_width
-		set_zoom_level(new_zoom_level, global_position)
+#func center_on_tables():
+	#var tables: Array[Node] = get_tree().get_nodes_in_group("tables")
+	#
+	#var max_x = tables[0].global_position.x + tables[0].size.x
+	#var min_x = tables[0].global_position.x
+	#var max_y = tables[0].global_position.y + tables[0].size.y
+	#var min_y = tables[0].global_position.y
+	#
+	#for table in tables:
+		#max_x = max(max_x, table.global_position.x + table.size.x)
+		#min_x = min(min_x, table.global_position.x)
+		#max_y = max(max_y, table.global_position.y + table.size.y)
+		#min_y = min(min_y, table.global_position.y)
+	#
+	#var center = Vector2((max_x - min_x) / 2 + min_x, (max_y - min_y) / 2 + min_y)
+	#global_position = center
+	#
+	## Find out the zoom
+	#var screen_width = get_viewport().get_visible_rect().size.x
+	#var project_width = max_x - min_x + 300
+	#
+	#if project_width > screen_width:
+		#var new_zoom_level = screen_width/project_width
+		#set_zoom_level(new_zoom_level, global_position)

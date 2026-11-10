@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://tfx1j5u0sqbe" path="res://src/scenes/03_wald_overworld/fog.gdshader" id="9_4i3y5"]
 [ext_resource type="PackedScene" uid="uid://dwnb7gxl8xwnf" path="res://src/scenes/02_game_UI/game_ui.tscn" id="9_p8guu"]
 [ext_resource type="PackedScene" uid="uid://5y8aqaopvu0y" path="res://src/scenes/03_wald_overworld/tree_sprite.tscn" id="9_q5noh"]
+[ext_resource type="PackedScene" uid="uid://btln25qyd0w5a" path="res://src/scenes/debug.tscn" id="12_4i3y5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4i3y5"]
 frequency = 0.0075
@@ -40,19 +41,16 @@ difficulty = 1
 [node name="TreePopulator" type="Node2D" parent="." unique_id=1216871962]
 y_sort_enabled = true
 script = ExtResource("8_4i3y5")
+spacing_multiplier = 3.0
 min_tree_scale = 0.15
 max_tree_scale = 0.25
 tree_scene = ExtResource("9_q5noh")
 
 [node name="MapVisualizer" type="Node2D" parent="." unique_id=588081428]
+z_index = 3
 script = ExtResource("3_g6jtw")
 base_node = ExtResource("4_dy57v")
 dashed_line_scene = ExtResource("7_awtng")
-
-[node name="PanAroundCamera" type="Camera2D" parent="MapVisualizer" unique_id=677257802]
-zoom = Vector2(0.5, 0.5)
-limit_enabled = false
-script = ExtResource("7_g6jtw")
 
 [node name="PlayerMarker" parent="." unique_id=1500289336 instance=ExtResource("4_4bu3n")]
 
@@ -71,6 +69,15 @@ offset_left = -408.0
 offset_top = -288.0
 offset_right = 1224.0
 offset_bottom = 864.0
+mouse_filter = 2
 
 [node name="GameUI" parent="." unique_id=41148856 instance=ExtResource("9_p8guu")]
 layer = 10
+
+[node name="PanAroundCamera" type="Camera2D" parent="." unique_id=677257802]
+zoom = Vector2(0.5, 0.5)
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("7_g6jtw")
+
+[node name="Debug" parent="." unique_id=616492432 instance=ExtResource("12_4i3y5")]

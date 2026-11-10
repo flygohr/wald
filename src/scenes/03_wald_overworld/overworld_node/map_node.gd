@@ -9,7 +9,7 @@ class_name MapNode
 @export var color : Color
 @export var node_radius := 25
 @export var dashed_line_scene: PackedScene
-@export var navigator_scene: PackedScene
+#@export var navigator_scene: PackedScene
 
 var temporary_dashed_line: Line2D
 
@@ -156,8 +156,8 @@ func update_node() -> void:
 		GameData.KEY_MAPNODETYPE_FINISH:
 			is_finish = true 
 			node_icon.texture = end_icon
-			var navigator = navigator_scene.instantiate()
-			add_child(navigator)
+			#var navigator = navigator_scene.instantiate()
+			#add_child(navigator)
 	if GameData.is_debug == true:
 		debug_label.show()
 		debug_label.text = str(node_data[GameData.KEY_MAPNODEFEATURE])
@@ -193,6 +193,7 @@ func _check_if_active(i) -> void:
 
 func _on_check_button_pressed() -> void:
 	# Check if is close enough to the active node
+	print("button clicked")
 	if global_position.distance_to(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]) <= GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] + 50:
 		_select_this()
 
@@ -210,18 +211,18 @@ func _check_if_still_selected(i: int) -> void:
 
 
 func _select_this() -> void:
-	if is_active == true: # TODO: remember to select on move
-		GameData.is_inside_node = true
-		GameData.initiate_save_game_data()
-		ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_INSIDE_NODE_SCREEN])
-	else:
-		SignalBus.pan_to.emit(global_position)
-		if GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_IS_CLEARED] == false and GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_INCOMING_CONNECTIONS].has(index) == false:
-			_draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, false)
-			#TODO: if in incoming connections, allow it
-		else: _draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, true)
-		is_selected = true
-		SignalBus.node_selected.emit(index)
+	#if is_active == true: # TODO: remember to select on move
+		#GameData.is_inside_node = true
+		#GameData.initiate_save_game_data()
+		#ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_INSIDE_NODE_SCREEN])
+	#else:
+	SignalBus.pan_to.emit(global_position)
+	if GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_IS_CLEARED] == false and GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_INCOMING_CONNECTIONS].has(index) == false:
+		_draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, false)
+		#TODO: if in incoming connections, allow it
+	else: _draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, true)
+	is_selected = true
+	SignalBus.node_selected.emit(index)
 
 func _unselect_this() -> void:
 	is_selected = false

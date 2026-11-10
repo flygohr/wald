@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c8icln0qncgsr" path="res://assets/images/prototype/kevin-schmid-AZM7aFQn00I-unsplash.jpg" id="1_6rvtk"]
 [ext_resource type="PackedScene" uid="uid://dwnb7gxl8xwnf" path="res://src/scenes/02_game_UI/game_ui.tscn" id="1_db0j2"]
 [ext_resource type="Script" uid="uid://4pjvxhio8m6s" path="res://src/scenes/04_local_node/map_node_scene.gd" id="1_w1ufw"]
+[ext_resource type="PackedScene" uid="uid://btln25qyd0w5a" path="res://src/scenes/debug.tscn" id="4_m74e1"]
 
 [node name="MapNodeScene" type="Node2D" unique_id=1525410659]
 script = ExtResource("1_w1ufw")
@@ -20,3 +21,5 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="GameUI" parent="." unique_id=41148856 instance=ExtResource("1_db0j2")]
+
+[node name="Debug" parent="." unique_id=616492432 instance=ExtResource("4_m74e1")]

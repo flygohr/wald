@@ -8,7 +8,7 @@ process_mode = 3
 script = ExtResource("1_5p8wc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=227505281]
-layer = 10
+layer = 50
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=282847211]
 anchors_preset = 15

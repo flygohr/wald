@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dp64bigt0gupa" path="res://src/scenes/03_wald_overworld/overworld_node/map_node.gd" id="1_bpdgc"]
 [ext_resource type="PackedScene" uid="uid://cwm1wof74m8fq" path="res://src/scenes/02_game_UI/dashed_line/dashed_line.tscn" id="2_8vegd"]
-[ext_resource type="PackedScene" uid="uid://dy16fjfp0utlm" path="res://src/scenes/03_wald_overworld/waypoint/navigator.tscn" id="3_rvpb4"]
 [ext_resource type="Texture2D" uid="uid://bw4v124udhitv" path="res://assets/images/icons/color/Wald_Assets_UNDISCOVERED_LOCATION.png" id="4_25463"]
 [ext_resource type="Texture2D" uid="uid://cpytsarqlugjx" path="res://assets/images/prototype/toppng.com-location-icon-white-fa-icon-map-marker-241x381.png" id="4_nvdxn"]
 [ext_resource type="Texture2D" uid="uid://bpuodbp03dvko" path="res://assets/images/icons/color/Wald_Assets_CLEARING_LOCATION.png" id="5_5vyqg"]
@@ -20,7 +19,6 @@ script = ExtResource("1_bpdgc")
 color = Color(0.7539839, 0.75398386, 0.75398386, 1)
 node_radius = 45
 dashed_line_scene = ExtResource("2_8vegd")
-navigator_scene = ExtResource("3_rvpb4")
 undiscovered_icon = ExtResource("4_25463")
 clearing_icon = ExtResource("5_5vyqg")
 ruins_icon = ExtResource("6_sek2j")
@@ -37,10 +35,11 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_nvdxn")
 
 [node name="CheckButton" type="TextureButton" parent="." unique_id=1937951989]
-offset_left = -32.0
-offset_top = -31.0
-offset_right = 32.0
-offset_bottom = 33.0
+custom_minimum_size = Vector2(128, 128)
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -58,5 +57,4 @@ offset_bottom = 100.0
 text = "FEATURE: "
 horizontal_alignment = 1
 
-[connection signal="mouse_entered" from="CheckButton" to="." method="_on_check_button_mouse_entered"]
 [connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]
