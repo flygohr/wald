@@ -34,9 +34,13 @@ script = ExtResource("1_rqd8u")
 
 [node name="MapGenerator" type="Node" parent="." unique_id=1490238067]
 script = ExtResource("1_4bu3n")
+map_depth = null
 branching_degrees = 2
+branching_probability = null
 branching_multiplier = 2
+safe_depth = null
 difficulty = 1
+boundaries_offset = null
 
 [node name="TreePopulator" type="Node2D" parent="." unique_id=1216871962]
 y_sort_enabled = true

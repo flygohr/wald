@@ -126,9 +126,9 @@ func _draw() -> void:
 		draw_circle(Vector2.ZERO, selected_radius, Color("c34040ff"), false, 5, false)
 	
 	if is_cleared == false and is_visited == true:
-		draw_circle(Vector2.ZERO, node_radius, Color("c34040ff"), false, 5, false)	
+		draw_circle(Vector2.ZERO, node_radius, Color("c34040ff"), false, 10, false)	
 	elif is_cleared == true and is_visited == true:
-		draw_circle(Vector2.ZERO, node_radius, Color("acc92aff"), false, 5, false)
+		draw_circle(Vector2.ZERO, node_radius, Color("78d45bff"), false, 10, false)
 		
 	if is_active:
 		draw_circle(Vector2.ZERO, active_radius, Color.WHITE, false, 5, false)
@@ -211,18 +211,27 @@ func _check_if_still_selected(i: int) -> void:
 
 
 func _select_this() -> void:
-	#if is_active == true: # TODO: remember to select on move
-		#GameData.is_inside_node = true
-		#GameData.initiate_save_game_data()
-		#ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_INSIDE_NODE_SCREEN])
-	#else:
-	SignalBus.pan_to.emit(global_position)
-	if GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_IS_CLEARED] == false and GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_INCOMING_CONNECTIONS].has(index) == false:
-		_draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, false)
-		#TODO: if in incoming connections, allow it
-	else: _draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, true)
-	is_selected = true
-	SignalBus.node_selected.emit(index)
+	var is_centered: bool
+	if GameData.camera_position.distance_to(global_position) <= node_radius:
+		is_centered = true
+	else:
+		is_centered = false
+		
+	
+	if is_active == true and is_centered == true:
+		GameData.is_inside_node = true
+		GameData.initiate_save_game_data()
+		ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_INSIDE_NODE_SCREEN])
+	elif is_active == true and is_centered == false:
+		SignalBus.pan_to.emit(global_position)
+	else:
+		SignalBus.pan_to.emit(global_position)
+		if GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_IS_CLEARED] == false and GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_INCOMING_CONNECTIONS].has(index) == false:
+			_draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, false)
+			#TODO: if in incoming connections, allow it
+		else: _draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, true)
+		is_selected = true
+		SignalBus.node_selected.emit(index)
 
 func _unselect_this() -> void:
 	is_selected = false

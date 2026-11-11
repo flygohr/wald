@@ -85,13 +85,12 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 
 [node name="SanityLabel" type="Label" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer/MarginContainer" unique_id=1596867095]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "100%"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer" unique_id=1881563949]
-custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 
 [node name="FoodIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer2" unique_id=1228704763]
@@ -108,12 +107,12 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 
 [node name="FoodLabel" type="Label" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer2/MarginContainer" unique_id=1863860650]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "6"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer" unique_id=439087764]
-custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 
 [node name="KarmaIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer3" unique_id=1861495683]
@@ -130,6 +129,7 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 
 [node name="KarmaLabel" type="Label" parent="MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer3/MarginContainer" unique_id=1677342984]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "100"

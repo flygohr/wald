@@ -138,12 +138,20 @@ func spawn_branches(branches_origin, branches_amt) -> void:
 func populate_map(_diff: int) -> void:
 	# LONG DISTANCE WALKER -------------------------------------------------------------------------
 	# Add long distance walker in the first 3 degree 1 things
-	#var safe_nodes_indexes: Array = []
-	#for x in range(safe_depth):
-		#safe_nodes_indexes.append(x+1)
-	#var random_long_walker: int = safe_nodes_indexes.pick_random()
-	#map_nodes_list[random_long_walker][GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_SOLUTION
+	var safe_nodes_indexes: Array = []
+	for x in range(safe_depth):
+		safe_nodes_indexes.append(x+1)
+	var random_long_walker: int = safe_nodes_indexes.pick_random()
+	map_nodes_list[random_long_walker][GameData.KEY_MAPNODEFEATURE] = GameData.KEY_MAPNODEFEATURE_ENCOUNTER
 	
+	var encounter_data: Dictionary = ActionsData.ACTION_TEMPLATE.duplicate_deep()
+	encounter_data[ActionsData.KEY_COSTS] = null
+	encounter_data[ActionsData.KEY_RESULT].append({ActionsData.KEY_RESULT_PROMPT: PromptsData.KEY_RABBIT_ENCOUNTER})
+	encounter_data[ActionsData.KEY_ICON] = ActionsData.RABBIT_ICON
+	encounter_data[ActionsData.KEY_BUTTON_TEXT] = "Encounter"
+	encounter_data[ActionsData.KEY_NAME] = "Stray Rabbit"
+	
+	map_nodes_list[random_long_walker][GameData.KEY_MAPNODEFEATURE_DATA] = encounter_data
 	
 	# MAIN PATH OBSTACLES AND SOLUTIONS ------------------------------------------------------------
 	var max_number_of_obstacles: int = floor((map_depth-3)/2) # This way, I can assure that the first 3 nodes are free AND that there's always room for solutions
@@ -254,7 +262,8 @@ func _store_node(
 		GameData.KEY_IS_CLEARED: false,
 		GameData.KEY_INCOMING_CONNECTIONS: [],
 		GameData.KEY_PREVIOUSNODE_COORDS: prev_coords,
-		GameData.KEY_MAPNODEFEATURE: GameData.KEY_MAPNODEFEATURE_EMPTY
+		GameData.KEY_MAPNODEFEATURE: GameData.KEY_MAPNODEFEATURE_EMPTY,
+		GameData.KEY_MAPNODEFEATURE_DATA: ActionsData.KEY_FEATUREDATA_EMPTY,
 	}
 	
 	map_nodes_list.append(map_node_data)

@@ -11,6 +11,8 @@ var cost_references: Array = []
 
 #TODO: convert in all purposes prompt with costs, title, icon, etc
 
+#TODO: connect signal to build and display new prompt in the UI!
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	modulate.a = 0

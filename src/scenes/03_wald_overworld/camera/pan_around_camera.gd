@@ -25,6 +25,8 @@ func _ready():
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_RIGHT_X],
 		GameData.current[GameData.KEY_MAP_BOUNDARIES][GameData.KEY_BOTTOM_Y]		
 	)
+	
+	GameData.camera_position = global_position
 
 
 func _unhandled_input(event):
@@ -36,15 +38,19 @@ func _unhandled_input(event):
 		SignalBus.moved_around_the_map.emit()
 		position_before_drag = event.global_position
 		position_before_drag2 = self.global_position
+		clamp_position()
 	elif event.is_action_released("camera_drag"):
 		SignalBus.moved_around_the_map.emit()
 		position_before_drag = null
+		clamp_position()
 	elif event is InputEventPanGesture:
 		SignalBus.moved_around_the_map.emit()
 		self.global_position += event.delta * 20
+		clamp_position()
 	elif event is InputEventScreenDrag:
 		SignalBus.moved_around_the_map.emit()
 		self.global_position -= event.relative
+		clamp_position()
 	elif event is InputEventMagnifyGesture:
 		if event.factor > 1:
 			set_zoom_level(zoom_level + (zoom_factor * 0.5))
@@ -73,6 +79,7 @@ func set_zoom_level(level: float, mouse_world_position = self.get_global_mouse_p
 	
 	self.zoom = Vector2(zoom_level, zoom_level)
 	self.global_position = new_position
+	clamp_position()
 
 func _set_limits(left_x: int, top_y: int, right_x: int, bottom_y: int) -> void:
 	
@@ -83,6 +90,7 @@ func _set_limits(left_x: int, top_y: int, right_x: int, bottom_y: int) -> void:
 	limit_right = right_x
 	limit_bottom = bottom_y
 	
+	clamp_position()
 	
 #TODO: pan from endpoint
 
@@ -90,7 +98,16 @@ func pan_to(end: Vector2) -> void:
 	# Take in a starting point and an end point, tween between the two positions and disable input (?)
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", end, 0.3).set_trans(Tween.TRANS_SINE)
+	clamp_position()
 
+func clamp_position() -> void:
+	## https://www.reddit.com/r/godot/s/GUhogzAWzJ
+	var half: Vector2 = get_viewport_rect().size / zoom / 2
+	##  then clamp global_position.x between limit_left + half.x and limit_right - half.x, same for y with top and bottom
+	global_position.x = clamp(global_position.x, limit_left + half.x, limit_right - half.x)
+	global_position.y = clamp(global_position.y, limit_top + half.y, limit_bottom - half.y)
+	GameData.camera_position = global_position
+	#print(global_position)
 	
 #func center_on_tables():
 	#var tables: Array[Node] = get_tree().get_nodes_in_group("tables")
