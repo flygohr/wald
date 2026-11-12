@@ -15,6 +15,8 @@ extends Control
 @onready var feature_description_label: Label = $HBoxContainer/VBoxContainer/FeatureDescriptionLabel
 @onready var feature_label: Label = $HBoxContainer/VBoxContainer2/FeatureLabel
 
+@onready var new_action_prompt_button: Button = $HBoxContainer/VBoxContainer/NewActionPromptButton
+
 func _ready() -> void:
 	
 	feature_label.text = str(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODEFEATURE])
@@ -35,6 +37,7 @@ func _ready() -> void:
 			increase_food_button.mouse_filter = Control.MOUSE_FILTER_STOP
 			increase_karma_button.mouse_filter = Control.MOUSE_FILTER_STOP
 			increase_loot_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			new_action_prompt_button.mouse_filter = Control.MOUSE_FILTER_STOP
 		elif GameData.is_inside_node == false:
 			hide()
 			feature_description_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -50,6 +53,7 @@ func _ready() -> void:
 			increase_food_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			increase_karma_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			increase_loot_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			new_action_prompt_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _on_clear_button_pressed() -> void:
 	print_debug("Node has been cleared")
@@ -131,3 +135,7 @@ func _on_decrease_loot_button_pressed() -> void:
 
 func _on_increase_loot_button_pressed() -> void:
 	Gameplay.update_loot(+10)
+
+
+func _on_new_action_prompt_button_pressed() -> void:
+	SignalBus.action_prompt_created.emit()

@@ -232,6 +232,34 @@ func _select_this() -> void:
 		else: _draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, true)
 		is_selected = true
 		SignalBus.node_selected.emit(index)
+		
+		
+		
+		var distance_in_days: int = roundi(global_position.distance_to(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]) / 100) 
+		
+		var food_cost: int = int(GameData.BASE_FOOD_PER_DAY * distance_in_days)
+		var sanity_cost: int = int(GameData.BASE_SANITY_PER_DAY * distance_in_days)
+		
+		SignalBus.action_prompt_created.emit(
+			{
+				# Emit selected node type
+				ActionsData.KEY_NAME: GameData.current[GameData.KEY_MAP_NODES_DATA][index][GameData.KEY_MAPNODETYPE],
+				# Emit icon texture
+				ActionsData.KEY_ICON: ActionsData.PROMPT_ICONS[ActionsData.ICON_TRAVEL],
+				# Emit costs
+				ActionsData.KEY_COSTS: [
+					{ActionsData.KEY_COST_ICON: ActionsData.PROMPT_ICONS[ActionsData.ICON_SANITY], ActionsData.KEY_COST_VALUE: sanity_cost}, #TODO: calculate based on distance + party members + rng
+					{ActionsData.KEY_COST_ICON: ActionsData.PROMPT_ICONS[ActionsData.ICON_FOOD], ActionsData.KEY_COST_VALUE: food_cost}, #TODO: calculate based on distance + party members + rng
+				],
+				# Emit button text
+				ActionsData.KEY_BUTTON_TEXT: "Travel",
+				# Emit result
+				ActionsData.KEY_RESULT: [
+					{ActionsData.KEY_RESULT_TYPE: ActionsData.KEY_RESULT_TRAVEL,
+					ActionsData.KEY_RESULT_VALUE: index}
+				]
+			}
+		)
 
 func _unselect_this() -> void:
 	is_selected = false

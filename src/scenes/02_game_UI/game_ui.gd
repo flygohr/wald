@@ -15,11 +15,8 @@ extends CanvasLayer
 @onready var karma_label: Label = $MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer3/MarginContainer/KarmaLabel
 @onready var loot_label: Label = $MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer/HBoxContainer/MarginContainer/LootLabel
 
+
 func _ready() -> void:
-	var action_prompt = action_prompt_scene.instantiate()
-	action_buttons_container.add_child(action_prompt)
-	action_buttons_container.move_child(action_prompt, 0)
-	
 	
 	if GameData.is_inside_node == true:
 		overworld_button.show()
@@ -35,11 +32,45 @@ func _ready() -> void:
 	SignalBus.food_updated.connect(update_food)
 	SignalBus.karma_updated.connect(update_karma)
 	SignalBus.loot_updated.connect(update_loot)
+	SignalBus.action_prompt_created.connect(display_action_prompt)
 	
 	sanity_label.text = str(GameData.current[GameData.KEY_CURRENT_SANITY])
 	food_label.text = str(GameData.current[GameData.KEY_CURRENT_FOOD])
 	karma_label.text = str(GameData.current[GameData.KEY_CURRENT_KARMA])
 	loot_label.text = str(GameData.current[GameData.KEY_CURRENT_LOOT])
+
+
+func display_action_prompt(prompt_data: Dictionary = ActionsData.DEBUG_ACTION.duplicate_deep(), unique: bool = true) -> void:
+	
+	#const DEBUG_ACTION: Dictionary = {
+		#KEY_NAME: "Debug action",
+		#KEY_ICON: 0,
+		#KEY_COSTS: [
+			#{KEY_COST_SANITY: 10},
+			#{KEY_COST_KARMA: 10}
+		#],
+		#KEY_BUTTON_TEXT: "Debug action",
+		#KEY_RESULT: [
+			#{KEY_RESULT_FOOD: 20}
+		#]
+	#}
+	
+	if unique:
+		var children = action_buttons_container.get_children()
+		for child in children:
+			child.queue_free()
+	
+	var action_prompt: ActionPrompt = action_prompt_scene.instantiate()
+	action_buttons_container.add_child(action_prompt)
+	action_buttons_container.move_child(action_prompt, 0)
+	action_prompt.populate(
+		prompt_data[ActionsData.KEY_NAME],
+		prompt_data[ActionsData.KEY_ICON],
+		prompt_data[ActionsData.KEY_COSTS],
+		prompt_data[ActionsData.KEY_BUTTON_TEXT],
+		prompt_data[ActionsData.KEY_RESULT]
+	)
+
 
 func _on_quit_button_pressed() -> void:
 	ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_TITLE_SCREEN])

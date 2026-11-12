@@ -13,6 +13,9 @@ const SHORT_WALK_DISTANCE: int = 400
 const MEDIUM_WALK_DISTANCE: int = 600
 const LONG_WALK_DISTANCE: int = 800
 
+# DIFFICULTY VARIABLES -----------------------------------------------------------------------------
+const BASE_FOOD_PER_DAY: int = 3
+const BASE_SANITY_PER_DAY: int = 3
 
 # CONFIG -------------------------------------------------------------------------------------------
 const KEY_MUSIC_VOLUME: String = "music_volume"

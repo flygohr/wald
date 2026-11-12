@@ -24,4 +24,7 @@ signal days_updated(value: int)
 signal node_status_updated(index: int, toggle: bool)
 signal walk_distance_updated(value: int)
 
+# ACTIONS ----------------------------------------------------------------------
+signal action_prompt_created(prompt_data: Dictionary)
+
 @warning_ignore_restore("unused_signal")

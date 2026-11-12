@@ -60,6 +60,10 @@ text = "-10 KARMA"
 layout_mode = 2
 text = "-10 LOOT"
 
+[node name="NewActionPromptButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1709620134]
+layout_mode = 2
+text = "PROMPT"
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=732665928]
 layout_mode = 2
 mouse_filter = 2
@@ -97,6 +101,7 @@ text = "+10 LOOT"
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/DecreaseFoodButton" to="." method="_on_decrease_food_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/DecreaseKarmaButton" to="." method="_on_decrease_karma_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/DecreaseLootButton" to="." method="_on_decrease_loot_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/NewActionPromptButton" to="." method="_on_new_action_prompt_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/BlockButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/IncreaseDistanceButton" to="." method="_on_increase_distance_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/IncreaseSanityButton" to="." method="_on_increase_sanity_button_pressed"]

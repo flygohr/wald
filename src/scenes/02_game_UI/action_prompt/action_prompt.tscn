@@ -21,13 +21,13 @@ theme_override_constants/separation = 8
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=25015784]
+[node name="PromptIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=25015784]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 texture = ExtResource("3_d2c5p")
 expand_mode = 2
 
-[node name="NodeTypeNameLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=496723052]
+[node name="PromptName" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=496723052]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "UNDISCOVERED NODE"
@@ -49,8 +49,8 @@ alignment = 1
 visible = false
 layout_mode = 2
 
-[node name="ActionButton" type="Button" parent="VBoxContainer" unique_id=1673613892]
+[node name="PromptButton" type="Button" parent="VBoxContainer" unique_id=1673613892]
 layout_mode = 2
 text = "TRAVEL"
 
-[connection signal="pressed" from="VBoxContainer/ActionButton" to="." method="_on_travel_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PromptButton" to="." method="_on_prompt_button_pressed"]
