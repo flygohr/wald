@@ -15,13 +15,13 @@ func update_node_status(i: int, toggle: bool) -> void:
 
 	
 func update_sanity(value: int) -> void:
-	GameData.current[GameData.KEY_CURRENT_SANITY] += value
+	GameData.current[GameData.KEY_CURRENT_SANITY] = clamp(GameData.current[GameData.KEY_CURRENT_SANITY] + value, 0, 100)
 	SignalBus.sanity_updated.emit(GameData.current[GameData.KEY_CURRENT_SANITY])
 	GameData.initiate_save_game_data()
 
 
 func update_food(value: int) -> void:
-	GameData.current[GameData.KEY_CURRENT_FOOD] += value
+	GameData.current[GameData.KEY_CURRENT_FOOD] = clamp(GameData.current[GameData.KEY_CURRENT_FOOD] + value, 0, 9999)
 	SignalBus.food_updated.emit(GameData.current[GameData.KEY_CURRENT_FOOD])
 	GameData.initiate_save_game_data()
 

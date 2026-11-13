@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_arc(Vector2.ZERO, current_walking_distance, 0, 360, 100, Color.WHITE, 3, false)
-	draw_circle(Vector2.ZERO, current_walking_distance, Color(1.0, 1.0, 1.0, 0.153), true, 0, true)
+	draw_circle(Vector2.ZERO, current_walking_distance, Color(1.0, 1.0, 1.0, 0.153), true)
 	
 
 func move_marker(_from: int, to: int) -> void:

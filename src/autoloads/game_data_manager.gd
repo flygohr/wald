@@ -15,7 +15,7 @@ const LONG_WALK_DISTANCE: int = 800
 
 # DIFFICULTY VARIABLES -----------------------------------------------------------------------------
 const BASE_FOOD_PER_DAY: int = 3
-const BASE_SANITY_PER_DAY: int = 3
+const BASE_SANITY_PER_DAY: int = 1
 
 # CONFIG -------------------------------------------------------------------------------------------
 const KEY_MUSIC_VOLUME: String = "music_volume"
@@ -61,6 +61,10 @@ const KEY_PREVIOUSNODE_COORDS: String = "previous coords"
 const KEY_IS_VISITED: String = "is_visited"
 const KEY_IS_CLEARED: String = "is cleared"
 const KEY_INCOMING_CONNECTIONS: String = "incoming connections"
+const KEY_MAPNODE_RNGV: String = "rng value" # Floating node difficulty multiplier, used to vary the options in a node
+
+const KEY_MAPNODE_FORAGE: String = "forage option"
+const KEY_MAPNODE_REST: String = "rest option"
 
 const KEY_MAPNODETYPE: String = "map node type"
 
@@ -127,7 +131,10 @@ const DEFAULT_GAME_DATA: Dictionary = {
 			KEY_INCOMING_CONNECTIONS: [],
 			KEY_MAPNODETYPE: KEY_MAPNODETYPE_DEFAULT,
 			KEY_MAPNODEFEATURE: KEY_MAPNODEFEATURE_EMPTY,
-			KEY_MAPNODEFEATURE_DATA: {}
+			KEY_MAPNODEFEATURE_DATA: {},
+			KEY_MAPNODE_RNGV: 1.0,
+			KEY_MAPNODE_FORAGE: true,
+			KEY_MAPNODE_REST: true
 		}
 	],
 	KEY_MAP_CURRENT_NODE_INDEX: 0,

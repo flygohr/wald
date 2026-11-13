@@ -291,3 +291,5 @@ text = "REST
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Top/TopRight/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/OverworldButton" to="." method="_on_overworld_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/GoInsideNodeButton" to="." method="_on_go_inside_node_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/ForageButton" to="." method="_on_forage_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/RestButton" to="." method="_on_rest_button_pressed"]

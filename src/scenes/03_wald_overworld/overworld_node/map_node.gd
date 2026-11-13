@@ -193,7 +193,6 @@ func _check_if_active(i) -> void:
 
 func _on_check_button_pressed() -> void:
 	# Check if is close enough to the active node
-	print("button clicked")
 	if global_position.distance_to(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]) <= GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] + 50:
 		_select_this()
 
@@ -236,9 +235,10 @@ func _select_this() -> void:
 		
 		
 		var distance_in_days: int = roundi(global_position.distance_to(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]) / 100) 
+		var difficulty_multiplier: float = GameData.current[GameData.KEY_MAP_NODES_DATA][index][GameData.KEY_MAPNODE_RNGV]
 		
-		var food_cost: int = int(GameData.BASE_FOOD_PER_DAY * distance_in_days)
-		var sanity_cost: int = int(GameData.BASE_SANITY_PER_DAY * distance_in_days)
+		var food_cost: int = int(GameData.BASE_FOOD_PER_DAY * distance_in_days * difficulty_multiplier)
+		var sanity_cost: int = int(GameData.BASE_SANITY_PER_DAY * distance_in_days * difficulty_multiplier)
 		
 		SignalBus.action_prompt_created.emit(
 			{

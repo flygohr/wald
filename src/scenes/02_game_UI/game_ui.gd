@@ -15,6 +15,10 @@ extends CanvasLayer
 @onready var karma_label: Label = $MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer3/MarginContainer/KarmaLabel
 @onready var loot_label: Label = $MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer/HBoxContainer/MarginContainer/LootLabel
 
+@onready var forage_button: Button = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/ForageButton
+@onready var rest_button: Button = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/RestButton
+
+var node_data: Dictionary
 
 func _ready() -> void:
 	
@@ -38,6 +42,14 @@ func _ready() -> void:
 	food_label.text = str(GameData.current[GameData.KEY_CURRENT_FOOD])
 	karma_label.text = str(GameData.current[GameData.KEY_CURRENT_KARMA])
 	loot_label.text = str(GameData.current[GameData.KEY_CURRENT_LOOT])
+	
+	node_data = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]]
+	
+	if node_data[GameData.KEY_MAPNODE_FORAGE] == false:
+		forage_button.disabled = true
+		
+	if node_data[GameData.KEY_MAPNODE_REST] == false:
+		rest_button.disabled = true
 
 
 func display_action_prompt(prompt_data: Dictionary = ActionsData.DEBUG_ACTION.duplicate_deep(), unique: bool = true) -> void:
@@ -92,6 +104,8 @@ func _on_go_inside_node_button_pressed() -> void:
 	ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_INSIDE_NODE_SCREEN])
 
 
+# TODO: update color of boxes to red when too low or bad
+
 func update_sanity(value: int) -> void:
 	sanity_label.text = str(value)
 
@@ -106,3 +120,22 @@ func update_karma(value: int) -> void:
 
 func update_loot(value: int) -> void:
 	loot_label.text = str(value)
+
+
+func _on_forage_button_pressed() -> void:
+	var food_found: int = randi_range(1, 10) * node_data[GameData.KEY_MAPNODE_RNGV]
+	PopupManager.show_popup_dialog(str("You got: ", food_found, " food."), "Continue")
+	await PopupManager.next_button_pressed
+	Gameplay.update_food(food_found)
+	node_data[GameData.KEY_MAPNODE_FORAGE] = false
+	forage_button.disabled = true
+
+
+func _on_rest_button_pressed() -> void:
+	var food_cost: int = randi_range(1, 3) * node_data[GameData.KEY_MAPNODE_RNGV]
+	var sanity_recovered: int = randi_range(1, 3) * node_data[GameData.KEY_MAPNODE_RNGV]
+	PopupManager.show_popup_confirmation("Resting helps you restore some of your SANITY, but makes you vulnerable to random events.", "Back", "Rest")
+	await PopupManager.yes_button_pressed
+	# TODO: spawn random event, restore forage
+	node_data[GameData.KEY_MAPNODE_FORAGE] = true
+	forage_button.disabled = false

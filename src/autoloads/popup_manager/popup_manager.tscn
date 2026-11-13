@@ -11,7 +11,7 @@ process_mode = 3
 script = ExtResource("1_curds")
 
 [node name="Popup" type="CanvasLayer" parent="." unique_id=422725014]
-layer = 10
+layer = 50
 visible = false
 
 [node name="BackgroundPanel" type="Panel" parent="Popup" unique_id=1448641164]

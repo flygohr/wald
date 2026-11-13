@@ -264,6 +264,9 @@ func _store_node(
 		GameData.KEY_PREVIOUSNODE_COORDS: prev_coords,
 		GameData.KEY_MAPNODEFEATURE: GameData.KEY_MAPNODEFEATURE_EMPTY,
 		GameData.KEY_MAPNODEFEATURE_DATA: ActionsData.KEY_FEATUREDATA_EMPTY,
+		GameData.KEY_MAPNODE_RNGV: randf_range(1.0, 2.0),
+		GameData.KEY_MAPNODE_FORAGE: true,
+		GameData.KEY_MAPNODE_REST: true
 	}
 	
 	map_nodes_list.append(map_node_data)

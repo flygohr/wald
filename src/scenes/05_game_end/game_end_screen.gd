@@ -28,7 +28,7 @@ func _ready() -> void:
 			defeat_screen.show()
 			victory_screen.hide()
 			game_end_label.text = defeat_title
-			game_end_text.text = defeat_text
+			game_end_text.text = defeat_text # TODO: change depending on sanity, food, or else
 
 
 func _on_new_game_button_pressed() -> void:

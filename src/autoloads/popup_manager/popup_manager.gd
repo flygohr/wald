@@ -13,6 +13,8 @@ signal no_button_pressed
 signal yes_button_pressed
 signal next_button_pressed
 
+signal popup_results(value: bool)
+
 #TODO: work on a fade in and fade out of popups
 
 func show_popup_confirmation(popup_text: String, no_button_text: String = "No", yes_button_text: String = "Yes") -> void:
@@ -36,11 +38,13 @@ func show_popup_dialog(popup_text: String, next_button_text: String = "Next") ->
 
 func _on_no_button_pressed() -> void:
 	popup.hide()
-	no_button_pressed.emit()
+	no_button_pressed.emit(false)
+	popup_results.emit()
 
 func _on_yes_button_pressed() -> void:
 	popup.hide()
 	yes_button_pressed.emit()
+	popup_results.emit(true)
 
 func _on_next_button_pressed() -> void:
 	popup.hide()
