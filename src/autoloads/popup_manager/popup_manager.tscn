@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bso63le5evvba" path="res://src/autoloads/popup_manager/popup_manager.gd" id="1_curds"]
 [ext_resource type="Theme" uid="uid://d2s1eqi0btoeb" path="res://assets/themes/main_theme.tres" id="2_c3dv7"]
+[ext_resource type="Texture2D" uid="uid://biy5nhyvlcv0f" path="res://assets/images/icons/color/Wald_Assets_DAYS.png" id="3_c3dv7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl0tk"]
 bg_color = Color(0, 0, 0, 0.7490196)
@@ -41,6 +42,36 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 8
 alignment = 1
+
+[node name="DaysContainer" type="MarginContainer" parent="Popup/PopupContainer/VBoxContainer" unique_id=480023079]
+visible = false
+z_index = 1
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_bottom = -20
+
+[node name="DaysContainer" type="PanelContainer" parent="Popup/PopupContainer/VBoxContainer/DaysContainer" unique_id=1072443255]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/PopupContainer/VBoxContainer/DaysContainer/DaysContainer" unique_id=2051057695]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Popup/PopupContainer/VBoxContainer/DaysContainer/DaysContainer/HBoxContainer" unique_id=1682358762]
+custom_minimum_size = Vector2(48, 48)
+custom_maximum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("3_c3dv7")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/PopupContainer/VBoxContainer/DaysContainer/DaysContainer/HBoxContainer" unique_id=2109993542]
+layout_mode = 2
+theme_override_constants/margin_right = 8
+
+[node name="DaysLabel" type="Label" parent="Popup/PopupContainer/VBoxContainer/DaysContainer/DaysContainer/HBoxContainer/MarginContainer" unique_id=2027556128]
+layout_mode = 2
+text = "Day 47"
 
 [node name="PopupTextLabel" type="RichTextLabel" parent="Popup/PopupContainer/VBoxContainer" unique_id=720389761]
 custom_minimum_size = Vector2(420, 0)

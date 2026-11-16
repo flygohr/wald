@@ -264,6 +264,13 @@ mouse_filter = 2
 theme_override_constants/separation = 8
 alignment = 2
 
+[node name="ActionPrompts" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer" unique_id=622179105]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 2
+
 [node name="BasicActions" type="PanelContainer" parent="MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer" unique_id=248744607]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2

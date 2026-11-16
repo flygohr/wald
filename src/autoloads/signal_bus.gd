@@ -7,6 +7,8 @@ extends Node
 signal pause_game
 signal resume_game
 
+signal new_game_started
+
 signal pan_to(end: Vector2)
 
 signal pause_map(toggle: bool)
@@ -27,6 +29,6 @@ signal node_status_updated(index: int, toggle: bool)
 signal walk_distance_updated(value: int)
 
 # ACTIONS ----------------------------------------------------------------------
-signal action_prompt_created(prompt_data: Dictionary)
+signal action_prompt_created(unique: bool, prompt_data: Dictionary)
 
 @warning_ignore_restore("unused_signal")

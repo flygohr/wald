@@ -38,6 +38,7 @@ func generate_map() -> void:
 	GameData.current[GameData.KEY_MAP_NODES_DATA] = map_nodes_list
 	GameData.current[GameData.KEY_IS_NEW_GAME] = false
 	GameData.initiate_save_game_data()
+	SignalBus.new_game_started.emit()
 
 
 # GENERATOR ----------------------------------------------------------------------------------------
@@ -152,6 +153,13 @@ func populate_map(_diff: int) -> void:
 	encounter_data[ActionsData.KEY_NAME] = "Stray Rabbit"
 	
 	map_nodes_list[random_long_walker][GameData.KEY_MAPNODEFEATURE_DATA] = encounter_data
+	
+	# TODO: populate different features
+	# the map node feature determines one prompt
+	# the adventure prompt could display one additional prompt
+	# I need to store / disable action prompts as needed depending on each node
+	
+	# for starters, I'd like to randomly place a few different types of nodes, and test a random prompt WITH the addition of additional prompt in node
 	
 	# MAIN PATH OBSTACLES AND SOLUTIONS ------------------------------------------------------------
 	var max_number_of_obstacles: int = floor((map_depth-3)/2) # This way, I can assure that the first 3 nodes are free AND that there's always room for solutions

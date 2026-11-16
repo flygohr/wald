@@ -5,7 +5,7 @@ extends Node2D
 
 func _ready() -> void:
 	SignalBus.pause_map.connect(_pause_map)
-
+	
 
 func _pause_map(toggle: bool) -> void:
 	if toggle == true:

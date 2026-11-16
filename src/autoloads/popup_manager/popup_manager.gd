@@ -9,6 +9,9 @@ extends Node2D
 @onready var yes_button: Button = $Popup/PopupContainer/VBoxContainer/ButtonsContainer/YesButton
 @onready var next_button: Button = $Popup/PopupContainer/VBoxContainer/ButtonsContainer/NextButton
 
+@onready var days_container: MarginContainer = $Popup/PopupContainer/VBoxContainer/DaysContainer
+@onready var days_label: Label = $Popup/PopupContainer/VBoxContainer/DaysContainer/DaysContainer/HBoxContainer/MarginContainer/DaysLabel
+
 signal no_button_pressed
 signal yes_button_pressed
 signal next_button_pressed
@@ -17,20 +20,26 @@ signal popup_results(value: bool)
 
 #TODO: work on a fade in and fade out of popups
 
-func show_popup_confirmation(popup_text: String, no_button_text: String = "No", yes_button_text: String = "Yes") -> void:
+func show_popup_confirmation(popup_text: String, no_button_text: String = "No", yes_button_text: String = "Yes", show_days: bool = false) -> void:
 	no_button.show()
 	yes_button.show()
 	next_button.hide()
+	
+	days_container.visible = show_days
+	days_label.text = str("Day ", GameData.current[GameData.KEY_CURRENT_DAY])
 	
 	popup.show()
 	popup_text_label.text = popup_text
 	no_button.text = no_button_text
 	yes_button.text = yes_button_text
 
-func show_popup_dialog(popup_text: String, next_button_text: String = "Next") -> void:
+func show_popup_dialog(popup_text: String, next_button_text: String = "Next", show_days: bool = false) -> void:
 	no_button.hide()
 	yes_button.hide()
 	next_button.show()
+	
+	days_container.visible = show_days
+	days_label.text = str("Day ", GameData.current[GameData.KEY_CURRENT_DAY])
 	
 	popup.show()
 	popup_text_label.text = popup_text

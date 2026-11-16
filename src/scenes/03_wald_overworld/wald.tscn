@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://x07qk50o6nxs" path="res://src/scenes/03_wald_overworld/map_generator.gd" id="1_4bu3n"]
 [ext_resource type="Script" uid="uid://ut6g630t8jua" path="res://src/scenes/03_wald_overworld/wald.gd" id="1_rqd8u"]
+[ext_resource type="Script" uid="uid://4twjs0venw6f" path="res://src/scenes/03_wald_overworld/game_intro.gd" id="2_3rx7r"]
 [ext_resource type="Script" uid="uid://cp3nr3hu4eqep" path="res://src/scenes/03_wald_overworld/map_visualizer.gd" id="3_g6jtw"]
 [ext_resource type="PackedScene" uid="uid://dvo068lpcimar" path="res://src/scenes/03_wald_overworld/navigation_marker/player_marker.tscn" id="4_4bu3n"]
 [ext_resource type="PackedScene" uid="uid://qod6od0842im" path="res://src/scenes/03_wald_overworld/overworld_node/map_node.tscn" id="4_dy57v"]
@@ -31,6 +32,9 @@ shader_parameter/speed = Vector2(0.02, 0.01)
 
 [node name="Wald" type="Node2D" unique_id=934451563]
 script = ExtResource("1_rqd8u")
+
+[node name="GameIntro" type="Node" parent="." unique_id=1763857042]
+script = ExtResource("2_3rx7r")
 
 [node name="MapGenerator" type="Node" parent="." unique_id=1490238067]
 script = ExtResource("1_4bu3n")

@@ -241,6 +241,7 @@ func _select_this() -> void:
 		var sanity_cost: int = int(GameData.BASE_SANITY_PER_DAY * distance_in_days * difficulty_multiplier)
 		
 		SignalBus.action_prompt_created.emit(
+			true,
 			{
 				# Emit selected node type
 				ActionsData.KEY_NAME: GameData.current[GameData.KEY_MAP_NODES_DATA][index][GameData.KEY_MAPNODETYPE],

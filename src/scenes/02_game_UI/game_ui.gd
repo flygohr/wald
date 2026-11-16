@@ -9,6 +9,7 @@ extends CanvasLayer
 
 @export var action_prompt_scene: PackedScene
 @onready var action_buttons_container: VBoxContainer = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer
+@onready var action_prompts: VBoxContainer = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/ActionPrompts
 
 @onready var sanity_label: Label = $MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer/MarginContainer/SanityLabel
 @onready var food_label: Label = $MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer2/MarginContainer/FoodLabel
@@ -52,7 +53,7 @@ func _ready() -> void:
 		rest_button.disabled = true
 
 
-func display_action_prompt(prompt_data: Dictionary = ActionsData.DEBUG_ACTION.duplicate_deep(), unique: bool = true) -> void:
+func display_action_prompt(unique: bool = true, prompt_data: Dictionary = ActionsData.DEBUG_ACTION.duplicate_deep()) -> void:
 	
 	#const DEBUG_ACTION: Dictionary = {
 		#KEY_NAME: "Debug action",
@@ -68,13 +69,13 @@ func display_action_prompt(prompt_data: Dictionary = ActionsData.DEBUG_ACTION.du
 	#}
 	
 	if unique:
-		var children = action_buttons_container.get_children()
+		var children = action_prompts.get_children()
 		for child in children:
 			child.queue_free()
 	
 	var action_prompt: ActionPrompt = action_prompt_scene.instantiate()
-	action_buttons_container.add_child(action_prompt)
-	action_buttons_container.move_child(action_prompt, 0)
+	action_prompts.add_child(action_prompt)
+	action_prompts.move_child(action_prompt, 0)
 	action_prompt.populate(
 		prompt_data[ActionsData.KEY_NAME],
 		prompt_data[ActionsData.KEY_ICON],

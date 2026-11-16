@@ -107,6 +107,7 @@ const KEY_CURRENT_FOOD: String = "current food"
 const KEY_CURRENT_KARMA: String = "current karma"
 const KEY_CURRENT_LOOT: String = "current loot"
 
+const KEY_CURRENT_DAY: String = "current day"
 
 # CHARACTER DEFINITIONS ----------------------------------------------------------------------------
 
@@ -119,6 +120,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 	KEY_IS_GAME_ENDED: false,
 	KEY_IS_GAME_WON: false,
 	KEY_GAMES_PLAYED: 0,
+	KEY_CURRENT_DAY: 0,
 	KEY_MAP_NODES_DATA: [
 		{
 			KEY_MAPNODE_ID: 0,

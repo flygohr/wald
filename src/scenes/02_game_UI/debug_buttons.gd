@@ -138,4 +138,4 @@ func _on_increase_loot_button_pressed() -> void:
 
 
 func _on_new_action_prompt_button_pressed() -> void:
-	SignalBus.action_prompt_created.emit()
+	SignalBus.action_prompt_created.emit(false)
