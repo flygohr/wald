@@ -15,6 +15,7 @@ extends CanvasLayer
 @onready var food_label: Label = $MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer2/MarginContainer/FoodLabel
 @onready var karma_label: Label = $MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer3/MarginContainer/KarmaLabel
 @onready var loot_label: Label = $MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer/HBoxContainer/MarginContainer/LootLabel
+@onready var days_label: Label = $MarginContainer/VBoxContainer/Top/TopLeft/DaysStatContainer/HBoxContainer/MarginContainer/DaysLabel
 
 @onready var forage_button: Button = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/ForageButton
 @onready var rest_button: Button = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/RestButton
@@ -37,12 +38,14 @@ func _ready() -> void:
 	SignalBus.food_updated.connect(update_food)
 	SignalBus.karma_updated.connect(update_karma)
 	SignalBus.loot_updated.connect(update_loot)
+	SignalBus.days_updated.connect(update_days)
 	SignalBus.action_prompt_created.connect(display_action_prompt)
 	
 	sanity_label.text = str(GameData.current[GameData.KEY_CURRENT_SANITY])
 	food_label.text = str(GameData.current[GameData.KEY_CURRENT_FOOD])
 	karma_label.text = str(GameData.current[GameData.KEY_CURRENT_KARMA])
 	loot_label.text = str(GameData.current[GameData.KEY_CURRENT_LOOT])
+	days_label.text = str(GameData.current[GameData.KEY_CURRENT_DAY])
 	
 	node_data = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]]
 	
@@ -119,11 +122,18 @@ func update_karma(value: int) -> void:
 	karma_label.text = str(value)
 
 
+func update_days(value: int) -> void:
+	days_label.text = str(value)
+
+
 func update_loot(value: int) -> void:
 	loot_label.text = str(value)
 
 
 func _on_forage_button_pressed() -> void:
+	GameData.current[GameData.KEY_CURRENT_DAY] += 1
+	SignalBus.days_updated.emit(GameData.current[GameData.KEY_CURRENT_DAY])
+	GameData.initiate_save_game_data()
 	var food_found: int = randi_range(1, 10) * node_data[GameData.KEY_MAPNODE_RNGV]
 	PopupManager.show_popup_dialog(str("You got: ", food_found, " food."), "Continue")
 	await PopupManager.next_button_pressed
@@ -133,6 +143,9 @@ func _on_forage_button_pressed() -> void:
 
 
 func _on_rest_button_pressed() -> void:
+	GameData.current[GameData.KEY_CURRENT_DAY] += 1
+	SignalBus.days_updated.emit(GameData.current[GameData.KEY_CURRENT_DAY])
+	GameData.initiate_save_game_data()
 	var food_cost: int = randi_range(1, 3) * node_data[GameData.KEY_MAPNODE_RNGV]
 	var sanity_recovered: int = randi_range(1, 3) * node_data[GameData.KEY_MAPNODE_RNGV]
 	PopupManager.show_popup_confirmation("Resting helps you restore some of your SANITY, but makes you vulnerable to random events.", "Back", "Rest")

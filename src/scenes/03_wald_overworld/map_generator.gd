@@ -97,7 +97,7 @@ func spawn_branches(branches_origin, branches_amt) -> void:
 	
 	var starting_angle: int = randi_range(-360,360)
 	
-	for angle in 360/5:
+	for angle in 360.0/5.0:
 		# Attempt to spawn a new node, at all distance options. Proceed when found
 		if branches_found == branches_amt: break
 		var space_found: bool = false
@@ -214,6 +214,7 @@ func populate_map(_diff: int) -> void:
 					var picked_node_for_solution = possible_solutions.pick_random()
 					
 					picked_node_for_solution[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_RUINS
+					picked_node_for_solution[GameData.KEY_MAPNODETYPE_PROMPT] = ActionsData.RUINS_ACTION
 				
 	# THEN THE REST OF THE DEFAULT NODES GET CONVERTED INTO EVENTS ---------------------------------
 	for node in map_nodes_list:
@@ -265,16 +266,22 @@ func _store_node(
 		GameData.KEY_MAPNODE_POS: pos,
 		GameData.KEY_MAPNODE_DEGREE: degree,
 		GameData.KEY_MAPNODE_DEPTH: depth,
+		GameData.KEY_MAPNODE_PROMPT: null,
+		GameData.KEY_MAPNODE_PROMPT_CLEARED: false,
 		GameData.KEY_MAPNODETYPE: type,
+		GameData.KEY_MAPNODETYPE_PROMPT: null,
+		GameData.KEY_MAPNODETYPE_PROMPT_CLEARED: false,
 		GameData.KEY_IS_VISITED: false,
 		GameData.KEY_IS_CLEARED: false,
 		GameData.KEY_INCOMING_CONNECTIONS: [],
 		GameData.KEY_PREVIOUSNODE_COORDS: prev_coords,
 		GameData.KEY_MAPNODEFEATURE: GameData.KEY_MAPNODEFEATURE_EMPTY,
 		GameData.KEY_MAPNODEFEATURE_DATA: ActionsData.KEY_FEATUREDATA_EMPTY,
+		GameData.KEY_MAPNODEFEATURE_PROMPT: null,
+		GameData.KEY_MAPNODEFEATURE_PROMPT_CLEARED: false,
 		GameData.KEY_MAPNODE_RNGV: randf_range(1.0, 2.0),
 		GameData.KEY_MAPNODE_FORAGE: true,
-		GameData.KEY_MAPNODE_REST: true
+		GameData.KEY_MAPNODE_REST: true,
 	}
 	
 	map_nodes_list.append(map_node_data)

@@ -166,7 +166,7 @@ func update_node() -> void:
 		#node_icon.texture = load("res://assets/images/icons/Wald_Assets_Icons_BW.png")
 	#else:
 		#node_icon.texture = load("res://assets/images/icons/Wald_Assets_Icons.png")
-		
+
 
 func display_active_marker(toggle: bool) -> void:
 	if toggle == true:
@@ -257,7 +257,9 @@ func _select_this() -> void:
 				# Emit result
 				ActionsData.KEY_RESULT: [
 					{ActionsData.KEY_RESULT_TYPE: ActionsData.KEY_RESULT_TRAVEL,
-					ActionsData.KEY_RESULT_VALUE: index}
+					ActionsData.KEY_RESULT_VALUE: index},
+					{ActionsData.KEY_RESULT_TYPE: ActionsData.KEY_RESULT_DAYS,
+					ActionsData.KEY_RESULT_VALUE: distance_in_days}
 				]
 			}
 		)

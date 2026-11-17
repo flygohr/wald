@@ -168,9 +168,9 @@ func import_save(game_data: Dictionary, slot: int = 1) -> void:
 	else: push_error("Error trying to import save file: unsupported device")
 
 
-func encode_data(value, full_objects = false):
+func encode_data(value, full_objects: bool = true):
 	return JSON.stringify(JSON.from_native(value, full_objects))
 
 
-func decode_data(string, allow_objects = false):
+func decode_data(string, allow_objects: bool = true):
 	return JSON.to_native(JSON.parse_string(string), allow_objects)

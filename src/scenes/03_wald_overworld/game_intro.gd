@@ -13,15 +13,17 @@ func _ready() -> void:
 func show_intro() -> void:
 	var random_days: int = randi_range(200, 600)
 	GameData.current[GameData.KEY_CURRENT_DAY] = random_days
+	SignalBus.days_updated.emit()
 	GameData.initiate_save_game_data()
 	
-	PopupManager.show_popup_dialog(INTRO_1, "Next", true)
-	await PopupManager.next_button_pressed
-	PopupManager.show_popup_dialog(INTRO_2, "Next", true)
-	await PopupManager.next_button_pressed
-	PopupManager.show_popup_dialog(INTRO_3, "Next", true)
-	await PopupManager.next_button_pressed
-	PopupManager.show_popup_dialog(INTRO_4, "Start adventure", true)
+	if GameData.current[GameData.KEY_GAMES_PLAYED] == 0:
+		PopupManager.show_popup_dialog(INTRO_1, "Next", true)
+		await PopupManager.next_button_pressed
+		PopupManager.show_popup_dialog(INTRO_2, "Next", true)
+		await PopupManager.next_button_pressed
+		PopupManager.show_popup_dialog(INTRO_3, "Next", true)
+		await PopupManager.next_button_pressed
+		PopupManager.show_popup_dialog(INTRO_4, "Start adventure", true)
 	
 	# TODO: start tutorial here
 	

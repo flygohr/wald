@@ -88,6 +88,13 @@ const KEY_MAPNODEFEATURE_ENCOUNTER: String = "encounter"
 
 const KEY_MAPNODEFEATURE_DATA: String = "feature data"
 
+const KEY_MAPNODE_PROMPT: String = "opening prompt"
+const KEY_MAPNODE_PROMPT_CLEARED: String = "opening prompt cleared status"
+const KEY_MAPNODETYPE_PROMPT: String = "node type prompt"
+const KEY_MAPNODETYPE_PROMPT_CLEARED: String = "node type prompt cleared status"
+const KEY_MAPNODEFEATURE_PROMPT: String = "node feature prompt"
+const KEY_MAPNODEFEATURE_PROMPT_CLEARED: String = "node feature prompt cleared status"
+
 # MAP BOUNDARIES DEFINITIONS -----------------------------------------------------------------------
 const KEY_MAP_BOUNDARIES: String = "map boundaries"
 const KEY_LEFT_X: String = "left x"
@@ -131,9 +138,14 @@ const DEFAULT_GAME_DATA: Dictionary = {
 			KEY_IS_VISITED: false,
 			KEY_IS_CLEARED: false,
 			KEY_INCOMING_CONNECTIONS: [],
+			KEY_MAPNODE_PROMPT: null, # Store the generated prompt, if any
+			KEY_MAPNODE_PROMPT_CLEARED: false, # Store if cleared or not
 			KEY_MAPNODETYPE: KEY_MAPNODETYPE_DEFAULT,
+			KEY_MAPNODETYPE_PROMPT: null, # Store the generated prompt, if any
+			KEY_MAPNODETYPE_PROMPT_CLEARED: null,
 			KEY_MAPNODEFEATURE: KEY_MAPNODEFEATURE_EMPTY,
-			KEY_MAPNODEFEATURE_DATA: {},
+			KEY_MAPNODEFEATURE_PROMPT: null, # Store the generated prompt, if any
+			KEY_MAPNODEFEATURE_PROMPT_CLEARED: false,
 			KEY_MAPNODE_RNGV: 1.0,
 			KEY_MAPNODE_FORAGE: true,
 			KEY_MAPNODE_REST: true

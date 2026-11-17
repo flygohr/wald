@@ -4,7 +4,7 @@ class_name ActionsData
 const KEY_NAME: String = "action name"
 const KEY_ICON: String = "action icon"
 
-enum {ICON_SANITY, ICON_FOOD, ICON_KARMA, ICON_DAYS, ICON_LOOT, ICON_TRAVEL}
+enum {ICON_SANITY, ICON_FOOD, ICON_KARMA, ICON_DAYS, ICON_LOOT, ICON_TRAVEL, ICON_RUINS}
 
 const WALD_ASSETS_DAYS = preload("uid://biy5nhyvlcv0f")
 const WALD_ASSETS_FOOD = preload("uid://cygxcsmslwt4")
@@ -12,6 +12,7 @@ const WALD_ASSETS_KARMA = preload("uid://tq0ocoi16tmc")
 const WALD_ASSETS_LOOT = preload("uid://hqafnsb2a3qe")
 const WALD_ASSETS_SANITY = preload("uid://daetffhlfoqab")
 const WALD_ASSETS_MAP = preload("uid://crsa6vpoopib0")
+const WALD_ASSETS_RUINS = preload("uid://dy1fxx704oh5m") # TODO: need low res actions
 
 const PROMPT_ICONS: Array = [
 	WALD_ASSETS_SANITY,
@@ -19,7 +20,8 @@ const PROMPT_ICONS: Array = [
 	WALD_ASSETS_KARMA,
 	WALD_ASSETS_DAYS,
 	WALD_ASSETS_LOOT,
-	WALD_ASSETS_MAP
+	WALD_ASSETS_MAP,
+	WALD_ASSETS_RUINS
 ]
 
 const KEY_COSTS: String = "action costs"
@@ -39,6 +41,8 @@ const KEY_RESULT_SANITY: String = "sanity result"
 const KEY_RESULT_FOOD: String = "food result"
 const KEY_RESULT_KARMA: String = "karma result"
 const KEY_RESULT_TRAVEL: String = "travel result"
+const KEY_RESULT_LOOT: String = "loot result"
+const KEY_RESULT_DAYS: String = "days result"
 
 const KEY_RESULT_VALUE: String = "result value"
 
@@ -67,5 +71,23 @@ const DEBUG_ACTION: Dictionary = {
 	KEY_RESULT: [
 		{KEY_RESULT_TYPE: KEY_RESULT_TRAVEL,
 		KEY_RESULT_VALUE: 0}
+	]
+}
+
+const RUINS_ACTION: Dictionary = {
+	KEY_NAME: "Ominous ruins",
+	KEY_ICON: PROMPT_ICONS[ICON_RUINS],
+	KEY_COSTS: [
+		{KEY_COST_ICON: PROMPT_ICONS[ICON_FOOD],
+		KEY_COST_VALUE: 10},
+		{KEY_COST_ICON: PROMPT_ICONS[ICON_KARMA],
+		KEY_COST_VALUE: 10}
+	],
+	KEY_BUTTON_TEXT: "Explore",
+	KEY_RESULT: [
+		{KEY_RESULT_TYPE: KEY_RESULT_PROMPT,
+		KEY_RESULT_VALUE: "Exploration text"},
+		{KEY_RESULT_TYPE: KEY_RESULT_LOOT,
+		KEY_RESULT_VALUE: 50}
 	]
 }

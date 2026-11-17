@@ -68,6 +68,31 @@ func _on_prompt_button_pressed() -> void:
 		match result[ActionsData.KEY_RESULT_TYPE]:
 			ActionsData.KEY_RESULT_TRAVEL:
 				_evaluate_travel(result[ActionsData.KEY_RESULT_VALUE])
+			ActionsData.KEY_RESULT_DAYS:
+				_execute_days(result[ActionsData.KEY_RESULT_VALUE])
+			ActionsData.KEY_RESULT_PROMPT:
+				_execute_prompt(result[ActionsData.KEY_RESULT_VALUE])
+			ActionsData.KEY_RESULT_LOOT:
+				_execute_loot(result[ActionsData.KEY_RESULT_VALUE])
+				
+
+func _execute_days(days: int) -> void:
+	GameData.current[GameData.KEY_CURRENT_DAY] += days
+	SignalBus.days_updated.emit(GameData.current[GameData.KEY_CURRENT_DAY])
+	GameData.initiate_save_game_data()
+
+func _execute_loot(loot: int) -> void:
+	GameData.current[GameData.KEY_CURRENT_LOOT] += loot
+	SignalBus.loot_updated.emit(GameData.current[GameData.KEY_CURRENT_LOOT])
+	GameData.initiate_save_game_data()
+
+func _execute_prompt(data: String) -> void:
+	GameData.current[GameData.KEY_CURRENT_DAY] += 1
+	SignalBus.days_updated.emit(GameData.current[GameData.KEY_CURRENT_DAY])
+	PopupManager.show_popup_dialog(data, "Continue", true)
+	GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODETYPE_PROMPT_CLEARED] = true
+	GameData.initiate_save_game_data()
+	_fade_out_this()
 		
 
 func _evaluate_travel(index: int) -> void:
