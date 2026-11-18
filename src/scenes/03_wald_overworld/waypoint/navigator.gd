@@ -12,8 +12,6 @@ var camera_node: Camera2D
 func _ready() -> void:
 	camera_node = get_viewport().get_camera_2d()
 
-# TODO: hide when on screen!
-# FIXME: take limits into account OR fix drag camera?
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

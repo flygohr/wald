@@ -10,6 +10,9 @@ uniform vec4 outline_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform float outline_width : hint_range(0.0, 8.0) = 8.0;
 uniform float softness : hint_range(0.0, 1.0) = 0.0;
 
+uniform bool greyscaled = false;
+uniform bool weighted = true;
+
 // Past the texture border counts as empty, so on a sprite without padding the
 // ring never wraps the opposite edge back into the outline.
 float samp_a(sampler2D tex, vec2 uv) {
@@ -44,4 +47,8 @@ void fragment() {
 	vec3 rgb = mix(outline_color.rgb, col.rgb, col.a);
 	COLOR = vec4(rgb, max(col.a, outline * outline_color.a));
 	COLOR *= vertex_tint;
+	
+	if(greyscaled) // if active == true
+		COLOR.rgb = mix(vec3((COLOR.r + COLOR.g + COLOR.b) / 3.0),  vec3(0.299 * COLOR.r + 0.587 * COLOR.g + 0.114 * COLOR.b), float(weighted));
+
 }

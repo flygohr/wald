@@ -35,22 +35,20 @@ func move_marker(_from: int, to: int) -> void:
 	GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_VISITED] = true
 	
 	SignalBus.new_active_node_set.emit(to)
-	discover_nodes()
 	queue_redraw()
 	# transition to local ONLY if new node
-	
+	await tween.finished
+	discover_nodes()
 	# check if node is finish, if it is, transition to victory screen:
-	
+	await get_tree().create_timer(0.5).timeout
 	if needs_to_trigger_transition == true:
 		GameData.is_inside_node = true
-		await tween.finished
 		ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_INSIDE_NODE_SCREEN])
 		
 	if needs_to_trigger_end_screen == true:
 		GameData.current[GameData.KEY_IS_GAME_ENDED] = true
 		GameData.current[GameData.KEY_IS_GAME_WON] = true
 		GameData.initiate_save_game_data()
-		await tween.finished
 		ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_GAME_END_SCREEN])
 		
 

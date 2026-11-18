@@ -33,6 +33,7 @@ var is_in_game: bool = false # Track if in game for settings menu options
 var is_debug: bool = true # Toggle debug mode with more buttons and stuff
 var camera_position: Vector2
 var finish_node_position: Vector2
+var node_selected: bool = false
 
 # KEYS ---------------------------------------------------------------------------------------------
 # Strings to organize the data into a Dictionary and later into a JSON
@@ -173,7 +174,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 	KEY_MAP_MIDPOINT: Vector2.ZERO,
 	KEY_MAP_MAP_RADIUS: 0,
 	KEY_CURRENT_SANITY: 100,
-	KEY_CURRENT_FOOD: 10,
+	KEY_CURRENT_FOOD: 100,
 	KEY_CURRENT_KARMA: 100,
 	KEY_CURRENT_LOOT: 0
 }

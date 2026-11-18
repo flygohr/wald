@@ -38,6 +38,7 @@ func _draw_connecting_line(start: Vector2, end: Vector2, width: int) -> void:
 	connecting_line.width = width
 	connecting_line.z_index = 1
 	add_child(connecting_line)
+	connecting_line.name = "CONNECTING LINE"
 
 func _draw_traveled_line(_from: int, to: int) -> void:
 	var start: Vector2 = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]

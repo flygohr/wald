@@ -9,13 +9,14 @@ class_name MapNode
 @export var color : Color
 @export var node_radius := 25
 @export var dashed_line_scene: PackedScene
-#@export var navigator_scene: PackedScene
+@export var navigator_scene: PackedScene
 
 var temporary_dashed_line: Line2D
 
 @onready var active_marker: Sprite2D = $ActiveMarker
 @onready var check_button: TextureButton = $CheckButton
 @onready var node_icon: Sprite2D = $NodeIcon
+@onready var walkable_marker: Sprite2D = $WalkableMarker
 
 @onready var debug_label: Label = $DebugLabel
 
@@ -28,6 +29,7 @@ var temporary_dashed_line: Line2D
 @export var start_icon: Texture2D
 @export var end_icon: Texture2D
 
+var navigator_instance = null
 
 var index: int:
 	set(value):
@@ -97,6 +99,8 @@ func _ready() -> void:
 	check_button.size = Vector2(button_size, button_size)
 	check_button.position = Vector2(-(button_size/2), -(button_size/2))
 
+	GameData.node_selected = false
+	
 	update_node()
 
 
@@ -108,6 +112,11 @@ func _process(delta: float) -> void:
 	selected_radius = remap(sin(_time * TAU), -1.0, 1.0, node_radius+20, node_radius+40)
 
 	finish_radius = remap(sin(_time * TAU), -1.0, 1.0, node_radius+10, node_radius+30)
+	
+	walkable_marker.position.y = remap(sin(_time * TAU), -1.0, 1.0, node_radius+30, node_radius+10)-140
+	
+	if GameData.node_selected == true and walkable_marker.visible:
+		walkable_marker.hide()
 		
 	_time += delta
 
@@ -135,13 +144,12 @@ func _draw() -> void:
 		draw_circle(Vector2.ZERO, active_radius, Color.WHITE, false, 5, false)
 	
 	if is_finish:
-		draw_circle(Vector2.ZERO, finish_radius, Color("2b78bbff"), false, 5, false)
+		draw_circle(Vector2.ZERO, finish_radius, Color("#EFBF04"), false, 5, false)
 	
 func update_node() -> void:
 	
 	node_data = GameData.current[GameData.KEY_MAP_NODES_DATA][index]
-	
-	
+		
 	if GameData.is_debug == true:
 		debug_label.show()
 		debug_label.text = str(node_data[GameData.KEY_MAPNODEFEATURE])
@@ -153,21 +161,30 @@ func update_node() -> void:
 			GameData.KEY_MAPNODETYPE_START:
 				node_icon.texture = start_icon
 			GameData.KEY_MAPNODETYPE_CLEARING:
-				node_icon.texture = clearing_icon
+				change_icon(clearing_icon)
 			GameData.KEY_MAPNODETYPE_RUINS:
-				node_icon.texture = ruins_icon
+				change_icon(ruins_icon)
 			GameData.KEY_MAPNODETYPE_SPRINGS:
-				node_icon.texture = springs_icon
+				change_icon(springs_icon)
 			GameData.KEY_MAPNODETYPE_CHASM:
-				node_icon.texture = chasm_icon
+				change_icon(chasm_icon)
 			GameData.KEY_MAPNODETYPE_RAPIDS:
-				node_icon.texture = rapids_icon
+				change_icon(rapids_icon)
 			GameData.KEY_MAPNODETYPE_FINISH:
 				is_finish = true 
 				node_icon.texture = end_icon
-				#var navigator = navigator_scene.instantiate()
-				#add_child(navigator)
+				if navigator_instance == null:
+					navigator_instance = navigator_scene.instantiate()
+					add_child(navigator_instance)
 	
+	
+	if node_data[GameData.KEY_MAPNODE_POS].distance_to(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]) <= GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] + 50 and index != GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]:
+		walkable_marker.show()
+	else:
+		walkable_marker.hide()
+		
+	#if node_data[GameData.KEY_IS_VISITED] and node_data[GameData.KEY_IS_CLEARED] == false:
+		#node_icon.get_material().set_shader_parameter("greyscaled", true)
 	
 	#if is_cleared == false:
 		#node_icon.texture = load("res://assets/images/icons/Wald_Assets_Icons_BW.png")
@@ -175,17 +192,22 @@ func update_node() -> void:
 		#node_icon.texture = load("res://assets/images/icons/Wald_Assets_Icons.png")
 
 
+func change_icon(new_sprite: Texture2D) -> void:
+	if node_icon.texture != new_sprite:
+		var tween = get_tree().create_tween()
+		tween.tween_property(node_icon, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.1).set_trans(Tween.TRANS_SINE)
+		await tween.finished
+		node_icon.texture = new_sprite
+		var tween_in = get_tree().create_tween()
+		tween_in.tween_property(node_icon, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1).set_trans(Tween.TRANS_SINE)
+
 func display_active_marker(toggle: bool) -> void:
 	if toggle == true:
 		active_marker.show()
 	else:
 		active_marker.hide()
 
-# TODO: if finish type, add red target marker, and arrow pointing
-# TODO: instead of instantly teleport, display a popup with a button asking if move or not, showing cost of travel
-# TODO: add dotted line between two cleared points
-# TODO: add button to clear node
-# TODO: draw another line, a full one, to mark completed connections instead of just dotted line
+
 # TODO: node icon will also be modulated to greyscale if not yet completed
 # TODO: icon has two layers. icon on top, always color or question mark. bg is like tokens for vtt, same edge, but inside is green for cleared, red for not cleared, grey for undiscovered
 
@@ -218,12 +240,12 @@ func _check_if_still_selected(i: int) -> void:
 
 
 func _select_this() -> void:
+	
 	var is_centered: bool
 	if GameData.camera_position.distance_to(global_position) <= node_radius:
 		is_centered = true
 	else:
 		is_centered = false
-		
 	
 	if is_active == true and is_centered == true:
 		GameData.is_inside_node = true
@@ -271,10 +293,16 @@ func _select_this() -> void:
 				]
 			}
 		)
+	
+	
+	
+	GameData.node_selected = true
 
 func _unselect_this() -> void:
 	is_selected = false
 	_erase_temporary_line()
+	GameData.node_selected = false
+	update_node()
 
 
 func _draw_temporary_line(s: Vector2, e: Vector2, valid: bool = false) -> void:
