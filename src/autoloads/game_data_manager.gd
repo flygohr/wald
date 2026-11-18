@@ -32,6 +32,7 @@ var active_save_slot: int = 1
 var is_in_game: bool = false # Track if in game for settings menu options
 var is_debug: bool = true # Toggle debug mode with more buttons and stuff
 var camera_position: Vector2
+var finish_node_position: Vector2
 
 # KEYS ---------------------------------------------------------------------------------------------
 # Strings to organize the data into a Dictionary and later into a JSON
@@ -58,7 +59,8 @@ const KEY_MAPNODE_POS: String = "position"
 const KEY_MAPNODE_DEGREE : String ="degree"
 const KEY_MAPNODE_DEPTH: String = "depth"
 const KEY_PREVIOUSNODE_COORDS: String = "previous coords"
-const KEY_IS_VISITED: String = "is_visited"
+const KEY_IS_DISCOVERED: String = "is discovered"
+const KEY_IS_VISITED: String = "is visited"
 const KEY_IS_CLEARED: String = "is cleared"
 const KEY_INCOMING_CONNECTIONS: String = "incoming connections"
 const KEY_MAPNODE_RNGV: String = "rng value" # Floating node difficulty multiplier, used to vary the options in a node
@@ -127,7 +129,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 	KEY_IS_GAME_ENDED: false,
 	KEY_IS_GAME_WON: false,
 	KEY_GAMES_PLAYED: 0,
-	KEY_CURRENT_DAY: 0,
+	KEY_CURRENT_DAY: 1,
 	KEY_MAP_NODES_DATA: [
 		{
 			KEY_MAPNODE_ID: 0,
@@ -135,6 +137,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 			KEY_MAPNODE_DEGREE: 1,
 			KEY_MAPNODE_DEPTH: 1,
 			KEY_PREVIOUSNODE_COORDS: Vector2.ZERO,
+			KEY_IS_DISCOVERED: false,
 			KEY_IS_VISITED: false,
 			KEY_IS_CLEARED: false,
 			KEY_INCOMING_CONNECTIONS: [],

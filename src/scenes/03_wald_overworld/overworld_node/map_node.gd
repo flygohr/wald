@@ -91,6 +91,7 @@ func _ready() -> void:
 	SignalBus.moved_around_the_map.connect(_unselect_this)
 	SignalBus.traveled_to.connect(_check_if_traveled_to)
 	SignalBus.node_selected.connect(_check_if_still_selected)
+	SignalBus.nodes_discovered.connect(update_node)
 	
 	var button_size = (node_radius * 2) + 10
 	check_button.size = Vector2(button_size, button_size)
@@ -140,27 +141,33 @@ func update_node() -> void:
 	
 	node_data = GameData.current[GameData.KEY_MAP_NODES_DATA][index]
 	
-	match node_data[GameData.KEY_MAPNODETYPE]:
-		GameData.KEY_MAPNODETYPE_START:
-			node_icon.texture = start_icon
-		GameData.KEY_MAPNODETYPE_CLEARING:
-			node_icon.texture = clearing_icon
-		GameData.KEY_MAPNODETYPE_RUINS:
-			node_icon.texture = ruins_icon
-		GameData.KEY_MAPNODETYPE_SPRINGS:
-			node_icon.texture = springs_icon
-		GameData.KEY_MAPNODETYPE_CHASM:
-			node_icon.texture = chasm_icon
-		GameData.KEY_MAPNODETYPE_RAPIDS:
-			node_icon.texture = rapids_icon
-		GameData.KEY_MAPNODETYPE_FINISH:
-			is_finish = true 
-			node_icon.texture = end_icon
-			#var navigator = navigator_scene.instantiate()
-			#add_child(navigator)
+	
 	if GameData.is_debug == true:
 		debug_label.show()
 		debug_label.text = str(node_data[GameData.KEY_MAPNODEFEATURE])
+		
+	if node_data[GameData.KEY_IS_DISCOVERED] == false:
+		node_icon.texture = undiscovered_icon
+	else:
+		match node_data[GameData.KEY_MAPNODETYPE]:
+			GameData.KEY_MAPNODETYPE_START:
+				node_icon.texture = start_icon
+			GameData.KEY_MAPNODETYPE_CLEARING:
+				node_icon.texture = clearing_icon
+			GameData.KEY_MAPNODETYPE_RUINS:
+				node_icon.texture = ruins_icon
+			GameData.KEY_MAPNODETYPE_SPRINGS:
+				node_icon.texture = springs_icon
+			GameData.KEY_MAPNODETYPE_CHASM:
+				node_icon.texture = chasm_icon
+			GameData.KEY_MAPNODETYPE_RAPIDS:
+				node_icon.texture = rapids_icon
+			GameData.KEY_MAPNODETYPE_FINISH:
+				is_finish = true 
+				node_icon.texture = end_icon
+				#var navigator = navigator_scene.instantiate()
+				#add_child(navigator)
+	
 	
 	#if is_cleared == false:
 		#node_icon.texture = load("res://assets/images/icons/Wald_Assets_Icons_BW.png")
@@ -195,6 +202,7 @@ func _on_check_button_pressed() -> void:
 	# Check if is close enough to the active node
 	if global_position.distance_to(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]) <= GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] + 50:
 		_select_this()
+	else: SignalBus.shake_camera.emit()
 
 func _check_if_traveled_to(from: int, to: int) -> void:
 	if to == index:

@@ -54,6 +54,13 @@ func _ready() -> void:
 		
 	if node_data[GameData.KEY_MAPNODE_REST] == false:
 		rest_button.disabled = true
+		
+	if node_data[GameData.KEY_MAPNODETYPE] == GameData.KEY_MAPNODETYPE_START and GameData.is_inside_node == true:
+		basic_actions.hide()
+		PopupManager.show_popup_dialog("This is my odl campsite.\n\nThis place already gave me everything it had.\n\nIt's time I get moving.", "Go", true)
+		await PopupManager.next_button_pressed
+		GameData.is_inside_node = false
+		ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_OVERWORLD_SCREEN])
 
 
 func display_action_prompt(unique: bool = true, prompt_data: Dictionary = ActionsData.DEBUG_ACTION.duplicate_deep()) -> void:

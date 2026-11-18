@@ -9,9 +9,12 @@ signal resume_game
 
 signal new_game_started
 
-signal pan_to(end: Vector2)
+signal pan_to(end: Vector2, duration: float)
+signal pan_finished 
+signal shake_camera
 
 signal pause_map(toggle: bool)
+signal nodes_discovered
 
 signal node_selected(index: int)
 signal traveled_to(from: int, to: int)

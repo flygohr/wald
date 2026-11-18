@@ -36,7 +36,6 @@ func generate_map() -> void:
 	_calculate_boundaries()
 	populate_map(difficulty)
 	GameData.current[GameData.KEY_MAP_NODES_DATA] = map_nodes_list
-	GameData.current[GameData.KEY_IS_NEW_GAME] = false
 	GameData.initiate_save_game_data()
 	SignalBus.new_game_started.emit()
 
@@ -53,6 +52,7 @@ func generate_main_path(depth: int) -> void:
 		start_coords
 		)
 	
+	map_nodes_list[0][GameData.KEY_IS_DISCOVERED] = true
 	map_nodes_list[0][GameData.KEY_IS_VISITED] = true
 	map_nodes_list[0][GameData.KEY_IS_CLEARED] = true
 	
@@ -83,6 +83,8 @@ func generate_main_path(depth: int) -> void:
 	# When the loop is ended, we change the last node to type finish
 	map_nodes_list[map_nodes_list.size()-1][GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_FINISH
 	finish_coords = map_nodes_list[map_nodes_list.size()-1][GameData.KEY_MAPNODE_POS] 
+	map_nodes_list[map_nodes_list.size()-1][GameData.KEY_IS_DISCOVERED] = true
+	GameData.finish_node_position = finish_coords
 
 
 func generate_branches(degrees) -> void:
@@ -271,6 +273,7 @@ func _store_node(
 		GameData.KEY_MAPNODETYPE: type,
 		GameData.KEY_MAPNODETYPE_PROMPT: null,
 		GameData.KEY_MAPNODETYPE_PROMPT_CLEARED: false,
+		GameData.KEY_IS_DISCOVERED: false,
 		GameData.KEY_IS_VISITED: false,
 		GameData.KEY_IS_CLEARED: false,
 		GameData.KEY_INCOMING_CONNECTIONS: [],

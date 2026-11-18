@@ -12,10 +12,13 @@ var default_zoom_level: float = zoom_level
 var position_before_drag
 var position_before_drag2
 
-
 func _ready():
 	SignalBus.pan_to.connect(pan_to)
-	global_position = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]
+	SignalBus.shake_camera.connect(shake_camera)
+	
+	if GameData.current[GameData.KEY_IS_NEW_GAME] == false:
+		global_position = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]
+	else: global_position = GameData.finish_node_position
 	
 	zoom = Vector2(zoom_level, zoom_level)
 	
@@ -94,11 +97,13 @@ func _set_limits(left_x: int, top_y: int, right_x: int, bottom_y: int) -> void:
 	
 #TODO: pan from endpoint
 
-func pan_to(end: Vector2) -> void:
+func pan_to(end: Vector2, duration: float = 0.3) -> void:
 	# Take in a starting point and an end point, tween between the two positions and disable input (?)
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "global_position", end, 0.3).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "global_position", end, duration).set_trans(Tween.TRANS_SINE)
 	clamp_position()
+	await tween.finished
+	SignalBus.pan_finished.emit()
 
 func clamp_position() -> void:
 	## https://www.reddit.com/r/godot/s/GUhogzAWzJ
@@ -133,3 +138,7 @@ func clamp_position() -> void:
 	#if project_width > screen_width:
 		#var new_zoom_level = screen_width/project_width
 		#set_zoom_level(new_zoom_level, global_position)
+
+func shake_camera() -> void:
+	print("Shaking camera")
+	# TODO: actually shake camera

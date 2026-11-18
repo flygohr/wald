@@ -7,7 +7,8 @@ func _ready() -> void:
 	SignalBus.traveled_to.connect(move_marker)
 	SignalBus.walking_distance_updated.connect(_set_walking_distance)
 	global_position = GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS]
-
+	
+	discover_nodes()
 
 func _draw() -> void:
 	draw_arc(Vector2.ZERO, current_walking_distance, 0, 360, 100, Color.WHITE, 3, false)
@@ -34,7 +35,7 @@ func move_marker(_from: int, to: int) -> void:
 	GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_VISITED] = true
 	
 	SignalBus.new_active_node_set.emit(to)
-	GameData.initiate_save_game_data()
+	discover_nodes()
 	queue_redraw()
 	# transition to local ONLY if new node
 	
@@ -56,3 +57,11 @@ func move_marker(_from: int, to: int) -> void:
 func _set_walking_distance() -> void:
 	current_walking_distance = GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] + 50
 	queue_redraw()
+
+func discover_nodes() -> void:
+	for node in GameData.current[GameData.KEY_MAP_NODES_DATA]:
+		if global_position.distance_to(node[GameData.KEY_MAPNODE_POS]) <= current_walking_distance:
+			node[GameData.KEY_IS_DISCOVERED] = true
+			
+	SignalBus.nodes_discovered.emit()
+	GameData.initiate_save_game_data()
