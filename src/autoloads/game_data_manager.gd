@@ -34,6 +34,8 @@ var is_debug: bool = true # Toggle debug mode with more buttons and stuff
 var camera_position: Vector2
 var finish_node_position: Vector2
 var node_selected: bool = false
+var is_inside_node: bool = false
+var is_inside_party_screen: bool = false
 
 # KEYS ---------------------------------------------------------------------------------------------
 # Strings to organize the data into a Dictionary and later into a JSON
@@ -46,6 +48,7 @@ const KEY_GAMES_PLAYED: String = "games played"
 # MAP DATA -----------------------------------------------------------------------------------------
 const KEY_MAP_NODES_DATA: String = "map nodes data"
 const KEY_MAP_CURRENT_NODE_INDEX: String = "current node index"
+const KEY_MAP_FINISH_NODE_INDEX: String = "finish node index"
 const KEY_CURRENT_WALKING_DISTANCE: String = "current walking distance"
 
 const KEY_TRAVELED_LINES_DATA: String = "traveled lines data"
@@ -120,7 +123,10 @@ const KEY_CURRENT_LOOT: String = "current loot"
 const KEY_CURRENT_DAY: String = "current day"
 
 # CHARACTER DEFINITIONS ----------------------------------------------------------------------------
-
+const KEY_SQUIRREL_IN_PARTY: String = "squirrel in party"
+const KEY_RAVEN_IN_PARTY: String = "raven in party"
+const KEY_RABBIT_IN_PARTY: String = "rabbit in party"
+const KEY_FOX_IN_PARTY: String = "fox in party"
 
 # DEFAULT GAME DATA --------------------------------------------------------------------------------
 # What to load into a new save
@@ -156,6 +162,7 @@ const DEFAULT_GAME_DATA: Dictionary = {
 		}
 	],
 	KEY_MAP_CURRENT_NODE_INDEX: 0,
+	KEY_MAP_FINISH_NODE_INDEX: 0,
 	KEY_CURRENT_WALKING_DISTANCE: SHORT_WALK_DISTANCE,
 	KEY_TRAVELED_LINES_DATA: [
 		{
@@ -176,7 +183,11 @@ const DEFAULT_GAME_DATA: Dictionary = {
 	KEY_CURRENT_SANITY: 100,
 	KEY_CURRENT_FOOD: 100,
 	KEY_CURRENT_KARMA: 100,
-	KEY_CURRENT_LOOT: 0
+	KEY_CURRENT_LOOT: 0,
+	KEY_SQUIRREL_IN_PARTY: false,
+	KEY_RAVEN_IN_PARTY: false,
+	KEY_RABBIT_IN_PARTY: false,
+	KEY_FOX_IN_PARTY: false
 }
 
 
@@ -184,8 +195,6 @@ const DEFAULT_GAME_DATA: Dictionary = {
 # Dictionary to load the current state of the game into, and to pass into SavesManager
 # Also polling this every time I need to know something
 var current: Dictionary = DEFAULT_GAME_DATA.duplicate_deep() # Defaults to base game data on load
-
-var is_inside_node: bool = false
 
 # STARTUP ------------------------------------------------------------------------------------------
 func _ready() -> void:

@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://g8tkftmb16b0"]
+
+[ext_resource type="PackedScene" uid="uid://dwnb7gxl8xwnf" path="res://src/scenes/02_game_UI/game_ui.tscn" id="1_le6vp"]
+[ext_resource type="Script" uid="uid://bq1blbom55vgy" path="res://src/scenes/06_characters_screen/characters_screen.gd" id="1_nygx7"]
+[ext_resource type="Texture2D" uid="uid://dmj8ikook07qo" path="res://assets/images/prototype/ae434bddf037fd9c28f91d42eecf8a18.jpg" id="2_aqtl5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cd8c5"]
+bg_color = Color(0.6, 0.6, 0.6, 0.1764706)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="CharactersScreen" type="Node2D" unique_id=1531363835]
+script = ExtResource("1_nygx7")
+
+[node name="CharactersUI" type="CanvasLayer" parent="." unique_id=1851261019]
+layer = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="CharactersUI" unique_id=1327208697]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharactersUI/MarginContainer" unique_id=1361983235]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CharacterContainer" type="PanelContainer" parent="CharactersUI/MarginContainer/HBoxContainer" unique_id=285336862]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharactersUI/MarginContainer/HBoxContainer/CharacterContainer" unique_id=426949901]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CharacterNameLabel" type="Label" parent="CharactersUI/MarginContainer/HBoxContainer/CharacterContainer/VBoxContainer" unique_id=1178984716]
+layout_mode = 2
+text = "RAT THIEF, AKA ME"
+horizontal_alignment = 1
+
+[node name="CharacterTextureRect" type="TextureRect" parent="CharactersUI/MarginContainer/HBoxContainer/CharacterContainer/VBoxContainer" unique_id=909979704]
+custom_maximum_size = Vector2(-1, 256)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_aqtl5")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="CharactersUI/MarginContainer/HBoxContainer/CharacterContainer/VBoxContainer" unique_id=244685381]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cd8c5")
+
+[node name="MarginContainer" type="MarginContainer" parent="CharactersUI/MarginContainer/HBoxContainer/CharacterContainer/VBoxContainer/Panel" unique_id=1583470970]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CharacterTextLabel" type="Label" parent="CharactersUI/MarginContainer/HBoxContainer/CharacterContainer/VBoxContainer/Panel/MarginContainer" unique_id=1285265318]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "It's not much, but it's enough to have survived until now. I have all I need to make it out there, but it won't be easy if I do it alone. 
+I don't have a way to traverse chasms and rapids, nor to travel long distances."
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharactersUI/MarginContainer/HBoxContainer" unique_id=1855072720]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1268880764]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RatButton" type="Button" parent="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1562991918]
+layout_mode = 2
+toggle_mode = true
+text = "RAT THIEF, AKA ME"
+
+[node name="SquirrelButton" type="Button" parent="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1676246590]
+layout_mode = 2
+toggle_mode = true
+text = "THE SQUIRREL BARD"
+
+[node name="RavenButton" type="Button" parent="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1179030278]
+layout_mode = 2
+toggle_mode = true
+text = "THE RAVEN RANGER"
+
+[node name="RabbitButton" type="Button" parent="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=765124038]
+layout_mode = 2
+toggle_mode = true
+text = "THE RABBIT STRAY"
+
+[node name="FoxButton" type="Button" parent="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1380921244]
+layout_mode = 2
+toggle_mode = true
+text = "THE FOX ROGUE"
+
+[node name="BetrayAction" type="VBoxContainer" parent="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=427812555]
+layout_mode = 2
+alignment = 2
+
+[node name="GameUI" parent="." unique_id=41148856 instance=ExtResource("1_le6vp")]
+
+[connection signal="toggled" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/RatButton" to="." method="_on_rat_button_toggled"]
+[connection signal="toggled" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/SquirrelButton" to="." method="_on_squirrel_button_toggled"]
+[connection signal="toggled" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/RavenButton" to="." method="_on_raven_button_toggled"]
+[connection signal="toggled" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/RabbitButton" to="." method="_on_rabbit_button_toggled"]
+[connection signal="toggled" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/FoxButton" to="." method="_on_fox_button_toggled"]

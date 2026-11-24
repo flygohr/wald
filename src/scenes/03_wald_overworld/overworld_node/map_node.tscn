@@ -19,7 +19,6 @@
 z_index = 3
 script = ExtResource("1_bpdgc")
 color = Color(0.7539839, 0.75398386, 0.75398386, 1)
-node_radius = 45
 dashed_line_scene = ExtResource("2_8vegd")
 navigator_scene = ExtResource("3_5vyqg")
 undiscovered_icon = ExtResource("4_25463")
@@ -33,7 +32,7 @@ end_icon = ExtResource("11_5x0or")
 
 [node name="ActiveMarker" type="Sprite2D" parent="." unique_id=1428250501]
 visible = false
-position = Vector2(0, -120)
+position = Vector2(0, -133)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_nvdxn")
 

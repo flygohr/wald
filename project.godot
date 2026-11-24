@@ -29,6 +29,7 @@ ScenesManager="*uid://dttnxbrn83jg5"
 Settings="*uid://cc1yqy62xbprh"
 PopupManager="*uid://b63w0p3ooheuj"
 Gameplay="*uid://djesw32a4pnyq"
+WaldProcessor="*uid://cinhkgkhfyj8e"
 
 [display]
 

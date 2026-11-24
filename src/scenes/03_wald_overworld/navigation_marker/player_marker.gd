@@ -33,8 +33,10 @@ func move_marker(_from: int, to: int) -> void:
 		
 	
 	GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_IS_VISITED] = true
+	GameData.current[GameData.KEY_MAP_NODES_DATA][to][GameData.KEY_MAPNODE_FORAGE] = true
 	
 	SignalBus.new_active_node_set.emit(to)
+	SignalBus.moved_around_the_map.emit()
 	queue_redraw()
 	# transition to local ONLY if new node
 	await tween.finished

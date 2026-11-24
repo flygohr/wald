@@ -22,23 +22,7 @@ func _ready() -> void:
 	feature_label.text = str(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODEFEATURE])
 	
 	if GameData.is_debug == true:
-		if GameData.is_inside_node == true:
-			show()
-			feature_description_label.mouse_filter = Control.MOUSE_FILTER_STOP
-			feature_label.mouse_filter = Control.MOUSE_FILTER_STOP
-			decrease_distance_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			decrease_sanity_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			decrease_food_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			decrease_karma_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			decrease_loot_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			block_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			increase_distance_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			increase_sanity_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			increase_food_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			increase_karma_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			increase_loot_button.mouse_filter = Control.MOUSE_FILTER_STOP
-			new_action_prompt_button.mouse_filter = Control.MOUSE_FILTER_STOP
-		elif GameData.is_inside_node == false:
+		if GameData.is_inside_node == false or GameData.is_inside_party_screen == true:
 			hide()
 			feature_description_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			feature_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -54,6 +38,22 @@ func _ready() -> void:
 			increase_karma_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			increase_loot_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			new_action_prompt_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		else:
+			show()
+			feature_description_label.mouse_filter = Control.MOUSE_FILTER_STOP
+			feature_label.mouse_filter = Control.MOUSE_FILTER_STOP
+			decrease_distance_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			decrease_sanity_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			decrease_food_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			decrease_karma_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			decrease_loot_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			block_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_distance_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_sanity_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_food_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_karma_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			increase_loot_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			new_action_prompt_button.mouse_filter = Control.MOUSE_FILTER_STOP
 
 func _on_clear_button_pressed() -> void:
 	print_debug("Node has been cleared")

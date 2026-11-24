@@ -7,7 +7,7 @@ class_name MapNode
 # if end, show finish arrow and offscreen indicator
 
 @export var color : Color
-@export var node_radius := 25
+@export var node_radius := 65
 @export var dashed_line_scene: PackedScene
 @export var navigator_scene: PackedScene
 
@@ -113,9 +113,12 @@ func _process(delta: float) -> void:
 
 	finish_radius = remap(sin(_time * TAU), -1.0, 1.0, node_radius+10, node_radius+30)
 	
-	walkable_marker.position.y = remap(sin(_time * TAU), -1.0, 1.0, node_radius+30, node_radius+10)-140
+	walkable_marker.position.y = remap(sin(_time * TAU), -1.0, 1.0, node_radius+30, node_radius+10)-185
 	
 	if GameData.node_selected == true and walkable_marker.visible:
+		walkable_marker.hide()
+		
+	if GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_IS_CLEARED] == false and GameData.current[GameData.KEY_MAP_NODES_DATA][index][GameData.KEY_IS_VISITED] == false:
 		walkable_marker.hide()
 		
 	_time += delta

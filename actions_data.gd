@@ -91,3 +91,72 @@ const RUINS_ACTION: Dictionary = {
 		KEY_RESULT_VALUE: 50}
 	]
 }
+
+const KEY_IS_NEUTRAL: String = "neutral"
+const KEY_TIMES_USED: String = "times used"
+const KEY_USAGE_LIMIT: String = "usage limit"
+const KEY_TEXT_SLIDES: String = "text slides"
+const KEY_TEXT_NEGATIVE: String = "negative option text"
+const KEY_TEXT_POSITIVE: String = "positive option text"
+const KEY_TEXT_NEUTRAL: String = "neutral option text"
+const KEY_NEGATIVE_RESULTS: String = "negative results"
+const KEY_POSITIVE_RESULTS: String = "positive results"
+const KEY_NEUTRAL_RESULTS: String = "neutral results"
+
+const PROMPT_TEMPLATE: Dictionary = {
+	KEY_IS_NEUTRAL: false,
+	KEY_TIMES_USED: 0,
+	KEY_USAGE_LIMIT: 1,
+	KEY_TEXT_SLIDES: [
+		"Slide 1",
+		"Slide 2",
+		"Slide 3"
+	],
+	KEY_TEXT_NEGATIVE: "Negative result",
+	KEY_TEXT_POSITIVE: "Positive result",
+	KEY_TEXT_NEUTRAL: "Neutral result",
+	KEY_NEGATIVE_RESULTS: [],
+	KEY_POSITIVE_RESULTS: [],
+	KEY_NEUTRAL_RESULTS: []
+}
+
+const TEMP_NEUTRAL_PROMPT: Dictionary = {
+	KEY_IS_NEUTRAL: true,
+	KEY_TIMES_USED: 0,
+	KEY_USAGE_LIMIT: 0, # if 0, unlimited usages
+	KEY_TEXT_SLIDES: [
+		"I was walking the last stretch to this clearing, when I stumbled into something hidden in the tall ferns.",
+		"Nothing alive, and that's a good thing.\n\nIt was just a bag, with some hard bread that refused to rot."
+	],
+	KEY_TEXT_NEGATIVE: "Negative result",
+	KEY_TEXT_POSITIVE: "Positive result",
+	KEY_TEXT_NEUTRAL: "Continue",
+	KEY_NEGATIVE_RESULTS: null,
+	KEY_POSITIVE_RESULTS: null,
+	KEY_NEUTRAL_RESULTS: [
+		{KEY_RESULT_TYPE: KEY_RESULT_FOOD,
+		KEY_RESULT_VALUE: 10}
+	]
+}
+
+# Basically, during map gen, I assign prompts to the various nodes
+# Depending on node depth and degree, I pick from a different difficulty category
+# Each prompt has a max number of usages to not become repetitive, and most are unique
+# Some prompts are neutral, meaning they just tell a story and have one outcome, but some present a choice
+# Negative and positive are just generalized labels, some choices can have nuance and be both good or bad
+# The picked prompt gets stored in the main map data under each node, in the GameData.KEY_MAPNODE_PROMPT or smth
+
+const EASY_PROMPTS: Array = [
+	PROMPT_TEMPLATE,
+	PROMPT_TEMPLATE
+]
+
+const INTERMEDIATE_PROMPTS: Array = [
+	PROMPT_TEMPLATE,
+	PROMPT_TEMPLATE
+]
+
+const HARD_PROMPTS: Array = [
+	PROMPT_TEMPLATE,
+	PROMPT_TEMPLATE
+]

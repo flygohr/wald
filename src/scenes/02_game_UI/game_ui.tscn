@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8rldvy76gfc5" path="res://src/scenes/02_game_UI/game_ui.gd" id="1_acq2a"]
 [ext_resource type="Texture2D" uid="uid://daetffhlfoqab" path="res://assets/images/icons/color/Wald_Assets_SANITY.png" id="3_r1ag7"]
+[ext_resource type="Shader" uid="uid://cxbfrn0eq50da" path="res://src/scenes/02_game_UI/vignette.gdshader" id="3_r6q2u"]
 [ext_resource type="Texture2D" uid="uid://cygxcsmslwt4" path="res://assets/images/icons/color/Wald_Assets_FOOD.png" id="4_5k6mt"]
 [ext_resource type="PackedScene" uid="uid://c7v0d741qtx14" path="res://src/scenes/02_game_UI/action_prompt/action_prompt.tscn" id="4_c526s"]
 [ext_resource type="Texture2D" uid="uid://tq0ocoi16tmc" path="res://assets/images/icons/color/Wald_Assets_KARMA.png" id="5_fdgrs"]
@@ -14,6 +15,12 @@
 [ext_resource type="Material" uid="uid://dvvtyuvd25clm" path="res://white_outline.tres" id="8_oga01"]
 [ext_resource type="Texture2D" uid="uid://tyqbnnha3vbb" path="res://assets/images/icons/color/Wald_Assets_PARTY.png" id="8_qoc7j"]
 [ext_resource type="Texture2D" uid="uid://hqafnsb2a3qe" path="res://assets/images/icons/color/Wald_Assets_LOOT.png" id="8_r6q2u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cd8c5"]
+shader = ExtResource("3_r6q2u")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.31
+shader_parameter/outer_radius = 1.82
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cd8c5"]
 content_margin_left = 8.0
@@ -29,6 +36,15 @@ corner_radius_bottom_left = 5
 [node name="GameUI" type="CanvasLayer" unique_id=41148856]
 script = ExtResource("1_acq2a")
 action_prompt_scene = ExtResource("4_c526s")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=865714244]
+material = SubResource("ShaderMaterial_cd8c5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1999416856]
 anchors_preset = 15
@@ -222,6 +238,24 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0"
 
+[node name="CharactersScreenText" type="Panel" parent="MarginContainer/VBoxContainer/LootBar/TopLeft" unique_id=925498691]
+custom_maximum_size = Vector2(-1, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cd8c5")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LootBar/TopLeft/CharactersScreenText" unique_id=472070613]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 646.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 14
+text = "Having company on this journey will help me keep my sanity in check...
+But I'd have to split the loot with my new friends."
+autowrap_mode = 2
+
 [node name="Bottom" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1473154977]
 layout_mode = 2
 size_flags_vertical = 3
@@ -298,5 +332,6 @@ text = "REST
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Top/TopRight/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/OverworldButton" to="." method="_on_overworld_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/GoInsideNodeButton" to="." method="_on_go_inside_node_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/PartyButton" to="." method="_on_party_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/ForageButton" to="." method="_on_forage_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/RestButton" to="." method="_on_rest_button_pressed"]

@@ -10,6 +10,7 @@ const KEY_OVERWORLD_SCREEN: String = "overworld screen"
 const KEY_INSIDE_NODE_SCREEN: String = "inside node screen"
 const KEY_SETTINGS_SCREEN: String = "settings screen"
 const KEY_GAME_END_SCREEN: String = "game end screen"
+const KEY_PARTY_SCREEN: String = "party screen"
 
 const SCENE_PATHS: Dictionary = {
 	KEY_TITLE_SCREEN: "uid://q3362xrshrsu",
@@ -17,7 +18,8 @@ const SCENE_PATHS: Dictionary = {
 	KEY_OVERWORLD_SCREEN: "uid://br733vfr7guw7",
 	KEY_INSIDE_NODE_SCREEN: "uid://qu2peyfpt1pk",
 	KEY_SETTINGS_SCREEN: "uid://cc1yqy62xbprh",
-	KEY_GAME_END_SCREEN: "uid://sm77l8w4p4bi"
+	KEY_GAME_END_SCREEN: "uid://sm77l8w4p4bi",
+	KEY_PARTY_SCREEN: "uid://g8tkftmb16b0"
 }
 
 const LOADING_SCREEN: PackedScene = preload(SCENE_PATHS[KEY_LOADING_SCREEN])

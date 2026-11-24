@@ -35,6 +35,7 @@ func generate_map() -> void:
 	generate_branches(branching_degrees)
 	_calculate_boundaries()
 	populate_map(difficulty)
+	populate_prompts()
 	GameData.current[GameData.KEY_MAP_NODES_DATA] = map_nodes_list
 	GameData.initiate_save_game_data()
 	SignalBus.new_game_started.emit()
@@ -85,6 +86,7 @@ func generate_main_path(depth: int) -> void:
 	finish_coords = map_nodes_list[map_nodes_list.size()-1][GameData.KEY_MAPNODE_POS] 
 	map_nodes_list[map_nodes_list.size()-1][GameData.KEY_IS_DISCOVERED] = true
 	GameData.finish_node_position = finish_coords
+	GameData.current[GameData.KEY_MAP_FINISH_NODE_INDEX] = map_nodes_list.size()-1
 
 
 func generate_branches(degrees) -> void:
@@ -222,6 +224,11 @@ func populate_map(_diff: int) -> void:
 	for node in map_nodes_list:
 		if node[GameData.KEY_MAPNODETYPE] == GameData.KEY_MAPNODETYPE_DEFAULT:
 			node[GameData.KEY_MAPNODETYPE] = GameData.KEY_MAPNODETYPE_CLEARING
+
+
+func populate_prompts() -> void:
+	for node in map_nodes_list:
+		node[GameData.KEY_MAPNODE_PROMPT] = ActionsData.TEMP_NEUTRAL_PROMPT.duplicate_deep()
 
 func _pick_random_distance() -> int:
 	return [GameData.SHORT_WALK_DISTANCE, GameData.MEDIUM_WALK_DISTANCE, GameData.LONG_WALK_DISTANCE].pick_random()

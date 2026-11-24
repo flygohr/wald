@@ -16,6 +16,7 @@ extends CanvasLayer
 @onready var karma_label: Label = $MarginContainer/VBoxContainer/Top/TopLeft/StatsContainer/HBoxContainer/HBoxContainer3/MarginContainer/KarmaLabel
 @onready var loot_label: Label = $MarginContainer/VBoxContainer/LootBar/TopLeft/LootStatContainer/HBoxContainer/MarginContainer/LootLabel
 @onready var days_label: Label = $MarginContainer/VBoxContainer/Top/TopLeft/DaysStatContainer/HBoxContainer/MarginContainer/DaysLabel
+@onready var characters_screen_text: Panel = $MarginContainer/VBoxContainer/LootBar/TopLeft/CharactersScreenText
 
 @onready var forage_button: Button = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/ForageButton
 @onready var rest_button: Button = $MarginContainer/VBoxContainer/Bottom/ActionButtonsContainer/BasicActions/BasicActionsContainer/RestButton
@@ -24,14 +25,24 @@ var node_data: Dictionary
 
 func _ready() -> void:
 	
-	if GameData.is_inside_node == true:
+	if GameData.is_inside_party_screen == true:
+		overworld_button.show()
+		go_inside_node_button.show()
+		party_button.hide()
+		action_buttons_container.hide()
+		characters_screen_text.show()
+	elif GameData.is_inside_node == true:
 		overworld_button.show()
 		basic_actions.show()
 		go_inside_node_button.hide()
+		action_buttons_container.show()
+		characters_screen_text.hide()
 	elif GameData.is_inside_node == false:
 		overworld_button.hide()
 		basic_actions.hide()
 		go_inside_node_button.show()
+		action_buttons_container.show()
+		characters_screen_text.hide()
 		
 	
 	SignalBus.sanity_updated.connect(update_sanity)
@@ -57,7 +68,7 @@ func _ready() -> void:
 		
 	if node_data[GameData.KEY_MAPNODETYPE] == GameData.KEY_MAPNODETYPE_START and GameData.is_inside_node == true:
 		basic_actions.hide()
-		PopupManager.show_popup_dialog("This is my odl campsite.\n\nThis place already gave me everything it had.\n\nIt's time I get moving.", "Go", true)
+		PopupManager.show_popup_dialog("This is my old campsite.\n\nThis place already gave me everything it had.\n\nIt's time I get moving.", "Go", true)
 		await PopupManager.next_button_pressed
 		GameData.is_inside_node = false
 		ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_OVERWORLD_SCREEN])
@@ -104,12 +115,14 @@ func _on_menu_button_pressed() -> void:
 
 
 func _on_overworld_button_pressed() -> void:
+	GameData.is_inside_party_screen = false
 	GameData.is_inside_node = false
 	GameData.initiate_save_game_data()
 	ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_OVERWORLD_SCREEN])
 
 
 func _on_go_inside_node_button_pressed() -> void:
+	GameData.is_inside_party_screen = false
 	GameData.is_inside_node = true
 	GameData.initiate_save_game_data()
 	ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_INSIDE_NODE_SCREEN])
@@ -160,3 +173,9 @@ func _on_rest_button_pressed() -> void:
 	# TODO: spawn random event, restore forage
 	node_data[GameData.KEY_MAPNODE_FORAGE] = true
 	forage_button.disabled = false
+
+
+func _on_party_button_pressed() -> void:
+	GameData.is_inside_party_screen = true
+	GameData.initiate_save_game_data()
+	ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_PARTY_SCREEN])

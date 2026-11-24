@@ -22,6 +22,8 @@ signal moved_around_the_map
 signal new_active_node_set(index: int)
 signal walking_distance_updated
 
+signal fade_out_prompt(prompt_name: String)
+
 # STATS SIGNALS ----------------------------------------------------------------
 signal sanity_updated(value: int)
 signal food_updated(value: int)
