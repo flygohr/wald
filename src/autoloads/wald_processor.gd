@@ -44,9 +44,18 @@ func process_results(costs: Array, results: Array, prompt_name: String) -> void:
 				_process_stat(ActionsData.KEY_RESULT_FOOD, result[ActionsData.KEY_RESULT_VALUE])
 			ActionsData.KEY_RESULT_KARMA:
 				_process_stat(ActionsData.KEY_RESULT_KARMA, result[ActionsData.KEY_RESULT_VALUE])
+			ActionsData.KEY_RESULT_CHARACTER:
+				_process_character(result[ActionsData.KEY_RESULT_VALUE])
 				
 	SignalBus.fade_out_prompt.emit(prompt_name)
 
+func _process_character(character: String) -> void:
+	print("Processing character ", character)
+	match character:
+		ActionsData.KEY_RABBIT:
+			print("Rabbit joined the party")
+			GameData.current[GameData.KEY_RABBIT_IN_PARTY] = true
+			GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] = GameData.LONG_WALK_DISTANCE
 
 func _process_stat(resource: String, amount: int) -> void:
 	match resource:
@@ -63,17 +72,67 @@ func _process_stat(resource: String, amount: int) -> void:
 			GameData.current[GameData.KEY_CURRENT_FOOD] += amount
 			SignalBus.food_updated.emit(GameData.current[GameData.KEY_CURRENT_FOOD])
 		ActionsData.KEY_RESULT_KARMA:
+			print("Karma: ", amount)
 			GameData.current[GameData.KEY_CURRENT_KARMA] += amount
 			SignalBus.karma_updated.emit(GameData.current[GameData.KEY_CURRENT_KARMA])
 	
 	GameData.initiate_save_game_data()
 
 
-func _execute_prompt(data: String) -> void:
-	GameData.current[GameData.KEY_CURRENT_DAY] += 1
-	SignalBus.days_updated.emit(GameData.current[GameData.KEY_CURRENT_DAY])
-	PopupManager.show_popup_dialog(data, "Continue", true)
-	GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODETYPE_PROMPT_CLEARED] = true
+func _execute_prompt(data: Dictionary) -> void:
+	#const PROMPT_TEMPLATE: Dictionary = {
+		#KEY_IS_NEUTRAL: false,
+		#KEY_TIMES_USED: 0,
+		#KEY_USAGE_LIMIT: 1,
+		#KEY_TEXT_SLIDES: [
+			#"Slide 1",
+			#"Slide 2",
+			#"Slide 3"
+		#],
+		#KEY_TEXT_NEGATIVE: "Negative result",
+		#KEY_TEXT_POSITIVE: "Positive result",
+		#KEY_TEXT_NEUTRAL: "Neutral result",
+		#KEY_NEGATIVE_RESULTS: [],
+		#KEY_POSITIVE_RESULTS: [],
+		#KEY_NEUTRAL_RESULTS: []
+	#}
+	
+	# if neutral, proceed normally
+	if data[ActionsData.KEY_IS_NEUTRAL] == true:
+		for slide in data[ActionsData.KEY_TEXT_SLIDES]:
+			PopupManager.show_popup_dialog(slide, data[ActionsData.KEY_TEXT_NEUTRAL], true)
+			await PopupManager.next_button_pressed
+		process_prompt([], data[ActionsData.KEY_NEUTRAL_RESULTS])
+	else:
+		var mix_up_answers: float = randf()
+		var result: bool
+		
+		for i in range(data[ActionsData.KEY_TEXT_SLIDES].size()):
+			if i < data[ActionsData.KEY_TEXT_SLIDES].size()-1:
+				PopupManager.show_popup_dialog(data[ActionsData.KEY_TEXT_SLIDES][i], "Next", true)
+				await PopupManager.next_button_pressed
+			else:
+				if mix_up_answers < 0.5:
+					PopupManager.show_popup_confirmation(data[ActionsData.KEY_TEXT_SLIDES][i], data[ActionsData.KEY_TEXT_NEGATIVE], data[ActionsData.KEY_TEXT_POSITIVE], true)
+				else:
+					PopupManager.show_popup_confirmation(data[ActionsData.KEY_TEXT_SLIDES][i], data[ActionsData.KEY_TEXT_POSITIVE], data[ActionsData.KEY_TEXT_NEGATIVE], true)
+
+		# TODO: fix mix up
+
+		result = await PopupManager.popup_results
+		if mix_up_answers >= 0.5 and result == true: result = false # flip on answer mix
+		
+		if result == true:
+			process_prompt([], data[ActionsData.KEY_POSITIVE_RESULTS])
+		else:
+			process_prompt([], data[ActionsData.KEY_NEGATIVE_RESULTS])
+			
+			
+	
+	
+		
+	# if not neutral, show options, wait, process one of the outcomes
+	
 	GameData.initiate_save_game_data()
 		
 

@@ -40,7 +40,23 @@ var fox_recruited_text: String = ""
 
 func _ready() -> void:
 	rat_button.button_pressed = true
-
+	squirrel_button.text = squirrel_undiscovered_name
+	raven_button.text = raven_undiscovered_name
+	rabbit_button.text = rabbit_undiscovered_name
+	fox_button.text = fox_undiscovered_name
+	
+	if GameData.current[GameData.KEY_SQUIRREL_IN_PARTY]:
+		squirrel_button.text = squirrel_recruited_name
+		
+	if GameData.current[GameData.KEY_RAVEN_IN_PARTY]:
+		raven_button.text = raven_recruited_name
+	
+	if GameData.current[GameData.KEY_RABBIT_IN_PARTY]:
+		rabbit_button.text = rabbit_recruited_name
+	
+	if GameData.current[GameData.KEY_FOX_IN_PARTY]:
+		fox_button.text = fox_recruited_name
+		
 
 func _on_rat_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:

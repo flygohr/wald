@@ -43,6 +43,11 @@ const KEY_RESULT_KARMA: String = "karma result"
 const KEY_RESULT_TRAVEL: String = "travel result"
 const KEY_RESULT_LOOT: String = "loot result"
 const KEY_RESULT_DAYS: String = "days result"
+const KEY_RESULT_CHARACTER: String = "character result"
+const KEY_RABBIT: String = "rabbit"
+const KEY_RAVEN: String = "raven"
+const KEY_SQUIRREL: String = "squirrel"
+const KEY_FOX: String = "fox"
 
 const KEY_RESULT_VALUE: String = "result value"
 
@@ -138,6 +143,60 @@ const TEMP_NEUTRAL_PROMPT: Dictionary = {
 		KEY_RESULT_VALUE: 10}
 	]
 }
+
+const RABBIT_NEGATIVE_OUTCOME: Dictionary = {
+	KEY_IS_NEUTRAL: true,
+	KEY_TEXT_SLIDES: [
+		"The Rabbit jumps away with scorn."],
+	KEY_TEXT_NEUTRAL: "Continue",
+	KEY_NEUTRAL_RESULTS: [
+		{KEY_RESULT_TYPE: KEY_RESULT_KARMA,
+		KEY_RESULT_VALUE: -30}
+	]
+}
+
+const RABBIT_POSITIVE_OUTCOME: Dictionary = {
+	KEY_IS_NEUTRAL: true,
+	KEY_TEXT_SLIDES: [
+		"The rabbit joins my party. I can travel longer distances now."],
+	KEY_TEXT_NEUTRAL: "Continue",
+	KEY_NEUTRAL_RESULTS: [
+		{KEY_RESULT_TYPE: KEY_RESULT_KARMA,
+		KEY_RESULT_VALUE: 30},
+		{KEY_RESULT_TYPE: KEY_RESULT_CHARACTER,
+		KEY_RESULT_VALUE: KEY_RABBIT}]
+}
+
+const RABBIT_ENCOUNTER_PROMPT: Dictionary = {
+	KEY_IS_NEUTRAL: false,
+	KEY_TEXT_SLIDES: [
+		"I was walking the last stretch to this clearing, when I stumbled into something hidden in the tall ferns.",
+		"Nothing alive, and that's a good thing.\n\nIt was just a bag, with some hard bread that refused to rot."
+	],
+	KEY_TEXT_NEGATIVE: "Put off the Rabbit",
+	KEY_TEXT_POSITIVE: "Invite the Rabbit",
+	KEY_NEGATIVE_RESULTS: [
+		{KEY_RESULT_TYPE: KEY_RESULT_PROMPT,
+		KEY_RESULT_VALUE: RABBIT_NEGATIVE_OUTCOME}
+	],
+	KEY_POSITIVE_RESULTS: [
+		{KEY_RESULT_TYPE: KEY_RESULT_PROMPT,
+		KEY_RESULT_VALUE: RABBIT_POSITIVE_OUTCOME}
+	]
+}
+
+const RABBIT_ACTION: Dictionary = {
+	KEY_NAME: "A Rabbit Stray",
+	KEY_ICON: PROMPT_ICONS[ICON_RUINS],
+	KEY_COSTS: [],
+	KEY_BUTTON_TEXT: "Meet",
+	KEY_RESULT: [
+		{KEY_RESULT_TYPE: KEY_RESULT_PROMPT,
+		KEY_RESULT_VALUE: RABBIT_ENCOUNTER_PROMPT}
+	]
+}
+
+# TODO: basically, I need to make actions generate prompts. prompts can be standalone, but this means I need to edit the ruins prompt and the parser, not enough brain rn
 
 # Basically, during map gen, I assign prompts to the various nodes
 # Depending on node depth and degree, I pick from a different difficulty category

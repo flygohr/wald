@@ -27,8 +27,6 @@ func show_popup_confirmation(popup_text: String, no_button_text: String = "No", 
 	
 	days_container.visible = show_days
 	days_label.text = str("Day ", GameData.current[GameData.KEY_CURRENT_DAY])
-	if show_days:
-		print("Change style here")
 	
 	popup.show()
 	popup_text_label.text = popup_text
@@ -42,8 +40,6 @@ func show_popup_dialog(popup_text: String, next_button_text: String = "Next", sh
 	
 	days_container.visible = show_days
 	days_label.text = str("Day ", GameData.current[GameData.KEY_CURRENT_DAY])
-	if show_days:
-		print("Change style here")
 	
 	popup.show()
 	popup_text_label.text = popup_text
@@ -51,8 +47,8 @@ func show_popup_dialog(popup_text: String, next_button_text: String = "Next", sh
 
 func _on_no_button_pressed() -> void:
 	popup.hide()
-	no_button_pressed.emit(false)
-	popup_results.emit()
+	no_button_pressed.emit()
+	popup_results.emit(false)
 
 func _on_yes_button_pressed() -> void:
 	popup.hide()

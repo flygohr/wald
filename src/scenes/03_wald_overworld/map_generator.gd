@@ -156,7 +156,7 @@ func populate_map(_diff: int) -> void:
 	encounter_data[ActionsData.KEY_BUTTON_TEXT] = "Encounter"
 	encounter_data[ActionsData.KEY_NAME] = "Stray Rabbit"
 	
-	map_nodes_list[random_long_walker][GameData.KEY_MAPNODEFEATURE_DATA] = encounter_data
+	map_nodes_list[random_long_walker][GameData.KEY_MAPNODEFEATURE_PROMPT] = ActionsData.RABBIT_ACTION
 	
 	# TODO: populate different features
 	# the map node feature determines one prompt
