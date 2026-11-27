@@ -34,7 +34,7 @@ func _ready() -> void:
 	
 
 	var trees_amt: int = trees_amt_x * trees_amt_y
-	for i in range(trees_amt): #FIXME: this shit is not working out a useful number
+	for i in range(trees_amt): 
 		var tree: TreeSprite = tree_scene.instantiate()
 		var tree_x = snapped(rng.randi_range(top_left_corner.x-(816/2), bottom_right_corner.x+(816/2)), trees_spacing)
 		var tree_y = snapped(rng.randi_range(top_left_corner.y-(576/2), bottom_right_corner.y+(576/2)), trees_spacing)

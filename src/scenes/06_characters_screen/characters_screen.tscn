@@ -117,6 +117,11 @@ text = "THE FOX ROGUE"
 layout_mode = 2
 alignment = 2
 
+[node name="BetrayRabbit" type="Button" parent="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/BetrayAction" unique_id=2088255659]
+visible = false
+layout_mode = 2
+text = "BETRAY"
+
 [node name="GameUI" parent="." unique_id=41148856 instance=ExtResource("1_le6vp")]
 
 [connection signal="toggled" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/RatButton" to="." method="_on_rat_button_toggled"]
@@ -124,3 +129,4 @@ alignment = 2
 [connection signal="toggled" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/RavenButton" to="." method="_on_raven_button_toggled"]
 [connection signal="toggled" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/RabbitButton" to="." method="_on_rabbit_button_toggled"]
 [connection signal="toggled" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/FoxButton" to="." method="_on_fox_button_toggled"]
+[connection signal="pressed" from="CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/BetrayAction/BetrayRabbit" to="." method="_on_betray_rabbit_pressed"]

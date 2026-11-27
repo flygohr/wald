@@ -10,6 +10,9 @@ extends Node2D
 @onready var character_texture_rect: TextureRect = $CharactersUI/MarginContainer/HBoxContainer/CharacterContainer/VBoxContainer/CharacterTextureRect
 @onready var character_text_label: Label = $CharactersUI/MarginContainer/HBoxContainer/CharacterContainer/VBoxContainer/Panel/MarginContainer/CharacterTextLabel
 
+@onready var betray_rabbit: Button = $CharactersUI/MarginContainer/HBoxContainer/VBoxContainer/BetrayAction/BetrayRabbit
+
+
 var rat_name: String = "RAT THIEF, AKA ME"
 var rat_image: Texture2D = preload("uid://dmj8ikook07qo")
 var rat_text: String = "It's not much, but it's enough to have survived until now. I have all I need to make it out there, but it won't be easy if I do it alone.\nI don't have a way to traverse chasms and rapids, nor to travel long distances."
@@ -115,10 +118,12 @@ func _on_rabbit_button_toggled(toggled_on: bool) -> void:
 			character_name_label.text = rabbit_recruited_name
 			character_text_label.text = rabbit_recruited_text
 			character_texture_rect.modulate = Color(1.0, 1.0, 1.0, 1.0)
+			betray_rabbit.show()
 		else:
 			character_name_label.text = rabbit_undiscovered_name
 			character_text_label.text = rabbit_undiscovered_text
 			character_texture_rect.modulate = Color(0, 0, 0, 1)
+			betray_rabbit.hide()
 			
 
 
@@ -137,3 +142,8 @@ func _on_fox_button_toggled(toggled_on: bool) -> void:
 			character_name_label.text = fox_undiscovered_name
 			character_text_label.text = fox_undiscovered_text
 			character_texture_rect.modulate = Color(0, 0, 0, 1)
+
+
+func _on_betray_rabbit_pressed() -> void:
+	pass
+	# TODO: invoke rabbit prompt here

@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-#TODO: tweak UI depending on current scene, if wald or local
 @onready var overworld_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/OverworldButton
 @onready var go_inside_node_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/GoInsideNodeButton
 @onready var party_button: TextureButton = $MarginContainer/VBoxContainer/Bottom/LeftButtonsContainer/PartyButton
@@ -128,7 +127,7 @@ func _on_go_inside_node_button_pressed() -> void:
 	ScenesManager.load_scene(ScenesManager.SCENE_PATHS[ScenesManager.KEY_INSIDE_NODE_SCREEN])
 
 
-# TODO: update color of boxes to red when too low or bad
+# TODO: update color of stat boxes to red when too low or bad
 
 func update_sanity(value: int) -> void:
 	sanity_label.text = str(value)

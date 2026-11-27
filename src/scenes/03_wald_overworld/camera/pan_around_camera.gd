@@ -95,8 +95,6 @@ func _set_limits(left_x: int, top_y: int, right_x: int, bottom_y: int) -> void:
 	
 	clamp_position()
 	
-#TODO: pan from endpoint
-
 func pan_to(end: Vector2, duration: float = 0.3) -> void:
 	# Take in a starting point and an end point, tween between the two positions and disable input (?)
 	var tween = get_tree().create_tween()

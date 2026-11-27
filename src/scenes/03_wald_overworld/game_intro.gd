@@ -37,5 +37,3 @@ func show_intro() -> void:
 	GameData.current[GameData.KEY_IS_NEW_GAME] = false
 	GameData.initiate_save_game_data()
 	
-	# TODO: start tutorial here
-	

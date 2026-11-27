@@ -50,12 +50,17 @@ func process_results(costs: Array, results: Array, prompt_name: String) -> void:
 	SignalBus.fade_out_prompt.emit(prompt_name)
 
 func _process_character(character: String) -> void:
-	print("Processing character ", character)
 	match character:
 		ActionsData.KEY_RABBIT:
-			print("Rabbit joined the party")
-			GameData.current[GameData.KEY_RABBIT_IN_PARTY] = true
-			GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] = GameData.LONG_WALK_DISTANCE
+			if GameData.current[GameData.KEY_RABBIT_IN_PARTY] == true:
+				GameData.current[GameData.KEY_RABBIT_IN_PARTY] = false
+				if GameData.current[GameData.KEY_RAVEN_IN_PARTY] == false:
+					GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] = GameData.SHORT_WALK_DISTANCE
+				else:
+					GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] = GameData.MEDIUM_WALK_DISTANCE
+			else:
+				GameData.current[GameData.KEY_RABBIT_IN_PARTY] = true
+				GameData.current[GameData.KEY_CURRENT_WALKING_DISTANCE] = GameData.LONG_WALK_DISTANCE
 
 func _process_stat(resource: String, amount: int) -> void:
 	match resource:
@@ -72,7 +77,6 @@ func _process_stat(resource: String, amount: int) -> void:
 			GameData.current[GameData.KEY_CURRENT_FOOD] += amount
 			SignalBus.food_updated.emit(GameData.current[GameData.KEY_CURRENT_FOOD])
 		ActionsData.KEY_RESULT_KARMA:
-			print("Karma: ", amount)
 			GameData.current[GameData.KEY_CURRENT_KARMA] += amount
 			SignalBus.karma_updated.emit(GameData.current[GameData.KEY_CURRENT_KARMA])
 	
@@ -120,17 +124,14 @@ func _execute_prompt(data: Dictionary) -> void:
 		# TODO: fix mix up
 
 		result = await PopupManager.popup_results
-		if mix_up_answers >= 0.5 and result == true: result = false # flip on answer mix
+		if mix_up_answers >= 0.5 and result == false: result = true # flip on answer mix
 		
 		if result == true:
 			process_prompt([], data[ActionsData.KEY_POSITIVE_RESULTS])
 		else:
 			process_prompt([], data[ActionsData.KEY_NEGATIVE_RESULTS])
 			
-			
-	
-	
-		
+
 	# if not neutral, show options, wait, process one of the outcomes
 	
 	GameData.initiate_save_game_data()

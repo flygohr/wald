@@ -5,7 +5,7 @@ extends Node
 
 
 # MAIN VARIABLES -----------------------------------------------------------------------------------
-# TODO: Easy for the jam. Later, define difficulty options and relative parameters.
+# Easy for the jam. Later, define difficulty options and relative parameters.
 @export var map_depth: int = 10
 @export var branching_degrees: int = 3
 @export var branching_probability := 0.6
@@ -158,7 +158,6 @@ func populate_map(_diff: int) -> void:
 	
 	map_nodes_list[random_long_walker][GameData.KEY_MAPNODEFEATURE_PROMPT] = ActionsData.RABBIT_ACTION
 	
-	# TODO: populate different features
 	# the map node feature determines one prompt
 	# the adventure prompt could display one additional prompt
 	# I need to store / disable action prompts as needed depending on each node

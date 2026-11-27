@@ -56,12 +56,10 @@ func _ready() -> void:
 			new_action_prompt_button.mouse_filter = Control.MOUSE_FILTER_STOP
 
 func _on_clear_button_pressed() -> void:
-	print_debug("Node has been cleared")
 	Gameplay.update_node_status(GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX], true)
 
 
 func _on_reset_button_pressed() -> void:
-	print_debug("Node has been blocked")
 	Gameplay.update_node_status(GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX], false)
 
 
@@ -82,7 +80,6 @@ func _on_decrease_distance_button_pressed() -> void:
 		2:
 			Gameplay.update_walking_distance(GameData.MEDIUM_WALK_DISTANCE)
 			
-	print_debug("Decreasing walking distance")
 
 
 func _on_increase_distance_button_pressed() -> void:
@@ -102,7 +99,6 @@ func _on_increase_distance_button_pressed() -> void:
 		2:
 			pass
 			
-	print_debug("Increasing walking distance")
 
 
 func _on_decrease_sanity_button_pressed() -> void:

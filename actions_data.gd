@@ -12,7 +12,9 @@ const WALD_ASSETS_KARMA = preload("uid://tq0ocoi16tmc")
 const WALD_ASSETS_LOOT = preload("uid://hqafnsb2a3qe")
 const WALD_ASSETS_SANITY = preload("uid://daetffhlfoqab")
 const WALD_ASSETS_MAP = preload("uid://crsa6vpoopib0")
-const WALD_ASSETS_RUINS = preload("uid://dy1fxx704oh5m") # TODO: need low res actions
+const WALD_ASSETS_RUINS = preload("uid://dy1fxx704oh5m") 
+
+# TODO: need lower res icons for locations, characters, and features
 
 const PROMPT_ICONS: Array = [
 	WALD_ASSETS_SANITY,
@@ -79,25 +81,8 @@ const DEBUG_ACTION: Dictionary = {
 	]
 }
 
-const RUINS_ACTION: Dictionary = {
-	KEY_NAME: "Ominous ruins",
-	KEY_ICON: PROMPT_ICONS[ICON_RUINS],
-	KEY_COSTS: [
-		{KEY_COST_ICON: PROMPT_ICONS[ICON_FOOD],
-		KEY_COST_VALUE: 10},
-		{KEY_COST_ICON: PROMPT_ICONS[ICON_KARMA],
-		KEY_COST_VALUE: 10}
-	],
-	KEY_BUTTON_TEXT: "Explore",
-	KEY_RESULT: [
-		{KEY_RESULT_TYPE: KEY_RESULT_PROMPT,
-		KEY_RESULT_VALUE: "Exploration text"},
-		{KEY_RESULT_TYPE: KEY_RESULT_LOOT,
-		KEY_RESULT_VALUE: 50}
-	]
-}
-
 const KEY_IS_NEUTRAL: String = "neutral"
+const KEY_SCRAMBLE_ANSWERS: String = "scramble answers"
 const KEY_TIMES_USED: String = "times used"
 const KEY_USAGE_LIMIT: String = "usage limit"
 const KEY_TEXT_SLIDES: String = "text slides"
@@ -110,6 +95,7 @@ const KEY_NEUTRAL_RESULTS: String = "neutral results"
 
 const PROMPT_TEMPLATE: Dictionary = {
 	KEY_IS_NEUTRAL: false,
+	KEY_SCRAMBLE_ANSWERS: false,
 	KEY_TIMES_USED: 0,
 	KEY_USAGE_LIMIT: 1,
 	KEY_TEXT_SLIDES: [
@@ -127,6 +113,7 @@ const PROMPT_TEMPLATE: Dictionary = {
 
 const TEMP_NEUTRAL_PROMPT: Dictionary = {
 	KEY_IS_NEUTRAL: true,
+	KEY_SCRAMBLE_ANSWERS: false,
 	KEY_TIMES_USED: 0,
 	KEY_USAGE_LIMIT: 0, # if 0, unlimited usages
 	KEY_TEXT_SLIDES: [
@@ -169,6 +156,7 @@ const RABBIT_POSITIVE_OUTCOME: Dictionary = {
 
 const RABBIT_ENCOUNTER_PROMPT: Dictionary = {
 	KEY_IS_NEUTRAL: false,
+	KEY_SCRAMBLE_ANSWERS: true,
 	KEY_TEXT_SLIDES: [
 		"I was walking the last stretch to this clearing, when I stumbled into something hidden in the tall ferns.",
 		"Nothing alive, and that's a good thing.\n\nIt was just a bag, with some hard bread that refused to rot."
@@ -196,7 +184,62 @@ const RABBIT_ACTION: Dictionary = {
 	]
 }
 
-# TODO: basically, I need to make actions generate prompts. prompts can be standalone, but this means I need to edit the ruins prompt and the parser, not enough brain rn
+const RABBIT_WALKING_AWAY_OUTCOME: Dictionary = {
+	KEY_IS_NEUTRAL: true,
+	KEY_TEXT_SLIDES: [
+		"The Rabbit Stray leaves your party."],
+	KEY_TEXT_NEUTRAL: "Continue",
+	KEY_NEUTRAL_RESULTS: [
+		{KEY_RESULT_TYPE: KEY_RESULT_KARMA,
+		KEY_RESULT_VALUE: -50},
+		{KEY_RESULT_TYPE: KEY_RESULT_CHARACTER,
+		KEY_RESULT_VALUE: KEY_RABBIT}]
+}
+
+const RABBIT_BETRAY_PROMPT: Dictionary = {
+	KEY_IS_NEUTRAL: false,
+	KEY_SCRAMBLE_ANSWERS: false,
+	KEY_TEXT_SLIDES: [
+		"Betrayal text"
+	],
+	KEY_TEXT_NEGATIVE: "Abandon the Stray",
+	KEY_TEXT_POSITIVE: "Don't",
+	KEY_NEGATIVE_RESULTS: [
+		{KEY_RESULT_TYPE: KEY_RESULT_PROMPT,
+		KEY_RESULT_VALUE: RABBIT_WALKING_AWAY_OUTCOME}
+	],
+	KEY_POSITIVE_RESULTS: []
+}
+
+const RUINS_PROMPT: Dictionary = {
+	KEY_IS_NEUTRAL: true,
+	KEY_TEXT_SLIDES: [
+		"I descend the mossy steps into this overgrown complex.\n\nGraffiti in languages I don't know warn me not to.",
+		"I end up in a collapsed corridor. No way forward from here. But as I turn back, I spot a metal box hidden under some debris."
+	],
+	KEY_TEXT_NEUTRAL: "Continue",
+	KEY_NEUTRAL_RESULTS: [
+		{KEY_RESULT_TYPE: KEY_RESULT_LOOT,
+		KEY_RESULT_VALUE: 50}
+	]
+}
+
+const RUINS_ACTION: Dictionary = {
+	KEY_NAME: "Ominous ruins",
+	KEY_ICON: PROMPT_ICONS[ICON_RUINS],
+	KEY_COSTS: [
+		{KEY_COST_ICON: PROMPT_ICONS[ICON_FOOD],
+		KEY_COST_VALUE: 10},
+		{KEY_COST_ICON: PROMPT_ICONS[ICON_KARMA],
+		KEY_COST_VALUE: 10}
+	],
+	KEY_BUTTON_TEXT: "Explore",
+	KEY_RESULT: [
+		{KEY_RESULT_TYPE: KEY_RESULT_PROMPT,
+		KEY_RESULT_VALUE: RUINS_PROMPT}
+	]
+}
+
 
 # Basically, during map gen, I assign prompts to the various nodes
 # Depending on node depth and degree, I pick from a different difficulty category

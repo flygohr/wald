@@ -1,7 +1,6 @@
 extends Node2D
 class_name MapNode
 
-#TODO: node needs to do different things depending on what it is
 # if revealed, show icon, not general white dot
 # if highlighted, show highlight animation
 # if end, show finish arrow and offscreen indicator
@@ -211,10 +210,6 @@ func display_active_marker(toggle: bool) -> void:
 		active_marker.hide()
 
 
-# TODO: node icon will also be modulated to greyscale if not yet completed
-# TODO: icon has two layers. icon on top, always color or question mark. bg is like tokens for vtt, same edge, but inside is green for cleared, red for not cleared, grey for undiscovered
-
-
 func _check_if_active(i) -> void:
 	if i == index:
 		is_active = true
@@ -260,7 +255,6 @@ func _select_this() -> void:
 		SignalBus.pan_to.emit(global_position)
 		if GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_IS_CLEARED] == false and GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_INCOMING_CONNECTIONS].has(index) == false:
 			_draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, false)
-			#TODO: if in incoming connections, allow it
 		else: _draw_temporary_line(GameData.current[GameData.KEY_MAP_NODES_DATA][GameData.current[GameData.KEY_MAP_CURRENT_NODE_INDEX]][GameData.KEY_MAPNODE_POS], global_position, true)
 		is_selected = true
 		SignalBus.node_selected.emit(index)

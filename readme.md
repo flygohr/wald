@@ -1,4 +1,4 @@
-Description
+Missing game description
 
 ### Credits:
 - Font: https://fontesk.com/bubble-sans-font/, https://www.1001fonts.com/libre-baskerville-font.html
@@ -17,15 +17,26 @@ Description
 - [x] Add arrow pointing towards "exit", but this should maybe part of each node behavior. if exit, display arrow. or for the camera?
 - [x] Fix settings screen not showing
 	- [x] Make it also the pause menu, with back to game / back to title
-- [ ] Arc drawings around map nodes need better organization to not overlap and be easily manageable with a few variables at the top
+- [x] Arc drawings around map nodes need better organization to not overlap and be easily manageable with a few variables at the top
 - [ ] Make settings screen a standalone scene capable of reminding what part of the game you were into, if title, wald, or current node screen
+- [ ] Write all the prompts and texts, start making it a real adventure
+- [ ] Write copy for characters
+- [ ] Draw waypoint sprite
+- [ ] Draw character sprites
+- [ ] Draw all the action icons
+- [ ] Draw all the backgrounds
+- [ ] Draw all the map features
+- [ ] Implement soundscapes
+- [ ] Add "recap" screen for prompts: you gained / you lost summary before resuming gameplay
 
 ### Bugs and fixes:
-- [ ] Waypoint marker doesn't take into account camera limits
-- [ ] Fix clunky camera drag code
-- [ ] Selection outline wrong color sometimes
+- [x] Waypoint marker doesn't take into account camera limits
+- [x] Fix clunky camera drag code
+- [x] Selection outline wrong color sometimes
 - [x] Change to a font that supports the "-" character
-- [ ] Changing scene in the overworld leaves the buttons visible?
+- [x] Changing scene in the overworld leaves the buttons visible?
+- [ ] Disable double click when panning camera
+- [ ] 
 
 ### Devlog:
 - 2026-10-20
@@ -34,3 +45,8 @@ Description
 	- cleaned up code, started thinking about camera and save states
 - 2026-10-29
 	- map navigation almost done, time to think about proper mechanics and MVP
+- 2026-11-27
+	- reminded myself to keep a devlog
+	- won't finish on time and that's fine. still sad
+	- mechanics are almost all in place, missing art, sounds, and ALL the prompts
+	
